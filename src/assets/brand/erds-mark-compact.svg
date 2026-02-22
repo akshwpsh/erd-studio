@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="ERDS compact cloud mark" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="rainbowCompact" x1="8" y1="34" x2="58" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff6a77" />
+      <stop offset="20%" stop-color="#ff9b6b" />
+      <stop offset="40%" stop-color="#ffd978" />
+      <stop offset="58%" stop-color="#84e58b" />
+      <stop offset="78%" stop-color="#6ad4ff" />
+      <stop offset="100%" stop-color="#a897ff" />
+    </linearGradient>
+    <linearGradient id="compactOutline" x1="16" y1="16" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34" />
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0.22" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M8 38C8 31 13 25 20 24C22 16 29 11 37 11C45 11 52 15 54 23C60 25 64 31 64 37C64 44 58 50 50 50H21C14 50 8 44 8 38Z"
+    fill="url(#rainbowCompact)"
+    stroke="url(#compactOutline)"
+    stroke-width="0.8"
+    stroke-linejoin="round"
+  />
+</svg>

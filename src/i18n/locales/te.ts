@@ -58,6 +58,249 @@ export const te: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'ప్రొఫైల్',
+            description: 'మీ ఖాతా సెట్టింగ్‌లను వీక్షించండి మరియు నవీకరించండి.',
+            fields: {
+                email: 'ఇమెయిల్',
+                nickname: 'మారుపేరు',
+                joined: 'చేరారు',
+                profile_image: 'ప్రొఫైల్ చిత్రం',
+                current_password: 'ప్రస్తుత పాస్‌వర్డ్',
+                new_password: 'కొత్త పాస్‌వర్డ్',
+                confirm_new_password: 'కొత్త పాస్‌వర్డ్‌ను నిర్ధారించండి',
+            },
+            hints: {
+                profile_image: 'చిత్ర ఫైల్‌లు మాత్రమే, గరిష్టంగా 5MB.',
+            },
+            actions: {
+                logout: 'లాగ్ అవుట్ చేయండి',
+                logging_out: 'సైన్ అవుట్ చేస్తోంది...',
+                cancel: 'రద్దు చేయి',
+                save_changes: 'మార్పులను సేవ్ చేయండి',
+                saving: 'సేవ్ చేస్తో��ది...',
+            },
+            errors: {
+                image_type: 'ఇమేజ్ ఫైల్‌లు మాత్రమే అనుమతించబడతాయి.',
+                image_size:
+                    'ప్రొఫైల్ చిత్రం తప్పనిసరిగా 5MB లేదా అంతకంటే చిన్నదిగా ఉండాలి.',
+                nickname_required: 'మారుపేరు అవసరం.',
+                current_password_required: 'ప్రస్తుత పాస్‌వర్డ్ అవసరం.',
+                new_password_required: 'కొత్త పాస్‌వర్డ్ అవసరం.',
+                new_password_length:
+                    'కొత్త పాస్‌వర్డ్ తప్పనిసరిగా కనీసం 6 అక్షరాలు ఉండాలి.',
+                password_confirmation_mismatch:
+                    'కొత్త పాస్‌వర్డ్ నిర్ధారణ సరిపోలలేదు.',
+                update_failed: 'ప్రొఫైల్‌ను నవీకరించడంలో విఫలమైంది.',
+                signout_failed: 'సైన్ అవుట్ చేయడంలో విఫలమైంది.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'పాస్‌వర్డ్ నవీకరణ విఫలమైంది',
+                    description_with_error:
+                        'ప్రొఫైల్ మార్పులు సేవ్ చేయబడ్డాయి. {{error}}',
+                    description_without_error:
+                        'ప్రొఫైల్ మార్పులు సేవ్ చేయబడ్డాయి, కానీ పాస్‌వర్డ్ నవీకరణ విఫలమైంది.',
+                },
+                avatar_upload_failed: {
+                    title: 'అవతార్ అప్‌లోడ్ విఫలమైంది',
+                    description_fallback:
+                        'మారుపేరు మరియు పాస్‌వర్డ్ మార్పులు ఇప్పటికీ వర్తింపజేయబడ్డాయి.',
+                },
+                profile_updated: {
+                    title: 'ప్రొఫైల్ నవీకరించబడింది',
+                    description: 'మీ ప్రొఫైల్ మా��్పులు సేవ్ చేయబడ్డాయి.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'రేఖాచిత్రాన్ని భాగస్వామ్యం చేయండి',
+        },
+
+        share_dialog: {
+            title: 'రేఖాచిత్రాన్ని భాగస్వామ్యం చేయండి',
+            description: 'సహకారులను సంపాదకులు లేదా వీక్షకులుగా ఆహ్వానించండి.',
+            access: {
+                title: 'మీ యాక్సెస్',
+                readonly_hint:
+                    'యజమాని మాత్రమే సభ్యులు మరియు ఆహ్వానాలను నిర్వహించగలరు.',
+            },
+            roles: {
+                owner: 'యజమాని',
+                editor: 'ఎడిటర్',
+                viewer: 'వీక్షకుడు',
+            },
+            status: {
+                pending: 'పెండింగ్‌లో ఉంది',
+                accepted: 'ఆమోదించబడింది',
+                revoked: 'రద్దు చేయబడింది',
+                expired: 'గడువు ముగిసింది',
+            },
+            invite: {
+                section_title: 'ఇమెయిల్ ద్వారా ఆహ్వానించండి',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'సభ్యులు',
+                empty: 'ఇంకా ఆహ్వానించబడిన సభ్యులు లేరు.',
+            },
+            invitations: {
+                section_title: 'పెండింగ్ ఆహ్వానాలు',
+                empty: 'పెండింగ్ ఆహ్వానాలు లేవు.',
+            },
+            history: {
+                section_title: 'ఆహ్వాన చరిత్ర',
+                empty: 'ఇంకా ఆహ్వానాలు లేవు.',
+            },
+            actions: {
+                invite: 'ఆహ్వానించండి',
+                remove: 'తీసివేయండి',
+                revoke: 'ఉపసంహరించుకోండి',
+                copy_link: 'లింక్‌ని కాపీ చేయండి',
+                refresh: 'రిఫ్రెష్ చేయండి',
+                close: 'మూసివేయండి',
+            },
+            labels: {
+                your_access: 'మీ యాక్సెస్:',
+                expires: 'గడువు ముగుస్తుంది',
+                updated: 'నవీకరించబడింది',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'ఆహ్వానం సృష్టించబడింది',
+                    description: '{{email}} {{role}}గా ఆహ్వానించబడ్డారు.',
+                },
+                invite_failed: {
+                    title: 'ఆహ్వానం విఫలమైంది',
+                },
+                role_update_failed: {
+                    title: 'పాత్ర నవీకరణ విఫలమైంది',
+                },
+                remove_failed: {
+                    title: 'సభ్యుడిని తీసివేయడం విఫలమైంది',
+                },
+                revoke_failed: {
+                    title: 'ఆహ్వానాన్ని రద్దు చేయడం విఫలమైంది',
+                },
+                copy_success: {
+                    title: 'ఆహ్వాన లింక్ కాపీ చేయబడింది',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'కాపీ విఫలమైంది',
+                    description: 'ఆహ్వాన లింక్‌ని కాపీ చేయడం సాధ్యపడలేదు.',
+                },
+            },
+            errors: {
+                email_required: 'ఇమెయిల్ అవసరం.',
+                unknown_error: 'తెలియని లోపం.',
+                no_diagram_selected: 'రేఖాచిత్రం ఎంచుకోబడలేదు.',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDSకి సైన్ ఇన్ చేయండి',
+            subtitle: 'మీ రేఖాచిత్రాలు మీ Supabase ఖాతాలో నిల్వ చేయబడ్డాయి.',
+            tabs: {
+                sign_in: 'సైన్ ఇన్ చేయండి',
+                sign_up: 'సైన్ అప్ చేయండి',
+            },
+            placeholders: {
+                nickname: 'మారుపేరు',
+                email: 'you@example.com',
+                password: 'పాస్‌వర్డ్',
+                confirm_password: 'పాస్‌వర్డ్‌ని నిర్ధారించండి',
+            },
+            actions: {
+                sign_in: 'సైన్ ఇన్ చేయండి',
+                signing_in: 'సైన్ ఇన్ చేస్తోంది...',
+                create_account: 'ఖాతాను సృష్టించండి',
+                creating_account: 'ఖాతాను సృష్టిస్తోంది...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase కాన్ఫిగర్ చేయబడలేదు',
+                supabase_not_configured_description:
+                    'కొనసాగించడానికి SUPABASE_URL మరియు SUPABASE_PUBLISHABLE_DEFAULT_KEY ఎన్విరాన్మెంట్ వేరియబుల్స్ జోడించండి.',
+                success_title: 'విజయం',
+                authentication_failed_title: 'ప్రామాణీకరణ విఫలమైంది',
+            },
+            validation: {
+                email_and_password_required: 'ఇమెయిల్ మరియు పాస్‌వర్డ్ అవసరం.',
+                nickname_required: 'మారుపేరు అవసరం.',
+                email_required: 'ఇమెయిల్ అవసరం.',
+                password_required: 'పాస్‌వర్డ్ అవసరం.',
+                password_min_length:
+                    'పాస్‌వర్డ్ తప్పనిసరిగా కనీసం 6 అక్షరాలు ఉండాలి.',
+                password_confirmation_mismatch:
+                    'పాస్‌వర్డ్ నిర్ధారణ సరిపోలలేదు.',
+                sign_in_failed: 'సైన్ ఇన్ చేయడంలో విఫలమైంది.',
+                create_account_failed: 'ఖాతాను సృష్టించడం విఫలమైంది.',
+            },
+            success: {
+                account_created:
+                    'ఖాతా సృష్టించబడింది. ఇమెయిల్ నిర్ధారణ ప్రారంభించబడితే, సైన్ ఇన్ చేయడానికి ముందు మీ ఇన్‌బాక్స్‌ని తనిఖీ చేయండి.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'ఆహ్వా���ాన్ని అంగీకరిస్తోంది...',
+            error_title: 'ఆహ్వానం ఆమోదించబడలేదు',
+            actions: {
+                retry: 'మళ్లీ ప్రయత్నించండి',
+                go_to_app: 'యాప్‌కి వెళ్లండి',
+            },
+            errors: {
+                expired: 'ఈ ఆహ్వాన లింక్ గడువు ముగిసింది.',
+                mismatch: 'ఈ ఆహ్వానం వేరే ఇమెయిల్ ఖాతాకు పంపబడింది.',
+                revoked: 'ఈ ఆహ్వానం ఉపసంహరించబడింది.',
+                not_pending: 'ఈ ఆహ్వానం ఇప్పుడు సక్రియంగా లేదు.',
+                not_found: 'ఆహ్వానం కనుగొనబడలేదు.',
+                token_missing: 'ఆహ్వాన టోకెన్ లేదు.',
+                supabase_not_configured: 'Supabase కాన్ఫిగర్ చేయబడలేదు.',
+                accept_failed: 'ఆహ్వానాన్ని ఆమోదించడంలో విఫలమైంది.',
+                unknown_error: 'తెలియని లోపం.',
+                no_diagram_returned:
+                    'ఆహ్వానం ఆమోదించబడింది, కానీ రేఖాచి���్రం తిరిగి ఇవ్వబడలేదు.',
+                invitee_email_required: 'ఆహ్వానిత ఇమెయిల్ అవసరం.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} ఆన్‌లైన్',
+            role: {
+                owner: 'యజమాని',
+                editor: 'ఎడిటర్',
+                viewer: 'వీక్షకుడు',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'క్లౌడ్ సమకాలీకరణ పునరుద్ధరించబడింది',
+            restored_description:
+                'మార్పులు మళ్లీ Supabaseకి సమకాలీకరించబడుతున్నాయి.',
+            paused_title: 'క్లౌడ్ సమకాలీకరణ పాజ్ చేయబడింది',
+            paused_description:
+                'మీ స్థానిక మార్పులు సురక్షితమైనవి మరియు స్వయంచాలకంగా మళ్లీ ప్రయత్నించబడతాయి.',
+            read_only_title: 'చదవడానికి మాత్రమే యాక్సెస్',
+            read_only_description:
+                'మీరు ఈ భాగస్వామ్య రేఖాచిత్రాన్ని చూడవచ్చు కానీ మార్పులను సేవ్ చేయలేరు.',
+            access_removed_title: 'యాక్సెస్ తీసివేయబడింది',
+            access_removed_description:
+                'ఈ భాగస్వామ్య రేఖాచిత్రానికి మీ యాక్సెస్ తీసివేయబడింది.',
+        },
+
+        collaboration_errors: {
+            expired: 'ఈ ఆహ్వాన లింక్ గడువు ముగిసింది.',
+            mismatch: 'ఈ ఆహ్వానం వేరే ఇమెయిల్ ఖాతాకు పంపబడింది.',
+            revoked: 'ఈ ఆహ్వానం ఉపసంహరించబడింది.',
+            not_pending: 'ఈ ఆహ్వానం ఇప్పుడు సక్రియంగా లేదు.',
+            not_found: 'ఆహ్వానం కనుగొనబడలేదు.',
+            invitee_email_required: 'ఆహ్వానిత ఇమెయిల్ అవసరం.',
+            token_missing: 'ఆహ్వాన టోకెన్ అవసరం.',
+            supabase_not_configured: 'Supabase కాన్ఫిగర్ చేయబడలేదు.',
+        },
+
         delete_diagram_alert: {
             title: 'చిత్రం తొలగించండి',
             description:

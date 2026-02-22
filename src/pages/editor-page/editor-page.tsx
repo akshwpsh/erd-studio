@@ -26,6 +26,11 @@ import { useDiagramLoader } from './use-diagram-loader';
 import { DiffProvider } from '@/context/diff-context/diff-provider';
 import { TopNavbarMock } from './top-navbar/top-navbar-mock';
 import { DiagramFilterProvider } from '@/context/diagram-filter-context/diagram-filter-provider';
+import { AuthProvider } from '@/context/auth-context/auth-provider';
+import { AuthGate } from '@/components/auth/auth-gate';
+import { StorageInitGate } from '@/components/storage/storage-init-gate';
+import { CollaborationProvider } from '@/context/collaboration-context/collaboration-provider';
+import { BRAND_SHORT } from '@/lib/brand';
 
 const OPEN_STAR_US_AFTER_SECONDS = 30;
 const SHOW_STAR_US_AGAIN_AFTER_DAYS = 1;
@@ -76,8 +81,8 @@ const EditorPageComponent: React.FC = () => {
             <Helmet>
                 <title>
                     {diagramName
-                        ? `ChartDB - ${diagramName} Diagram | Visualize Database Schemas`
-                        : 'ChartDB - Create & Visualize Database Schema Diagrams'}
+                        ? `${BRAND_SHORT} - ${diagramName} Diagram | Visualize Database Schemas`
+                        : `${BRAND_SHORT} - Create & Visualize Database Schema Diagrams`}
                 </title>
             </Helmet>
             <section
@@ -116,33 +121,41 @@ export const EditorPage: React.FC = () => (
         <ThemeProvider>
             <FullScreenLoaderProvider>
                 <LayoutProvider>
-                    <StorageProvider>
-                        <ConfigProvider>
-                            <RedoUndoStackProvider>
-                                <DiffProvider>
-                                    <ChartDBProvider>
-                                        <DiagramFilterProvider>
-                                            <HistoryProvider>
-                                                <ReactFlowProvider>
-                                                    <CanvasProvider>
-                                                        <ExportImageProvider>
-                                                            <AlertProvider>
-                                                                <DialogProvider>
-                                                                    <KeyboardShortcutsProvider>
-                                                                        <EditorPageComponent />
-                                                                    </KeyboardShortcutsProvider>
-                                                                </DialogProvider>
-                                                            </AlertProvider>
-                                                        </ExportImageProvider>
-                                                    </CanvasProvider>
-                                                </ReactFlowProvider>
-                                            </HistoryProvider>
-                                        </DiagramFilterProvider>
-                                    </ChartDBProvider>
-                                </DiffProvider>
-                            </RedoUndoStackProvider>
-                        </ConfigProvider>
-                    </StorageProvider>
+                    <AuthProvider>
+                        <AuthGate>
+                            <StorageProvider>
+                                <StorageInitGate>
+                                    <CollaborationProvider>
+                                        <ConfigProvider>
+                                            <RedoUndoStackProvider>
+                                                <DiffProvider>
+                                                    <ChartDBProvider>
+                                                        <DiagramFilterProvider>
+                                                            <HistoryProvider>
+                                                                <ReactFlowProvider>
+                                                                    <CanvasProvider>
+                                                                        <ExportImageProvider>
+                                                                            <AlertProvider>
+                                                                                <DialogProvider>
+                                                                                    <KeyboardShortcutsProvider>
+                                                                                        <EditorPageComponent />
+                                                                                    </KeyboardShortcutsProvider>
+                                                                                </DialogProvider>
+                                                                            </AlertProvider>
+                                                                        </ExportImageProvider>
+                                                                    </CanvasProvider>
+                                                                </ReactFlowProvider>
+                                                            </HistoryProvider>
+                                                        </DiagramFilterProvider>
+                                                    </ChartDBProvider>
+                                                </DiffProvider>
+                                            </RedoUndoStackProvider>
+                                        </ConfigProvider>
+                                    </CollaborationProvider>
+                                </StorageInitGate>
+                            </StorageProvider>
+                        </AuthGate>
+                    </AuthProvider>
                 </LayoutProvider>
             </FullScreenLoaderProvider>
         </ThemeProvider>

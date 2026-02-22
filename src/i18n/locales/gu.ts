@@ -58,6 +58,249 @@ export const gu: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'પ્રોફાઇલ',
+            description: 'તમારી એકાઉન્ટ સેટિંગ્સ જુઓ અને અપડેટ કરો.',
+            fields: {
+                email: 'ઇમેઇલ',
+                nickname: 'ઉપનામ',
+                joined: 'જોડાયા',
+                profile_image: 'પ્રોફાઇલ ઇમેજ',
+                current_password: 'વર્તમાન પાસવર્ડ',
+                new_password: 'નવો પાસવર્ડ',
+                confirm_new_password: 'નવા પાસવર્ડની પુષ્ટિ કરો',
+            },
+            hints: {
+                profile_image: 'માત્ર છબી ફાઇલો, 5MB સુધી.',
+            },
+            actions: {
+                logout: 'લોગ આઉટ કરો',
+                logging_out: 'સાઇન આઉટ કરી રહ્યાં છીએ...',
+                cancel: 'રદ કરો',
+                save_changes: 'ફેરફારો સાચવો',
+                saving: 'સાચવી રહ્યું છે...',
+            },
+            errors: {
+                image_type: 'માત્ર ઇમેજ ફાઇલોને જ મંજૂરી છે.',
+                image_size: 'પ્રોફાઇલ ઇમેજ 5MB અથવા નાની હોવી આવશ્યક છે.',
+                nickname_required: 'ઉપનામ જરૂરી છે.',
+                current_password_required: 'વર્તમાન પાસવર્ડ જરૂરી છે.',
+                new_password_required: 'નવો પાસવર્ડ જરૂરી છે.',
+                new_password_length:
+                    'નવો પાસવર્ડ ઓછામાં ઓછો 6 અક્ષરનો હોવો જોઈએ.',
+                password_confirmation_mismatch:
+                    'નવા પાસવર્ડની પુષ્ટિ મેળ ખાતી નથી.',
+                update_failed: 'પ્રોફાઇલ અપડેટ કરવામાં નિષ્ફળ.',
+                signout_failed: 'સાઇન આઉટ કરવામાં નિષ્ફળ.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'પાસવર્ડ અપડેટ નિષ્ફળ',
+                    description_with_error:
+                        'પ્રોફાઇલ ફેરફારો સાચવવામાં આવ્યા હતા. {{error}}',
+                    description_without_error:
+                        'પ્રોફાઇલ ફેરફારો સાચવવામાં આવ્યા હતા, પરંતુ પાસવર્ડ અપડેટ નિષ્ફળ ગયો.',
+                },
+                avatar_upload_failed: {
+                    title: 'અવતાર અપલોડ નિષ્ફળ થયું',
+                    description_fallback:
+                        'ઉપનામ અને પાસવર્ડ ફેરફારો હજુ પણ લાગુ કરવામાં આવ્યા હતા.',
+                },
+                profile_updated: {
+                    title: 'પ્રોફાઇલ અપડેટ કરી',
+                    description: 'તમારા પ્રોફાઇલ ફેરફારો સાચવવામાં આવ્યા છે.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'આકૃતિ શેર કર��',
+        },
+
+        share_dialog: {
+            title: 'આકૃતિ શેર કર��',
+            description: 'સહયોગીઓને સંપાદકો અથવા દર્શકો તરીકે આમંત્રિત કરો.',
+            access: {
+                title: 'તમારી ઍક્સેસ',
+                readonly_hint:
+                    'ફક્ત માલિક જ સભ્યો અને આમંત્રણોનું સંચાલન કરી શકે છે.',
+            },
+            roles: {
+                owner: 'માલિક',
+                editor: 'સંપાદક',
+                viewer: 'દર્શક',
+            },
+            status: {
+                pending: 'બાકી',
+                accepted: 'સ્વીકાર્યું',
+                revoked: 'રદબાતલ',
+                expired: 'સમાપ્ત',
+            },
+            invite: {
+                section_title: 'ઇમેઇલ દ્વારા આમંત્રણ આપો',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'સભ્યો',
+                empty: 'હજુ સુધી કોઈ આમંત્રિત સભ્યો નથી.',
+            },
+            invitations: {
+                section_title: 'બાકી આમંત્રણો',
+                empty: 'કોઈ બાકી આમંત્રણ નથી.',
+            },
+            history: {
+                section_title: 'આમંત્રણ ઇતિહાસ',
+                empty: 'હજુ સુધી કોઈ આમંત્રણ નથી.',
+            },
+            actions: {
+                invite: 'આમંત્રણ આપો',
+                remove: 'દૂર કરો',
+                revoke: 'રદબાતલ ક��ો',
+                copy_link: 'લિંક કૉપિ કરો',
+                refresh: 'તાજું કરો',
+                close: 'બંધ',
+            },
+            labels: {
+                your_access: 'તમારી ઍક્સેસ:',
+                expires: 'સમાપ્ત થાય છે',
+                updated: 'અપડેટ કરેલ',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'આમંત્રણ બનાવ્યું',
+                    description:
+                        '{{email}} ને {{role}} તરીકે આમંત્રિત કરવામાં આવ્યા હતા.',
+                },
+                invite_failed: {
+                    title: 'આમંત્રણ નિષ્ફળ થયું',
+                },
+                role_update_failed: {
+                    title: 'ભૂમિકા અપડેટ નિષ્ફળ',
+                },
+                remove_failed: {
+                    title: 'સભ્યને દૂર કરવાનું નિષ્ફળ થયું',
+                },
+                revoke_failed: {
+                    title: 'આમંત્રણ રદબાતલ કરવાનું નિષ્ફળ થયું',
+                },
+                copy_success: {
+                    title: 'આમંત્રિત લિંક કોપી કરી',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'નકલ નિષ્ફળ',
+                    description: 'આમંત્રણ લિંક કૉપિ કરી શકાઈ નથી.',
+                },
+            },
+            errors: {
+                email_required: 'ઇમેઇલ આવશ્યક છે.',
+                unknown_error: 'અજાણી ભૂલ.',
+                no_diagram_selected: 'કોઈ આકૃતિ પસંદ કરેલ નથી.',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS માં સાઇન ઇન કરો',
+            subtitle: 'તમારા આકૃતિઓ તમારા Supabase ખાતામાં ���ંગ્રહિત છે.',
+            tabs: {
+                sign_in: 'સાઇન ઇન કરો',
+                sign_up: 'સાઇન અપ કરો',
+            },
+            placeholders: {
+                nickname: 'ઉપનામ',
+                email: 'you@example.com',
+                password: 'પાસવર્ડ',
+                confirm_password: 'પાસવર્ડ કન્ફર્મ કરો',
+            },
+            actions: {
+                sign_in: 'સાઇન ઇન કરો',
+                signing_in: 'સાઇન ઇન કરી રહ્યાં છીએ...',
+                create_account: 'એકાઉન્ટ બનાવો',
+                creating_account: 'એકાઉન્ટ બનાવી રહ્યું છે...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase ગોઠવેલ નથી',
+                supabase_not_configured_description:
+                    'ચાલુ રાખવા માટે SUPABASE_URL અને SUPABASE_PUBLISHABLE_DEFAULT_KEY પર્યાવરણ ચલો ઉમેરો.',
+                success_title: 'સફળતા',
+                authentication_failed_title: 'પ્રમાણીકરણ નિષ્ફળ થયું',
+            },
+            validation: {
+                email_and_password_required: 'ઈમેલ અને પાસવર્ડ જરૂરી છે.',
+                nickname_required: 'ઉપનામ જરૂરી છે.',
+                email_required: 'ઇમેઇલ આવશ્યક છે.',
+                password_required: 'પાસવર્ડ જરૂરી છે.',
+                password_min_length: 'પાસવર્ડ ઓછામાં ઓછો 6 અક્ષરનો હોવો જોઈએ.',
+                password_confirmation_mismatch:
+                    'પાસવર્ડ કન્ફર્મેશન મેળ ખાતું નથી.',
+                sign_in_failed: 'સાઇન ઇન કરવામાં નિષ્ફળ.',
+                create_account_failed: 'એકાઉન્ટ બનાવવામાં નિષ્ફળ.',
+            },
+            success: {
+                account_created:
+                    'એકાઉન્ટ બનાવ્યું. જો ઈમેલ કન્ફર્મેશન સક્ષમ કરેલ હોય, તો સાઇન ઇન કરતા પહેલા તમારું ઇનબોક્સ તપાસો.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'આમંત્રણ સ્વીકારી રહ્યાં છીએ...',
+            error_title: 'આમંત્રણ સ્વીકારી શકાયું નથી',
+            actions: {
+                retry: 'ફરી પ્રયાસ કરો',
+                go_to_app: 'એપ્લિકેશન પર જાઓ',
+            },
+            errors: {
+                expired: 'આ આમંત્રણ લિંકની સમયસીમા સમાપ્ત થઈ ગઈ છે.',
+                mismatch:
+                    'આ આમંત્રણ એક અલગ ઈમેલ એકાઉન્ટ પર મોકલવામાં આવ્યું હતું.',
+                revoked: 'આ આમંત્રણ રદ કરવામાં આવ્યું છે.',
+                not_pending: 'આ આમંત્રણ હવે સક્રિય નથી.',
+                not_found: 'આમંત્રણ મળ્યું નથી.',
+                token_missing: 'આમંત્રણ ટોકન ખૂટે છે.',
+                supabase_not_configured: 'Supabase ગોઠવેલ નથી.',
+                accept_failed: 'આમંત્રણ સ્વીકારવામાં નિષ્ફળ.',
+                unknown_error: 'અજાણી ભૂલ.',
+                no_diagram_returned:
+                    'આમંત્રણ સ્વીકાર્યું, પરંતુ કોઈ આકૃતિ પરત કરવામાં આવી ન હતી.',
+                invitee_email_required: 'આમંત્રિત ઇમેઇલ આવશ્યક છે.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} ઑનલાઇન',
+            role: {
+                owner: 'માલિક',
+                editor: 'સંપાદક',
+                viewer: 'દર્શક',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'મેઘ સમન્વયન પુનઃસ્થાપિત',
+            restored_description:
+                'ફેરફારો ફરીથી Supabase માં સમન્વયિત થઈ રહ્યા છે.',
+            paused_title: 'મેઘ સમન્વયન થોભાવ્યું',
+            paused_description:
+                'તમારા સ્થાનિક ફેરફારો સુરક્ષિત છે અને આપમેળે ફરી પ્રયાસ કરવામાં આવશે.',
+            read_only_title: 'ફક્ત વાંચવા માટેની ઍક્સેસ',
+            read_only_description:
+                'તમે આ વહેંચાયેલ ડાયાગ્રામ જોઈ શકો છો પણ ફેરફારો સાચવી શકતા નથી.',
+            access_removed_title: 'ઍક્સેસ દૂર કરવામાં આવી',
+            access_removed_description:
+                'આ વહેંચાયેલ ડાયાગ્રામની તમારી ઍક્સેસ દૂર કરવામાં આવી હતી.',
+        },
+
+        collaboration_errors: {
+            expired: 'આ આમંત્રણ લિંકની સમયસીમા સમાપ્ત થઈ ગઈ છે.',
+            mismatch: 'આ આમંત્રણ એક અલગ ઈમેલ એકાઉન્ટ પર મોકલવામાં આવ્યું હતું.',
+            revoked: 'આ આમંત્રણ રદ કરવામાં આવ્યું છે.',
+            not_pending: 'આ આમંત્રણ હવે સક્રિય નથી.',
+            not_found: 'આમંત્રણ મળ્યું નથી.',
+            invitee_email_required: 'આમંત્રિત ઇમેઇલ આવશ્યક છે.',
+            token_missing: 'આમંત્રણ ટોકન જરૂરી છે.',
+            supabase_not_configured: 'Supabase ગોઠવેલ નથી.',
+        },
+
         delete_diagram_alert: {
             title: 'ડાયાગ્રામ કાઢી નાખો',
             description:

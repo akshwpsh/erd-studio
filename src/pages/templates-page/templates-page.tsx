@@ -1,6 +1,4 @@
 import React from 'react';
-import ChartDBLogo from '@/assets/logo-light.png';
-import ChartDBDarkLogo from '@/assets/logo-dark.png';
 import { useTheme } from '@/hooks/use-theme';
 import { LocalConfigProvider } from '@/context/local-config-context/local-config-provider';
 import { ThemeProvider } from '@/context/theme-context/theme-provider';
@@ -11,6 +9,7 @@ import { useLoaderData, useMatches, useParams } from 'react-router-dom';
 import type { Template } from '@/templates-data/templates-data';
 import { Spinner } from '@/components/spinner/spinner';
 import { TemplatesPageHelmet } from './templates-page-helmet';
+import { BrandLogo } from '@/components/brand/brand-logo';
 
 export interface TemplatesPageLoaderData {
     templates: Template[] | undefined;
@@ -41,26 +40,17 @@ const TemplatesPageComponent: React.FC = () => {
                 <nav className="flex h-12 shrink-0 flex-row items-center justify-between border-b px-4">
                     <div className="flex flex-1 justify-start gap-x-3">
                         <div className="flex items-center font-primary">
-                            <a
-                                href="https://chartdb.io"
-                                className="cursor-pointer"
-                                rel="noreferrer"
-                            >
-                                <img
-                                    src={
-                                        effectiveTheme === 'light'
-                                            ? ChartDBLogo
-                                            : ChartDBDarkLogo
-                                    }
-                                    alt="chartDB"
-                                    className="h-4 max-w-fit"
+                            <div className="inline-flex">
+                                <BrandLogo
+                                    variant="page-nav"
+                                    theme={effectiveTheme}
                                 />
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-1 justify-end">
                         <iframe
-                            src={`https://ghbtns.com/github-btn.html?user=chartdb&repo=chartdb&type=star&size=large&text=false`}
+                            src={`https://ghbtns.com/github-btn.html?user=akshwpsh&repo=erd-studio&type=star&size=large&text=false`}
                             width="40"
                             height="30"
                             title="GitHub"

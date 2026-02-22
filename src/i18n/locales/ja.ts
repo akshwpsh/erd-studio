@@ -58,6 +58,249 @@ export const ja: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'プロフィール',
+            description: 'アカウント設定を表示および更新します。',
+            fields: {
+                email: 'メール',
+                nickname: 'ニックネーム',
+                joined: '参加しました',
+                profile_image: 'プロフィール画像',
+                current_password: '現在のパスワード',
+                new_password: '新しいパスワード',
+                confirm_new_password: '新しいパスワードを確認してください',
+            },
+            hints: {
+                profile_image: '画像ファイルのみ、最大 5MB。',
+            },
+            actions: {
+                logout: 'ログアウト',
+                logging_out: 'サインアウトしています...',
+                cancel: 'キャンセル',
+                save_changes: '変更を保存',
+                saving: '保存中...',
+            },
+            errors: {
+                image_type: '画像ファイルのみ許可されます。',
+                image_size: 'プロフィール画像は 5MB 以下である必要があります。',
+                nickname_required: 'ニックネームは必須です。',
+                current_password_required: '現在のパスワー��が必要です。',
+                new_password_required: '新しいパスワードが必要です。',
+                new_password_length:
+                    '新しいパスワードは 6 文字以上にする必要があります。',
+                password_confirmation_mismatch:
+                    '新しいパスワードの確認が一致しません。',
+                update_failed: 'プロフィールを更新できませんでした。',
+                signout_failed: 'サインアウトできませんでした。',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'パスワードの更新に失敗しました',
+                    description_with_error:
+                        'プロフィールの変更が保存されました。 {{error}}',
+                    description_without_error:
+                        'プロファイルの変更は保存されましたが、パスワードの更新に失敗しました。',
+                },
+                avatar_upload_failed: {
+                    title: 'アバターのアップロードに失敗しました',
+                    description_fallback:
+                        'ニックネームとパスワードの変更はまだ適用されています。',
+                },
+                profile_updated: {
+                    title: 'プロフィールを更新しました',
+                    description: 'プロフィールの変更が保存されました。',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: '図を共有',
+        },
+
+        share_dialog: {
+            title: '図を共有',
+            description: '編集者または閲覧者として共同編集者を招待します。',
+            access: {
+                title: 'あなたのアクセス',
+                readonly_hint:
+                    'メンバーと招待状を管理できるのはオーナーだけです。',
+            },
+            roles: {
+                owner: 'オーナー',
+                editor: '編集者',
+                viewer: '閲覧者',
+            },
+            status: {
+                pending: '保留中',
+                accepted: '承認されました',
+                revoked: '取り消されました',
+                expired: '期限切れ',
+            },
+            invite: {
+                section_title: 'メールで招待',
+                email_placeholder: 'チームメイト@example.com',
+            },
+            members: {
+                section_title: 'メンバー',
+                empty: '招待されたメンバーはまだいません。',
+            },
+            invitations: {
+                section_title: '保留中の招待状',
+                empty: '保留中の招待はありません。',
+            },
+            history: {
+                section_title: '招待履歴',
+                empty: '招待状はまだありません。',
+            },
+            actions: {
+                invite: '招待',
+                remove: '削除',
+                revoke: '取り消し',
+                copy_link: 'リンクをコピー',
+                refresh: '更新',
+                close: '閉じる',
+            },
+            labels: {
+                your_access: 'あなたのアクセス:',
+                expires: '有効期限が切れます',
+                updated: '更新しました',
+            },
+            toasts: {
+                invite_created: {
+                    title: '招待状が作成されました',
+                    description: '{{email}} が {{role}} として招待されました。',
+                },
+                invite_failed: {
+                    title: '招待に失敗しました',
+                },
+                role_update_failed: {
+                    title: 'ロールの更新に失敗しました',
+                },
+                remove_failed: {
+                    title: 'メンバーの削除に失敗しました',
+                },
+                revoke_failed: {
+                    title: '招待を取り消すことができませんでした',
+                },
+                copy_success: {
+                    title: '招待リンクをコピーしました',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'コピーに失敗しました',
+                    description: '招待リンクをコピーできませんでした。',
+                },
+            },
+            errors: {
+                email_required: 'メールアドレスは必須です。',
+                unknown_error: '不明なエラーです。',
+                no_diagram_selected: '図が選択されていません。',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS にサインインします',
+            subtitle: '図は Supabase アカウントに保存されます。',
+            tabs: {
+                sign_in: 'サインイン',
+                sign_up: 'サインアップ',
+            },
+            placeholders: {
+                nickname: 'ニックネーム',
+                email: 'you@example.com',
+                password: 'パスワード',
+                confirm_password: 'パスワードを確認してください',
+            },
+            actions: {
+                sign_in: 'サインイン',
+                signing_in: 'サインイン中...',
+                create_account: 'アカウントを作成する',
+                creating_account: 'アカウントを作成中...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase が設定されていません',
+                supabase_not_configured_description:
+                    'SUPABASE_URL および SUPABASE_PUBLISHABLE_DEFAULT_KEY 環境変数を追加して続行します。',
+                success_title: '成功',
+                authentication_failed_title: '認証に失敗しました',
+            },
+            validation: {
+                email_and_password_required:
+                    'メールアドレスとパスワードが必要です。',
+                nickname_required: 'ニックネームは必須です。',
+                email_required: 'メールアドレスは必須です。',
+                password_required: 'パスワードが必要です。',
+                password_min_length:
+                    'パスワードは 6 文字以上である必要があります。',
+                password_confirmation_mismatch:
+                    'パスワード確認が一致しません。',
+                sign_in_failed: 'サインインに失敗しました。',
+                create_account_failed: 'アカウントの作成に失敗しました。',
+            },
+            success: {
+                account_created:
+                    'アカウントが作成されました。電子メール確認が有効になっている場合は、サインインする前に受信トレイを確認してください。',
+            },
+        },
+
+        invite_accept_page: {
+            loading: '招待を受け入れます...',
+            error_title: '招待を受け入れることができませんでした',
+            actions: {
+                retry: '再試行',
+                go_to_app: 'アプリに移動',
+            },
+            errors: {
+                expired: 'この招待リンクの有効期限が切れています。',
+                mismatch:
+                    'この招待状は別の電子メール アカウントに送信されました。',
+                revoked: 'この招待は取り消されました。',
+                not_pending: 'この招待状は現在無効になっています。',
+                not_found: '招待状が見つかりません。',
+                token_missing: '招待トークンがありません。',
+                supabase_not_configured: 'Supabase が設定されていません。',
+                accept_failed: '招待を受け入れることができませんでした。',
+                unknown_error: '不明なエラーです。',
+                no_diagram_returned:
+                    '招待は受け入れられましたが、図は返されませんでした。',
+                invitee_email_required: '招待者のメールアドレスは必須です。',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} オンライン',
+            role: {
+                owner: 'オーナー',
+                editor: '編集者',
+                viewer: '閲覧者',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'クラウド同期が復元されました',
+            restored_description: '変更は再び Supabase に同期されます。',
+            paused_title: 'クラウド同期が一時停止されました',
+            paused_description:
+                'ローカルでの変更は安全であり、自動的に再試行されます。',
+            read_only_title: '読み取り専用アクセス',
+            read_only_description:
+                'この共有図は表示できますが、変更を保存することはできません。',
+            access_removed_title: 'アクセスが削除されました',
+            access_removed_description:
+                'この共有図へのアクセス権が削除されました。',
+        },
+
+        collaboration_errors: {
+            expired: 'この招待リンクの有効期限が切れています。',
+            mismatch: 'この招待状は別の電子メール アカウントに送信されました。',
+            revoked: 'この招待は取り消されました。',
+            not_pending: 'この招待状は現在無効になっています。',
+            not_found: '招待状が見つかりません。',
+            invitee_email_required: '招待者のメールアドレスは必須です。',
+            token_missing: '招待トークンが必要です。',
+            supabase_not_configured: 'Supabase が設定されていません。',
+        },
+
         delete_diagram_alert: {
             title: 'ダイアグラムを削除',
             description:

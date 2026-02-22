@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="176" viewBox="0 0 680 176" role="img" aria-label="ERDS logo mobile" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="rainbowCloud" x1="14" y1="90" x2="194" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff6a77" />
+      <stop offset="16%" stop-color="#ff9b6b" />
+      <stop offset="32%" stop-color="#ffd978" />
+      <stop offset="50%" stop-color="#84e58b" />
+      <stop offset="68%" stop-color="#6ad4ff" />
+      <stop offset="86%" stop-color="#8e9dff" />
+      <stop offset="100%" stop-color="#c2a4ff" />
+    </linearGradient>
+    <linearGradient id="cloudOutline" x1="30" y1="56" x2="184" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.36" />
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0.26" />
+    </linearGradient>
+    <linearGradient id="cloudShine" x1="102" y1="44" x2="102" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.38" />
+      <stop offset="62%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M14 104C14 83 29 67 50 64C56 42 76 28 99 28C123 28 143 41 150 63C170 67 186 83 186 104C186 127 167 146 143 146H55C32 146 14 128 14 104Z"
+    fill="url(#rainbowCloud)"
+    stroke="url(#cloudOutline)"
+    stroke-width="1"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M30 99C30 81 44 67 61 65C67 49 82 38 100 38C119 38 135 49 141 64C129 52 113 46 98 46C84 46 69 53 60 67C46 69 34 81 34 95C34 98 34 100 35 101C33 100 31 99 30 99Z"
+    fill="url(#cloudShine)"
+  />
+
+  <text x="224" y="116" font-size="104" font-family="Inter, Raleway, Arial, sans-serif" font-weight="800" fill="#ecf2ff" letter-spacing="2">ERDS</text>
+</svg>

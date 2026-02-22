@@ -57,6 +57,249 @@ export const vi: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Hồ sơ',
+            description: 'Xem và cập nhật cài đặt tài khoản của bạn.',
+            fields: {
+                email: 'Email',
+                nickname: 'Biệt danh',
+                joined: 'Đã tham gia',
+                profile_image: 'Ảnh hồ sơ',
+                current_password: 'Mật khẩu hiện tại',
+                new_password: 'Mật khẩu mới',
+                confirm_new_password: 'Xác nhận mật khẩu mới',
+            },
+            hints: {
+                profile_image: 'Chỉ tệp hình ảnh, tối đa 5MB.',
+            },
+            actions: {
+                logout: 'Đăng xuất',
+                logging_out: 'Đang đăng xuất...',
+                cancel: 'Hủy',
+                save_changes: 'Lưu thay đổi',
+                saving: 'Đang lưu...',
+            },
+            errors: {
+                image_type: 'Chỉ cho phép các tệp hình ảnh.',
+                image_size: 'Ảnh hồ sơ phải có dung lượng từ 5MB trở xuống.',
+                nickname_required: 'Bắt buộc phải có biệt hiệu.',
+                current_password_required: 'Cần có mật khẩu hiện tại.',
+                new_password_required: 'Cần có mật khẩu mới.',
+                new_password_length: 'Mật khẩu mới phải có ít nhất 6 ký tự.',
+                password_confirmation_mismatch:
+                    'Xác nhận mật khẩu mới không khớp.',
+                update_failed: 'Không cập nhật được hồ sơ.',
+                signout_failed: 'Không đăng xuất được.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Cập nhật mật khẩu không thành công',
+                    description_with_error:
+                        'Các thay đổi trong hồ sơ đã được lưu. {{error}}',
+                    description_without_error:
+                        'Các thay đổi trong hồ sơ đã được lưu nhưng cập nhật mật khẩu không thành công.',
+                },
+                avatar_upload_failed: {
+                    title: 'Tải lên hình đại diện không thành công',
+                    description_fallback:
+                        'Việc thay đổi biệt danh và mật khẩu vẫn được áp dụng.',
+                },
+                profile_updated: {
+                    title: 'Đã cập nhật hồ sơ',
+                    description:
+                        'Những thay đổi trong hồ sơ của bạn đã được lưu.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Chia sẻ sơ đồ',
+        },
+
+        share_dialog: {
+            title: 'Chia sẻ sơ đồ',
+            description: 'Mời cộng tác viên làm biên tập viên hoặc người xem.',
+            access: {
+                title: 'Quyền truy cập của bạn',
+                readonly_hint:
+                    'Chỉ chủ sở hữu mới có thể quản lý thành viên và lời mời.',
+            },
+            roles: {
+                owner: 'Chủ sở hữu',
+                editor: 'Biên tập viên',
+                viewer: 'Người xem',
+            },
+            status: {
+                pending: 'Đang chờ xử lý',
+                accepted: 'Đã chấp nhận',
+                revoked: 'Đã thu hồi',
+                expired: 'Đã hết hạn',
+            },
+            invite: {
+                section_title: 'Mời qua email',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'Thành viên',
+                empty: 'Chưa có thành viên nào được mời.',
+            },
+            invitations: {
+                section_title: 'Lời mời đang chờ xử lý',
+                empty: 'Không có lời mời nào đang chờ xử lý.',
+            },
+            history: {
+                section_title: 'Lịch sử lời mời',
+                empty: 'Chưa có lời mời nào.',
+            },
+            actions: {
+                invite: 'Mời',
+                remove: 'Xóa',
+                revoke: 'Thu hồi',
+                copy_link: 'Sao chép liên kết',
+                refresh: 'Làm mới',
+                close: 'Đóng',
+            },
+            labels: {
+                your_access: 'Quyền truy cập của bạn:',
+                expires: 'Hết hạn',
+                updated: 'Đã cập nhật',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Đã tạo lời mời',
+                    description: '{{email}} được mời với tư cách là {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Lời mời không thành công',
+                },
+                role_update_failed: {
+                    title: 'Cập nhật vai trò không thành công',
+                },
+                remove_failed: {
+                    title: 'Remove member failed',
+                },
+                revoke_failed: {
+                    title: 'Thu hồi lời mời không thành công',
+                },
+                copy_success: {
+                    title: 'Đã sao chép liên kết mời',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Sao chép không thành công',
+                    description: 'Không thể sao chép liên kết lời mời.',
+                },
+            },
+            errors: {
+                email_required: 'Email là bắt buộc.',
+                unknown_error: 'Lỗi không xác định.',
+                no_diagram_selected: 'Không có sơ đồ nào được chọn.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Đăng nhập vào ERDS',
+            subtitle:
+                'Sơ đồ của bạn được lưu trữ trong tài khoản Supabase của bạn.',
+            tabs: {
+                sign_in: 'Đăng nhập',
+                sign_up: 'Đăng ký',
+            },
+            placeholders: {
+                nickname: 'Biệt danh',
+                email: 'you@example.com',
+                password: 'Mật khẩu',
+                confirm_password: 'Xác nhận mật khẩu',
+            },
+            actions: {
+                sign_in: 'Đăng nhập',
+                signing_in: 'Đang đăng nhập...',
+                create_account: 'Tạo tài khoản',
+                creating_account: 'Đang tạo tài khoản...',
+            },
+            alerts: {
+                supabase_not_configured_title:
+                    'Supabase chưa được định cấu hình',
+                supabase_not_configured_description:
+                    'Thêm các biến môi trường SUPABASE_URL và SUPABASE_PUBLISHABLE_DEFAULT_KEY để tiếp tục.',
+                success_title: 'Thành công',
+                authentication_failed_title: 'Xác thực không thành công',
+            },
+            validation: {
+                email_and_password_required: 'Email và mật khẩu là bắt buộc.',
+                nickname_required: 'Bắt buộc phải có biệt hiệu.',
+                email_required: 'Email là bắt buộc.',
+                password_required: 'Cần có mật khẩu.',
+                password_min_length: 'Mật khẩu phải có ít nhất 6 ký tự.',
+                password_confirmation_mismatch: 'Xác nhận mật khẩu không khớp.',
+                sign_in_failed: 'Không đăng nhập được.',
+                create_account_failed: 'Không tạo được tài khoản.',
+            },
+            success: {
+                account_created:
+                    'Tài khoản đã được tạo. Nếu xác nhận email được bật, hãy kiểm tra hộp thư đến của bạn trước khi đăng nhập.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Đang chấp nhận lời mời...',
+            error_title: 'Lời mời không thể được chấp nhận',
+            actions: {
+                retry: 'Thử lại',
+                go_to_app: 'Vào ứng dụng',
+            },
+            errors: {
+                expired: 'Liên kết lời mời này đã hết hạn.',
+                mismatch:
+                    'Lời mời này đã được gửi đến một tài khoản email khác.',
+                revoked: 'Lời mời này đã bị thu hồi.',
+                not_pending: 'Lời mời này không còn hoạt động.',
+                not_found: 'Không tìm thấy lời mời.',
+                token_missing: 'Mã thông báo lời mời bị thiếu.',
+                supabase_not_configured: 'Supabase chưa được định cấu hình.',
+                accept_failed: 'Không thể chấp nhận lời mời.',
+                unknown_error: 'Lỗi không xác định.',
+                no_diagram_returned:
+                    'Lời mời được chấp nhận nhưng không có sơ đồ nào được trả lại.',
+                invitee_email_required: 'Cần có email của người được mời.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} trực tuyến',
+            role: {
+                owner: 'Chủ sở hữu',
+                editor: 'Biên tập viên',
+                viewer: 'Người xem',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Đã khôi phục đồng bộ hóa đám mây',
+            restored_description:
+                'Các thay đổi đang được đồng bộ hóa lại với Supabase.',
+            paused_title: 'Đã tạm dừng đồng bộ hóa đám mây',
+            paused_description:
+                'Những thay đổi cục bộ của bạn an toàn và sẽ được thử lại tự động.',
+            read_only_title: 'Quyền truy cập chỉ đọc',
+            read_only_description:
+                'Bạn có thể xem sơ đồ được chia sẻ này nhưng không thể lưu các thay đổi.',
+            access_removed_title: 'Đã xóa quyền truy cập',
+            access_removed_description:
+                'Quyền truy cập của bạn vào sơ đồ chia sẻ này đã bị xóa.',
+        },
+
+        collaboration_errors: {
+            expired: 'Liên kết lời mời này đã hết hạn.',
+            mismatch: 'Lời mời này đã được gửi đến một tài khoản email khác.',
+            revoked: 'Lời mời này đã bị thu hồi.',
+            not_pending: 'Lời mời này không còn hoạt động.',
+            not_found: 'Không tìm thấy lời mời.',
+            invitee_email_required: 'Cần có email của người được mời.',
+            token_missing: 'Mã thông báo lời mời là bắt buộc.',
+            supabase_not_configured: 'Supabase chưa được định cấu hình.',
+        },
+
         delete_diagram_alert: {
             title: 'Xóa sơ đồ',
             description:

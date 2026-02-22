@@ -2,6 +2,15 @@ export const OPENAI_API_KEY: string = import.meta.env.VITE_OPENAI_API_KEY;
 export const OPENAI_API_ENDPOINT: string = import.meta.env
     .VITE_OPENAI_API_ENDPOINT;
 export const LLM_MODEL_NAME: string = import.meta.env.VITE_LLM_MODEL_NAME;
+export const SUPABASE_URL: string =
+    window?.env?.SUPABASE_URL ?? import.meta.env.VITE_SUPABASE_URL ?? '';
+export const SUPABASE_PUBLISHABLE_DEFAULT_KEY: string =
+    window?.env?.SUPABASE_PUBLISHABLE_DEFAULT_KEY ??
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY ??
+    // Backward compatibility with previous naming.
+    window?.env?.SUPABASE_ANON_KEY ??
+    import.meta.env.VITE_SUPABASE_ANON_KEY ??
+    '';
 export const IS_CHARTDB_IO: boolean =
     import.meta.env.VITE_IS_CHARTDB_IO === 'true';
 export const APP_URL: string = import.meta.env.VITE_APP_URL;

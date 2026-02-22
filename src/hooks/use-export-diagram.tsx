@@ -3,6 +3,7 @@ import { useDialog } from '@/hooks/use-dialog';
 import { diagramToJSONOutput } from '@/lib/export-import-utils';
 import { waitFor } from '@/lib/utils';
 import type { Diagram } from '@/lib/domain/diagram';
+import { BRAND_SHORT } from '@/lib/brand';
 
 export const useExportDiagram = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +11,7 @@ export const useExportDiagram = () => {
 
     const downloadOutput = useCallback((name: string, dataUrl: string) => {
         const a = document.createElement('a');
-        a.setAttribute('download', `ChartDB(${name}).json`);
+        a.setAttribute('download', `${BRAND_SHORT}(${name}).json`);
         a.setAttribute('href', dataUrl);
         a.click();
     }, []);

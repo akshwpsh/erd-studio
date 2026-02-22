@@ -53,6 +53,7 @@ export const loadFromDatabaseMetadata = async ({
     const adjustedTables = adjustTablePositions({
         tables,
         relationships,
+        dependencies,
         mode: 'perSchema',
     });
 

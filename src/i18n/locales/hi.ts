@@ -57,6 +57,249 @@ export const hi: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'प्रोफ़ाइल',
+            description: 'अपनी खाता सेटिंग देखें और अपडेट करें।',
+            fields: {
+                email: 'ईमेल',
+                nickname: 'उपनाम',
+                joined: 'शामिल हुए',
+                profile_image: 'प्रोफ़ाइल छवि',
+                current_password: 'वर्तमान पासवर्ड',
+                new_password: 'नया पासवर्ड',
+                confirm_new_password: 'नये पासवर्ड की पुष्टि करें',
+            },
+            hints: {
+                profile_image: 'केवल छवि फ़ाइलें, 5एमबी तक।',
+            },
+            actions: {
+                logout: 'लॉग आउट करें',
+                logging_out: 'साइन आउट हो रहा है...',
+                cancel: 'रद्द करें',
+                save_changes: 'परिवर्तन सहेजें',
+                saving: 'सहेजा जा रहा है...',
+            },
+            errors: {
+                image_type: 'केवल छवि फ़ाइलों की अनुमति है।',
+                image_size: 'प्रोफ़ाइल छवि 5एमबी या छोटी होनी चाहिए।',
+                nickname_required: 'उपनाम आवश्यक है.',
+                current_password_required: 'वर्तमान पासवर्ड आवश्यक है।',
+                new_password_required: 'नया पासवर्ड आवश्यक है.',
+                new_password_length:
+                    'नया पासवर्ड कम से कम 6 अक्षर का होना चाहिए।',
+                password_confirmation_mismatch:
+                    'नये पासवर्ड की पुष्टि मेल नहीं खाती।',
+                update_failed: 'प्रोफ़ाइल अपडेट करने में विफल.',
+                signout_failed: 'साइन आउट करने में विफल।',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'पासवर्ड अद्यतन विफल रहा',
+                    description_with_error:
+                        'प्रोफ़ाइल परिवर्तन सहेजे गए। {{error}}',
+                    description_without_error:
+                        'प्रोफ़ाइल परिवर्तन सहेजे गए, लेकिन पासवर्ड अपडेट विफल रहा।',
+                },
+                avatar_upload_failed: {
+                    title: 'अवतार अपलोड विफल रहा',
+                    description_fallback:
+                        'उपनाम और पासवर्ड परिवर्तन अभी भी लागू थे।',
+                },
+                profile_updated: {
+                    title: 'प्रोफ़ाइल अपडेट की गई',
+                    description: 'आपके प्रोफ़ाइल परिवर्तन सहेजे गए हैं।',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'चित्र साझा करें',
+        },
+
+        share_dialog: {
+            title: 'चित्र साझा करें',
+            description:
+                'सहयोगियों को संपादक या दर्शक के रूप में आमंत्रित करें।',
+            access: {
+                title: 'आपकी पहुंच',
+                readonly_hint:
+                    'केवल स्वामी ही सदस्यों और निमंत्रणों का प्रबंधन कर सकता है।',
+            },
+            roles: {
+                owner: 'मालिक',
+                editor: 'संपादक',
+                viewer: 'दर्शक',
+            },
+            status: {
+                pending: 'लंबित',
+                accepted: 'स्वीकृत',
+                revoked: 'निरस्त किया गया',
+                expired: 'समाप्त हो गया',
+            },
+            invite: {
+                section_title: 'ईमेल द्वारा आमंत्रित करें',
+                email_placeholder: 'Teammate@example.com',
+            },
+            members: {
+                section_title: 'सदस्य',
+                empty: 'अभी तक कोई आमंत्रित सदस्य नहीं।',
+            },
+            invitations: {
+                section_title: 'लंबित निमंत्रण',
+                empty: 'कोई भी निमंत्रण लंबित नहीं है।',
+            },
+            history: {
+                section_title: 'निमंत्रण इतिहास',
+                empty: 'अभी तक कोई निमंत्रण नहीं।',
+            },
+            actions: {
+                invite: 'आमंत्रित करें',
+                remove: 'हटाएं',
+                revoke: 'निरस्त करें',
+                copy_link: 'लिंक कॉपी करें',
+                refresh: 'ताज़ा करें',
+                close: 'बंद करें',
+            },
+            labels: {
+                your_access: 'आपकी पहुंच:',
+                expires: 'समाप्त हो रहा है',
+                updated: 'अद्यतन किया गया',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'निमंत्रण बनाया गया',
+                    description:
+                        '{{email}} को {{role}} के रूप में आमंत्रित किया गया था।',
+                },
+                invite_failed: {
+                    title: 'आमंत्रण विफल रहा',
+                },
+                role_update_failed: {
+                    title: 'भूमिका अद्यतन विफल रहा',
+                },
+                remove_failed: {
+                    title: 'सदस्य हटाना विफल रहा',
+                },
+                revoke_failed: {
+                    title: 'आमंत्रण निरस्त करना विफल रहा',
+                },
+                copy_success: {
+                    title: 'आमंत्रण लिंक कॉपी किया गया',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'कॉपी विफल',
+                    description: 'आमंत्रण लिंक कॉपी नहीं किया जा सका.',
+                },
+            },
+            errors: {
+                email_required: 'ईमेल आवश्यक है.',
+                unknown_error: 'अज्ञात त्रुटि.',
+                no_diagram_selected: 'कोई आरेख चयनित नहीं है.',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS में साइन इन करें',
+            subtitle: 'आपके आरेख आपके Supabase खाते में संग्रहीत हैं।',
+            tabs: {
+                sign_in: 'साइन इन करें',
+                sign_up: 'साइन अप करें',
+            },
+            placeholders: {
+                nickname: 'उपनाम',
+                email: 'you@example.com',
+                password: 'पासवर्ड',
+                confirm_password: 'पासवर्ड की पुष्टि करें',
+            },
+            actions: {
+                sign_in: 'साइन इन करें',
+                signing_in: 'साइन इन हो रहा है...',
+                create_account: 'खाता बनाएँ',
+                creating_account: 'खाता बनाया जा रहा है...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase कॉन्फ़िगर नहीं है',
+                supabase_not_configured_description:
+                    'जारी रखने के लिए SUPABASE_URL और SUPABASE_PUBLISHABLE_DEFAULT_KEY पर्यावरण चर जोड़ें।',
+                success_title: 'सफलता',
+                authentication_failed_title: 'प्रमाणीकरण विफल रहा',
+            },
+            validation: {
+                email_and_password_required: 'ईमेल और पासवर्ड आवश्यक है।',
+                nickname_required: 'उपनाम आवश्यक है.',
+                email_required: 'ईमेल आवश्यक है.',
+                password_required: 'पासवर्ड आवश्यक है.',
+                password_min_length: 'पासवर्ड कम से कम 6 अक्षर का होना चाहिए।',
+                password_confirmation_mismatch:
+                    'पासवर्ड पुष्टिकरण मेल नहीं खाता।',
+                sign_in_failed: 'साइन इन करने में विफल।',
+                create_account_failed: 'खाता बनाने में विफल.',
+            },
+            success: {
+                account_created:
+                    'खाता बनाया गया। यदि ईमेल पुष्टिकरण सक्षम है, तो साइन इन करने से पहले अपना इनबॉक्स जांचें।',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'निमंत्रण स्वीकार किया जा रहा है...',
+            error_title: 'निमंत्रण स्वीकार नहीं किया जा सका',
+            actions: {
+                retry: 'पुनः प्रयास क���ें',
+                go_to_app: 'ऐप पर जाएं',
+            },
+            errors: {
+                expired: 'यह आमंत्रण लिंक समाप्त हो गया है।',
+                mismatch: 'यह निमंत्रण एक अलग ईमेल खाते पर भेजा गया था।',
+                revoked: 'यह निमंत्रण निरस्त कर दिया गया है।',
+                not_pending: 'यह आमंत्रण अब सक्रिय नहीं है।',
+                not_found: 'निमंत्रण नहीं मिला.',
+                token_missing: 'आमं��्रण टोकन गुम है।',
+                supabase_not_configured: 'Supabase कॉन्फ़िगर नहीं है.',
+                accept_failed: 'निमंत्रण स्वीकार करने में विफल।',
+                unknown_error: 'अज्ञात त्रुटि.',
+                no_diagram_returned:
+                    'निमंत्रण स्वीकार किया गया, लेकिन कोई आरेख वापस नहीं किया गया।',
+                invitee_email_required: 'आमंत्रित व्यक्ति का ईमेल आवश्यक है।',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} ऑनलाइन',
+            role: {
+                owner: 'मालिक',
+                editor: 'संपादक',
+                viewer: 'दर्शक',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'क्लाउड सिंक बहाल हो गया',
+            restored_description:
+                'परिवर्तन पुनः Supabase पर समन्वयित हो रहे हैं।',
+            paused_title: 'क्लाउड सिंक रोका गया',
+            paused_description:
+                'आपके स्थानीय परिवर्तन सुरक्षित हैं और स्वचालित रूप से पुनः प्रयास किए जाएंगे।',
+            read_only_title: 'केवल पढ़ने योग्य पहुंच',
+            read_only_description:
+                'आप इस साझा आरेख को देख सकते हैं लेकिन परिवर्तनों को सहेज नहीं सकते।',
+            access_removed_title: 'प्रवेश हटा दिया गया',
+            access_removed_description:
+                'इस साझा आरेख तक आपकी पहुंच हटा दी गई थी।',
+        },
+
+        collaboration_errors: {
+            expired: 'यह आमंत्रण लिंक समाप्त हो गया है।',
+            mismatch: 'यह निमंत्रण एक अलग ईमेल खाते पर भेजा गया था।',
+            revoked: 'यह निमंत्रण निरस्त कर दिया गया है।',
+            not_pending: 'यह आमंत्रण अब सक्रिय नहीं है।',
+            not_found: 'निमंत्रण नहीं मिला.',
+            invitee_email_required: 'आमंत्रित व्यक्ति का ईमेल आवश्यक है।',
+            token_missing: 'आमंत्रण टोकन आवश्यक है।',
+            supabase_not_configured: 'Supabase कॉन्फ़िगर नहीं है.',
+        },
+
         delete_diagram_alert: {
             title: 'आरेख हटाएँ',
             description:

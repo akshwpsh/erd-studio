@@ -56,6 +56,254 @@ export const fr: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Profil',
+            description:
+                'Affichez et mettez à jour les paramètres de votre compte.',
+            fields: {
+                email: 'Courriel',
+                nickname: 'Pseudo',
+                joined: 'Rejoint',
+                profile_image: 'Image de profil',
+                current_password: 'Mot de passe actuel',
+                new_password: 'Nouveau mot de passe',
+                confirm_new_password: 'Confirmer le nouveau mot de passe',
+            },
+            hints: {
+                profile_image: "Fichiers image uniquement, jusqu'à 5 Mo.",
+            },
+            actions: {
+                logout: 'Se déconnecter',
+                logging_out: 'Déconnexion...',
+                cancel: 'Annuler',
+                save_changes: 'Enregistrer les modifications',
+                saving: 'Enregistrement...',
+            },
+            errors: {
+                image_type: 'Seuls les fichiers image sont autorisés.',
+                image_size: "L'image de profil doit faire 5 Mo ou moins.",
+                nickname_required: 'Le surnom est requis.',
+                current_password_required: 'Le mot de passe actuel est requis.',
+                new_password_required: 'Un nouveau mot de passe est requis.',
+                new_password_length:
+                    'Le nouveau mot de passe doit comporter au moins 6 caractères.',
+                password_confirmation_mismatch:
+                    'La confirmation du nouveau mot de passe ne correspond pas.',
+                update_failed: 'Échec de la mise à jour du profil.',
+                signout_failed: 'Échec de la déconnexion.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Échec de la mise à jour du mot de passe',
+                    description_with_error:
+                        'Les modifications du profil ont été enregistrées. {{error}}',
+                    description_without_error:
+                        'Les modifications du profil ont été enregistrées, mais la mise à jour du mot de passe a échoué.',
+                },
+                avatar_upload_failed: {
+                    title: "Échec du téléchargement de l'avatar",
+                    description_fallback:
+                        'Les modifications de pseudo et de mot de passe étaient toujours appliquées.',
+                },
+                profile_updated: {
+                    title: 'Profil mis à jour',
+                    description:
+                        'Les modifications de votre profil ont été enregistrées.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Diagramme de partage',
+        },
+
+        share_dialog: {
+            title: 'Diagramme de partage',
+            description:
+                "Invitez des collaborateurs en tant qu'éditeurs ou spectateurs.",
+            access: {
+                title: 'Votre accès',
+                readonly_hint:
+                    'Seul le propriétaire peut gérer les membres et les invitations.',
+            },
+            roles: {
+                owner: 'Propriétaire',
+                editor: 'Éditeur',
+                viewer: 'Visionneuse',
+            },
+            status: {
+                pending: 'En attente',
+                accepted: 'Accepté',
+                revoked: 'Révoqué',
+                expired: 'Expiré',
+            },
+            invite: {
+                section_title: 'Inviter par email',
+                email_placeholder: 'coéquipier@exemple.com',
+            },
+            members: {
+                section_title: 'Membres',
+                empty: "Aucun membre invité pour l'instant.",
+            },
+            invitations: {
+                section_title: 'Invitations en attente',
+                empty: 'Aucune invitation en attente.',
+            },
+            history: {
+                section_title: 'Historique des invitations',
+                empty: "Aucune invitation pour l'instant.",
+            },
+            actions: {
+                invite: 'Inviter',
+                remove: 'Supprimer',
+                revoke: 'Révoquer',
+                copy_link: 'Copier le lien',
+                refresh: 'Actualiser',
+                close: 'Fermer',
+            },
+            labels: {
+                your_access: 'Votre accès :',
+                expires: 'Expire',
+                updated: 'Mis à jour',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Invitation créée',
+                    description: '{{email}} a été invité en tant que {{role}}.',
+                },
+                invite_failed: {
+                    title: "Échec de l'invitation",
+                },
+                role_update_failed: {
+                    title: 'Échec de la mise à jour du rôle',
+                },
+                remove_failed: {
+                    title: 'Échec de la suppression du membre',
+                },
+                revoke_failed: {
+                    title: "Échec de la révocation de l'invitation",
+                },
+                copy_success: {
+                    title: "Lien d'invitation copié",
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Échec de la copie',
+                    description: "Impossible de copier le lien d'invitation.",
+                },
+            },
+            errors: {
+                email_required: 'Un e-mail est requis.',
+                unknown_error: 'Erreur inconnue.',
+                no_diagram_selected: "Aucun diagramme n'est sélectionné.",
+            },
+        },
+
+        auth_gate: {
+            title: 'Connectez-vous à ERDS',
+            subtitle: 'Vos diagrammes sont stockés dans votre compte Supabase.',
+            tabs: {
+                sign_in: 'Se connecter',
+                sign_up: "S'inscrire",
+            },
+            placeholders: {
+                nickname: 'Pseudo',
+                email: 'you@example.com',
+                password: 'Mot de passe',
+                confirm_password: 'Confirmer le mot de passe',
+            },
+            actions: {
+                sign_in: 'Se connecter',
+                signing_in: 'Connexion...',
+                create_account: 'Créer un compte',
+                creating_account: "Création d'un compte...",
+            },
+            alerts: {
+                supabase_not_configured_title: "Supabase n'est pas configuré",
+                supabase_not_configured_description:
+                    "Ajoutez les variables d'environnement SUPABASE_URL et SUPABASE_PUBLISHABLE_DEFAULT_KEY pour continuer.",
+                success_title: 'Succès',
+                authentication_failed_title: "Échec de l'authentification",
+            },
+            validation: {
+                email_and_password_required:
+                    "L'e-mail et le mot de passe sont requis.",
+                nickname_required: 'Le surnom est requis.',
+                email_required: 'Un e-mail est requis.',
+                password_required: 'Un mot de passe est requis.',
+                password_min_length:
+                    'Le mot de passe doit comporter au moins 6 caractères.',
+                password_confirmation_mismatch:
+                    'La confirmation du mot de passe ne correspond pas.',
+                sign_in_failed: 'Échec de la connexion.',
+                create_account_failed: 'Échec de la création du compte.',
+            },
+            success: {
+                account_created:
+                    'Compte créé. Si la confirmation par e-mail est activée, vérifiez votre boîte de réception avant de vous connecter.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: "Acceptation de l'invitation...",
+            error_title: "L'invitation n'a pas pu être acceptée",
+            actions: {
+                retry: 'Réessayer',
+                go_to_app: "Aller à l'application",
+            },
+            errors: {
+                expired: "Ce lien d'invitation a expiré.",
+                mismatch:
+                    'Cette invitation a été envoyée à un autre compte de messagerie.',
+                revoked: 'Cette invitation a été révoquée.',
+                not_pending: "Cette invitation n'est plus active.",
+                not_found: 'Invitation introuvable.',
+                token_missing: "Le jeton d'invitation est manquant.",
+                supabase_not_configured: "Supabase n'est pas configuré.",
+                accept_failed: "Impossible d'accepter l'invitation.",
+                unknown_error: 'Erreur inconnue.',
+                no_diagram_returned:
+                    "Invitation acceptée, mais aucun diagramme n'a été renvoyé.",
+                invitee_email_required: "L'e-mail de l'invité est requis.",
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} en ligne',
+            role: {
+                owner: 'Propriétaire',
+                editor: 'Éditeur',
+                viewer: 'Visionneuse',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Synchronisation cloud restaurée',
+            restored_description:
+                'Les modifications sont à nouveau synchronisées avec Supabase.',
+            paused_title: 'Synchronisation cloud suspendue',
+            paused_description:
+                'Vos modifications locales sont sécurisées et seront réessayées automatiquement.',
+            read_only_title: 'Accès en lecture seule',
+            read_only_description:
+                'Vous pouvez afficher ce diagramme partagé mais vous ne pouvez pas enregistrer les modifications.',
+            access_removed_title: 'Accès supprimé',
+            access_removed_description:
+                'Votre accès à ce diagramme partagé a été supprimé.',
+        },
+
+        collaboration_errors: {
+            expired: "Ce lien d'invitation a expiré.",
+            mismatch:
+                'Cette invitation a été envoyée à un autre compte de messagerie.',
+            revoked: 'Cette invitation a été révoquée.',
+            not_pending: "Cette invitation n'est plus active.",
+            not_found: 'Invitation introuvable.',
+            invitee_email_required: "L'e-mail de l'invité est requis.",
+            token_missing: "Un jeton d'invitation est requis.",
+            supabase_not_configured: "Supabase n'est pas configuré.",
+        },
+
         delete_diagram_alert: {
             title: 'Supprimer le Diagramme',
             description:

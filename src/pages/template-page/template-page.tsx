@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import ChartDBLogo from '@/assets/logo-light.png';
-import ChartDBDarkLogo from '@/assets/logo-dark.png';
 import { useTheme } from '@/hooks/use-theme';
 import { LocalConfigProvider } from '@/context/local-config-context/local-config-provider';
 import { ThemeProvider } from '@/context/theme-context/theme-provider';
@@ -33,6 +31,8 @@ import { ChartDBProvider } from '@/context/chartdb-context/chartdb-provider';
 import { Helmet } from 'react-helmet-async';
 import { APP_URL, HOST_URL } from '@/lib/env';
 import { Link } from '@/components/link/link';
+import { BRAND_FULL, BRAND_SHORT, CANONICAL_HOST } from '@/lib/brand';
+import { BrandLogo } from '@/components/brand/brand-logo';
 
 export interface TemplatePageLoaderData {
     template: Template | undefined;
@@ -66,14 +66,14 @@ const TemplatePageComponent: React.FC = () => {
             <Helmet>
                 {template ? (
                     <>
-                        {HOST_URL !== 'https://chartdb.io' ? (
+                        {HOST_URL !== CANONICAL_HOST ? (
                             <link
                                 rel="canonical"
-                                href={`https://chartdb.io/templates/${templateSlug}`}
+                                href={`${CANONICAL_HOST}/templates/${templateSlug}`}
                             />
                         ) : null}
                         <title>
-                            {`Database schema diagram for - ${template.name} | ChartDB`}
+                            {`Database schema diagram for - ${template.name} | ${BRAND_SHORT}`}
                         </title>
                         <meta
                             name="description"
@@ -81,7 +81,7 @@ const TemplatePageComponent: React.FC = () => {
                         />
                         <meta
                             property="og:title"
-                            content={`Database schema diagram for - ${template.name} | ChartDB`}
+                            content={`Database schema diagram for - ${template.name} | ${BRAND_SHORT}`}
                         />
                         <meta
                             property="og:url"
@@ -93,13 +93,13 @@ const TemplatePageComponent: React.FC = () => {
                         />
                         <meta
                             property="og:image"
-                            content={`${HOST_URL}${template.image}`}
+                            content={`${HOST_URL}/erds.png`}
                         />
                         <meta property="og:type" content="website" />
-                        <meta property="og:site_name" content="ChartDB" />
+                        <meta property="og:site_name" content={BRAND_FULL} />
                         <meta
                             name="twitter:title"
-                            content={`Database schema for - ${template.name} | ChartDB`}
+                            content={`Database schema for - ${template.name} | ${BRAND_SHORT}`}
                         />
                         <meta
                             name="twitter:description"
@@ -107,7 +107,7 @@ const TemplatePageComponent: React.FC = () => {
                         />
                         <meta
                             name="twitter:image"
-                            content={`${HOST_URL}${template.image}`}
+                            content={`${HOST_URL}/erds.png`}
                         />
                         <meta
                             name="twitter:card"
@@ -117,7 +117,7 @@ const TemplatePageComponent: React.FC = () => {
                         <meta name="twitter:creator" content="@ChartDB_io" />
                     </>
                 ) : (
-                    <title>Database Schema Diagram | ChartDB</title>
+                    <title>{`Database Schema Diagram | ${BRAND_SHORT}`}</title>
                 )}
             </Helmet>
 
@@ -125,26 +125,17 @@ const TemplatePageComponent: React.FC = () => {
                 <nav className="flex h-12 shrink-0 flex-row items-center justify-between border-b px-4">
                     <div className="flex flex-1 justify-start gap-x-3">
                         <div className="flex items-center font-primary">
-                            <a
-                                href="https://chartdb.io"
-                                className="cursor-pointer"
-                                rel="noreferrer"
-                            >
-                                <img
-                                    src={
-                                        effectiveTheme === 'light'
-                                            ? ChartDBLogo
-                                            : ChartDBDarkLogo
-                                    }
-                                    alt="chartDB"
-                                    className="h-4 max-w-fit"
+                            <div className="inline-flex">
+                                <BrandLogo
+                                    variant="page-nav"
+                                    theme={effectiveTheme}
                                 />
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-1 justify-end">
                         <iframe
-                            src={`https://ghbtns.com/github-btn.html?user=chartdb&repo=chartdb&type=star&size=large&text=false`}
+                            src={`https://ghbtns.com/github-btn.html?user=akshwpsh&repo=erd-studio&type=star&size=large&text=false`}
                             width="40"
                             height="30"
                             title="GitHub"

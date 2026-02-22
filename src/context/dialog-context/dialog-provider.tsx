@@ -20,6 +20,8 @@ import type { ExportImageDialogProps } from '@/dialogs/export-image-dialog/expor
 import { ExportImageDialog } from '@/dialogs/export-image-dialog/export-image-dialog';
 import { ExportDiagramDialog } from '@/dialogs/export-diagram-dialog/export-diagram-dialog';
 import { ImportDiagramDialog } from '@/dialogs/import-diagram-dialog/import-diagram-dialog';
+import { ProfileDialog } from '@/dialogs/profile-dialog/profile-dialog';
+import { ShareDiagramDialog } from '@/dialogs/share-diagram-dialog/share-diagram-dialog';
 
 export const DialogProvider: React.FC<React.PropsWithChildren> = ({
     children,
@@ -134,6 +136,12 @@ export const DialogProvider: React.FC<React.PropsWithChildren> = ({
     const [openImportDiagramDialog, setOpenImportDiagramDialog] =
         useState(false);
 
+    // Profile dialog
+    const [openProfileDialog, setOpenProfileDialog] = useState(false);
+
+    // Share diagram dialog
+    const [openShareDiagramDialog, setOpenShareDiagramDialog] = useState(false);
+
     return (
         <dialogContext.Provider
             value={{
@@ -163,6 +171,10 @@ export const DialogProvider: React.FC<React.PropsWithChildren> = ({
                 openImportDiagramDialog: () => setOpenImportDiagramDialog(true),
                 closeImportDiagramDialog: () =>
                     setOpenImportDiagramDialog(false),
+                openProfileDialog: () => setOpenProfileDialog(true),
+                closeProfileDialog: () => setOpenProfileDialog(false),
+                openShareDiagramDialog: () => setOpenShareDiagramDialog(true),
+                closeShareDiagramDialog: () => setOpenShareDiagramDialog(false),
             }}
         >
             {children}
@@ -197,6 +209,8 @@ export const DialogProvider: React.FC<React.PropsWithChildren> = ({
             />
             <ExportDiagramDialog dialog={{ open: openExportDiagramDialog }} />
             <ImportDiagramDialog dialog={{ open: openImportDiagramDialog }} />
+            <ProfileDialog dialog={{ open: openProfileDialog }} />
+            <ShareDiagramDialog dialog={{ open: openShareDiagramDialog }} />
         </dialogContext.Provider>
     );
 };

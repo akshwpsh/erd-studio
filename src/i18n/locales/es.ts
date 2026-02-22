@@ -57,6 +57,253 @@ export const es: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Perfil',
+            description: 'Ver y actualizar la configuración de su cuenta.',
+            fields: {
+                email: 'Correo electrónico',
+                nickname: 'Apodo',
+                joined: 'Se unió',
+                profile_image: 'Imagen de perfil',
+                current_password: 'Contraseña actual',
+                new_password: 'Nueva contraseña',
+                confirm_new_password: 'Confirmar nueva contraseña',
+            },
+            hints: {
+                profile_image: 'Sólo archivos de imagen, hasta 5 MB.',
+            },
+            actions: {
+                logout: 'Cerrar sesión',
+                logging_out: 'Cerrando sesión...',
+                cancel: 'Cancelar',
+                save_changes: 'Guardar cambios',
+                saving: 'Guardando...',
+            },
+            errors: {
+                image_type: 'Sólo se permiten archivos de imagen.',
+                image_size: 'La imagen del perfil debe tener 5 MB o menos.',
+                nickname_required: 'Se requiere apodo.',
+                current_password_required: 'Se requiere la contraseña actual.',
+                new_password_required: 'Se requiere una nueva contraseña.',
+                new_password_length:
+                    'La nueva contraseña debe tener al menos 6 caracteres.',
+                password_confirmation_mismatch:
+                    'La confirmación de la nueva contraseña no coincide.',
+                update_failed: 'No se pudo actualizar el perfil.',
+                signout_failed: 'No se pudo cerrar sesión.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Error al actualizar la contraseña',
+                    description_with_error:
+                        'Se guardaron los cambios del perfil. {{error}}',
+                    description_without_error:
+                        'Se guardaron los cambios del perfil, pero falló la actualización de la contraseña.',
+                },
+                avatar_upload_failed: {
+                    title: 'Falló la carga del avatar',
+                    description_fallback:
+                        'Aún se aplicaron los cambios de apodo y contraseña.',
+                },
+                profile_updated: {
+                    title: 'Perfil actualizado',
+                    description: 'Los cambios de tu perfil se han guardado.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Compartir diagrama',
+        },
+
+        share_dialog: {
+            title: 'Compartir diagrama',
+            description: 'Invita a colaboradores como editores o espectadores.',
+            access: {
+                title: 'Tu acceso',
+                readonly_hint:
+                    'Solo el propietario puede administrar miembros e invitaciones.',
+            },
+            roles: {
+                owner: 'Propietario',
+                editor: 'Editora',
+                viewer: 'Visor',
+            },
+            status: {
+                pending: 'Pendiente',
+                accepted: 'Aceptado',
+                revoked: 'Revocado',
+                expired: 'Caducado',
+            },
+            invite: {
+                section_title: 'Invitar por correo electrónico',
+                email_placeholder: 'compañero de equipo@ejemplo.com',
+            },
+            members: {
+                section_title: 'Miembros',
+                empty: 'Aún no hay miembros invitados.',
+            },
+            invitations: {
+                section_title: 'Invitaciones pendientes',
+                empty: 'No hay invitaciones pendientes.',
+            },
+            history: {
+                section_title: 'Historial de invitaciones',
+                empty: 'Aún no hay invitaciones.',
+            },
+            actions: {
+                invite: 'Invitar',
+                remove: 'Eliminar',
+                revoke: 'Revocar',
+                copy_link: 'Copiar enlace',
+                refresh: 'Actualizar',
+                close: 'Cerrar',
+            },
+            labels: {
+                your_access: 'Tu acceso:',
+                expires: 'Expira',
+                updated: 'Actualizado',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Invitación creada',
+                    description: '{{email}} fue invitado como {{role}}.',
+                },
+                invite_failed: {
+                    title: 'La invitación falló',
+                },
+                role_update_failed: {
+                    title: 'Falló la actualización del rol',
+                },
+                remove_failed: {
+                    title: 'Error al eliminar miembro',
+                },
+                revoke_failed: {
+                    title: 'Error al revocar la invitación',
+                },
+                copy_success: {
+                    title: 'Enlace de invitación copiado',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Copia fallida',
+                    description: 'No se pudo copiar el enlace de invitación.',
+                },
+            },
+            errors: {
+                email_required: 'Se requiere correo electrónico.',
+                unknown_error: 'Error desconocido.',
+                no_diagram_selected: 'No se ha seleccionado ningún diagrama.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Inicia sesión en ERDS',
+            subtitle: 'Sus diagramas se almacenan en su cuenta Supabase.',
+            tabs: {
+                sign_in: 'Iniciar sesión',
+                sign_up: 'Regístrate',
+            },
+            placeholders: {
+                nickname: 'Apodo',
+                email: 'you@example.com',
+                password: 'Contraseña',
+                confirm_password: 'Confirmar contraseña',
+            },
+            actions: {
+                sign_in: 'Iniciar sesión',
+                signing_in: 'Iniciando sesión...',
+                create_account: 'Crear cuenta',
+                creating_account: 'Creando cuenta...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase no está configurado',
+                supabase_not_configured_description:
+                    'Agregue las variables de entorno SUPABASE_URL y SUPABASE_PUBLISHABLE_DEFAULT_KEY para continuar.',
+                success_title: 'Éxito',
+                authentication_failed_title: 'Error de autenticación',
+            },
+            validation: {
+                email_and_password_required:
+                    'Se requiere correo electrónico y contraseña.',
+                nickname_required: 'Se requiere apodo.',
+                email_required: 'Se requiere correo electrónico.',
+                password_required: 'Se requiere contraseña.',
+                password_min_length:
+                    'La contraseña debe tener al menos 6 caracteres.',
+                password_confirmation_mismatch:
+                    'La confirmación de contraseña no coincide.',
+                sign_in_failed: 'No se pudo iniciar sesión.',
+                create_account_failed: 'No se pudo crear la cuenta.',
+            },
+            success: {
+                account_created:
+                    'Cuenta creada. Si la confirmación por correo electrónico está habilitada, revise su bandeja de entrada antes de iniciar sesión.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Aceptando invitación...',
+            error_title: 'No se pudo aceptar la invitación',
+            actions: {
+                retry: 'Reintentar',
+                go_to_app: 'Ir a la aplicación',
+            },
+            errors: {
+                expired: 'Este enlace de invitación ha caducado.',
+                mismatch:
+                    'Esta invitación se envió a una cuenta de correo electrónico diferente.',
+                revoked: 'Esta invitación ha sido revocada.',
+                not_pending: 'Esta invitación ya no está activa.',
+                not_found: 'Invitación no encontrada.',
+                token_missing: 'Falta el token de invitación.',
+                supabase_not_configured: 'Supabase no está configurado.',
+                accept_failed: 'No se pudo aceptar la invitación.',
+                unknown_error: 'Error desconocido.',
+                no_diagram_returned:
+                    'Invitación aceptada, pero no se devolvió ningún diagrama.',
+                invitee_email_required:
+                    'Se requiere el correo electrónico del invitado.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} en línea',
+            role: {
+                owner: 'Propietario',
+                editor: 'Editora',
+                viewer: 'Visor',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Sincronización en la nube restaurada',
+            restored_description:
+                'Los cambios se están sincronizando con Supabase nuevamente.',
+            paused_title: 'Sincronización en la nube pausada',
+            paused_description:
+                'Sus cambios locales son seguros y se volverán a intentar automáticamente.',
+            read_only_title: 'Acceso de sólo lectura',
+            read_only_description:
+                'Puede ver este diagrama compartido pero no puede guardar los cambios.',
+            access_removed_title: 'Acceso eliminado',
+            access_removed_description:
+                'Se eliminó tu acceso a este diagrama compartido.',
+        },
+
+        collaboration_errors: {
+            expired: 'Este enlace de invitación ha caducado.',
+            mismatch:
+                'Esta invitación se envió a una cuenta de correo electrónico diferente.',
+            revoked: 'Esta invitación ha sido revocada.',
+            not_pending: 'Esta invitación ya no está activa.',
+            not_found: 'Invitación no encontrada.',
+            invitee_email_required:
+                'Se requiere el correo electrónico del invitado.',
+            token_missing: 'Se requiere token de invitación.',
+            supabase_not_configured: 'Supabase no está configurado.',
+        },
+
         delete_diagram_alert: {
             title: 'Eliminar Diagrama',
             description:
@@ -469,7 +716,7 @@ export const es: LanguageTranslation = {
         star_us_dialog: {
             title: '¡Ayúdanos a mejorar!',
             description:
-                '¿Te gusta ChartDB? Por favor, danos una estrella en GitHub.',
+                '¿Te gusta ERDS? Por favor, danos una estrella en GitHub.',
             close: 'Ahora no',
             confirm: '¡Claro!',
         },

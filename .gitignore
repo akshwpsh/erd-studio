@@ -24,4 +24,11 @@ dist-ssr
 *.sw?
 
 .env
+.env.local
+.env.*.local
 stats/
+coverage/
+.nyc_output/
+.cache/
+.turbo/
+.pnpm-store/

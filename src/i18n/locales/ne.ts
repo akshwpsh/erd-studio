@@ -58,6 +58,250 @@ export const ne: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'प्रोफाइल',
+            description:
+                'आफ्नो खाता सेटिङहरू हेर्नुहोस् र अद्यावधिक गर्नुहोस्।',
+            fields: {
+                email: 'इमेल',
+                nickname: 'उपनाम',
+                joined: 'सामेल हुनुभयो',
+                profile_image: 'प्रोफाइल छवि',
+                current_password: 'हालको पासवर्ड',
+                new_password: 'नयाँ पासवर्ड',
+                confirm_new_password: 'नयाँ पासवर्ड पुष्टि गर्नुहोस्',
+            },
+            hints: {
+                profile_image: 'छवि फाइलहरू मात्र, 5MB सम्म।',
+            },
+            actions: {
+                logout: 'लग आउट गर्नुहोस्',
+                logging_out: 'साइन आउट गर्दै...',
+                cancel: 'रद्द गर्नुहोस्',
+                save_changes: 'परिवर्तनहरू बचत गर्नुहोस्',
+                saving: 'बचत गर्दै...',
+            },
+            errors: {
+                image_type: 'छवि फाइलहरूलाई मात्र अनुमति छ।',
+                image_size: 'प्रोफाइल छवि 5MB वा सानो हुनुपर्छ।',
+                nickname_required: 'उपनाम आवश्यक छ।',
+                current_password_required: 'हालको पासवर्ड आवश्यक छ।',
+                new_password_required: 'नयाँ पासवर्ड आवश्यक छ।',
+                new_password_length: 'नयाँ पासवर्ड कम्तिमा 6 वर्णको हुनुपर्छ।',
+                password_confirmation_mismatch:
+                    'नयाँ पासवर्ड पुष्टि मेल खाँदैन।',
+                update_failed: 'प्रोफाइल अपडेट गर्न असफल।',
+                signout_failed: 'साइन आउट गर्न असफल भयो।',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'पासवर्ड अपडेट असफल भयो',
+                    description_with_error:
+                        'प्रोफाइल परिवर्तनहरू बचत गरियो। {{error}}',
+                    description_without_error:
+                        'प्रोफाइल परिवर्तनहरू बचत गरियो, तर पासवर्ड अद्यावधिक असफल भयो।',
+                },
+                avatar_upload_failed: {
+                    title: 'अवतार अपलोड असफल भयो',
+                    description_fallback:
+                        'उपनाम र पासवर्ड परिवर्तन अझै लागू गरियो।',
+                },
+                profile_updated: {
+                    title: 'प्रोफाइल अपडेट गरियो',
+                    description:
+                        'तपाईंको प्रोफाइल परिवर्तनहरू सुरक्षित गरिएको छ।',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'रेखाचित्�� साझेदारी गर्नुहोस्',
+        },
+
+        share_dialog: {
+            title: 'रेखाचित्�� साझेदारी गर्नुहोस्',
+            description:
+                'सम्पादक वा दर्शकको रूपमा सहयोगीहरूलाई आमन्त्रित गर्नुहोस्।',
+            access: {
+                title: 'तपाईंको पहुँच',
+                readonly_hint:
+                    'केवल मालिकले सदस्यहरू र निमन्त्रणाहरू व्यवस्थापन गर्न सक्छन्।',
+            },
+            roles: {
+                owner: 'मालिक',
+                editor: 'सम्पादक',
+                viewer: 'दर्शक',
+            },
+            status: {
+                pending: 'विचाराधीन',
+                accepted: 'स्वीकृत',
+                revoked: 'खारेज गरियो',
+                expired: 'म्याद सकियो',
+            },
+            invite: {
+                section_title: 'इमेल मार्फत आमन्त्रित गर्नुहोस्',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'सदस्यहरू',
+                empty: 'अहिलेसम्म कुनै आमन्त्रित सदस्यहरू छैनन्।',
+            },
+            invitations: {
+                section_title: 'पेन्डिङ निमन्त्रणाहरू',
+                empty: 'कुनै पेन्डिङ निमन्त्रणाहरू छैनन्।',
+            },
+            history: {
+                section_title: 'निमन्त्रणा इतिहास',
+                empty: 'अझै कुनै निमन्त्रणा छैन।',
+            },
+            actions: {
+                invite: 'निमन्त्रणा',
+                remove: 'हटाउनुहोस्',
+                revoke: 'रद्द गर्नुहोस्',
+                copy_link: 'लिङ्क प्रतिलिपि गर्नुहोस्',
+                refresh: 'ताजा गर्नुहोस्',
+                close: 'बन्द',
+            },
+            labels: {
+                your_access: 'तपाईंको पहुँच:',
+                expires: 'म्याद सकिन्छ',
+                updated: 'अद्यावधिक गरियो',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'निमन्त्रणा सिर्जना गरियो',
+                    description:
+                        '{{email}} लाई {{role}} को रूपमा आमन्त्रित गरिएको थियो।',
+                },
+                invite_failed: {
+                    title: 'निमन्त्रणा असफल भयो',
+                },
+                role_update_failed: {
+                    title: 'भूमिका अद्यावधिक असफल भयो',
+                },
+                remove_failed: {
+                    title: 'सदस्य हटाउन असफल भयो',
+                },
+                revoke_failed: {
+                    title: 'निमन्त्रणा रद्द गर्न असफल भयो',
+                },
+                copy_success: {
+                    title: 'निमन्त्रणा ���िङ्क प्रतिलिपि गरियो',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'प्रतिलिपि असफल भयो',
+                    description: 'निमन्त्रणा लिङ्क प्रतिलिपि गर्न सकिएन।',
+                },
+            },
+            errors: {
+                email_required: 'इमेल आवश्यक छ।',
+                unknown_error: 'अज्ञात त्रुटि।',
+                no_diagram_selected: 'कुनै रेखाचित्र चयन गरिएको छैन।',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS मा साइन इन गर्नुहोस्',
+            subtitle:
+                'तपाईको रेखाचित्र तपाईको Supabase खातामा भण्डार गरिएको छ।',
+            tabs: {
+                sign_in: 'साइन इन गर्नुहोस्',
+                sign_up: 'साइन अप गर्नुहोस्',
+            },
+            placeholders: {
+                nickname: 'उपनाम',
+                email: 'you@example.com',
+                password: 'पासवर्ड',
+                confirm_password: 'पासवर्ड पुष्टि गर्नुहोस्',
+            },
+            actions: {
+                sign_in: 'साइन इन गर्नुहोस्',
+                signing_in: 'साइन इन गर्दै...',
+                create_account: 'खाता सिर्जना गर्नुहोस्',
+                creating_account: 'खाता सिर्जना गर्दै...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase कन्फिगर गरिएको छैन',
+                supabase_not_configured_description:
+                    'जारी राख्नको लागि SUPABASE_URL र SUPABASE_PUBLISHABLE_DEFAULT_KEY वातावरण चर थप्नुहोस्।',
+                success_title: 'सफलता',
+                authentication_failed_title: 'प्रमाणीकरण असफल भयो',
+            },
+            validation: {
+                email_and_password_required: 'इमेल र पासवर्ड आवश्यक छ।',
+                nickname_required: 'उपनाम आवश्यक छ।',
+                email_required: 'इमेल आवश्यक छ।',
+                password_required: 'पासवर्ड आवश्यक छ।',
+                password_min_length: 'पासवर्ड कम्तिमा ६ वर्णको हुनुपर्छ।',
+                password_confirmation_mismatch: 'पासवर्ड पुष्टिकरण मेल खाँदैन।',
+                sign_in_failed: 'साइन इन गर्न असफल।',
+                create_account_failed: 'खाता बनाउन असफल भयो।',
+            },
+            success: {
+                account_created:
+                    'खाता सिर्जना गरियो। यदि इमेल पुष्टिकरण सक्षम छ भने, साइन इन गर्नु अघि आफ्नो इनबक्स जाँच गर्नुहोस्।',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'निमन्त्रणा स्वीकार गर्दै...',
+            error_title: 'निमन्त्रणा स्वीकार गर्न सकिएन',
+            actions: {
+                retry: 'पुन: प्रयास गर्नुहोस्',
+                go_to_app: 'एपमा जानुहोस्',
+            },
+            errors: {
+                expired: 'यो निमन्त्रणा लिङ्कको म्याद सकिएको छ।',
+                mismatch: 'यो निमन्त्रणा फरक इमेल खातामा पठाइएको थियो।',
+                revoked: 'यो निमन्त्रणा रद्द गरिएको छ।',
+                not_pending: 'यो निमन्त्रणा अब सक्रिय छैन।',
+                not_found: 'निमन्त्रणा भेटिएन।',
+                token_missing: 'निमन्त्रणा टोकन हराइरहेको छ।',
+                supabase_not_configured: 'Supabase कन्फिगर गरिएको छैन।',
+                accept_failed: 'निमन्त्रणा स्वीकार गर्न असफल भयो।',
+                unknown_error: 'अज्ञात त्रुटि।',
+                no_diagram_returned:
+                    'निमन्त्रणा स्वीकार गरियो, तर कुनै रेखाचित्र फिर्ता भएन।',
+                invitee_email_required: 'आमन्त्रित इमेल आवश्यक छ।',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} अनलाइन',
+            role: {
+                owner: 'मालिक',
+                editor: 'सम्पादक',
+                viewer: 'दर्शक',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'क्लाउड सिंक पुनर्स्थापित गरियो',
+            restored_description:
+                'परिवर्तनहरू फेरि Supabase मा सिङ्क हुँदैछन्।',
+            paused_title: 'क्लाउड सिंक पज गरियो',
+            paused_description:
+                'तपाईंको स्थानीय परिवर्तनहरू सुरक्षित छन् र स्वचालित रूपमा पुन: प्रयास गरिनेछ।',
+            read_only_title: 'पढ्ने मात्र पहुँच',
+            read_only_description:
+                'तपाईंले यो साझा रेखाचित्र हेर्न सक्नुहुन्छ तर परिवर्तनहरू बचत गर्न सक्नुहुन्न।',
+            access_removed_title: 'पहुँच हटाइयो',
+            access_removed_description:
+                'यो साझा रेखाचित्रमा तपाईंको पहुँच हटाइयो।',
+        },
+
+        collaboration_errors: {
+            expired: 'यो निमन्त्रणा लिङ्कको म्याद सकिएको छ।',
+            mismatch: 'यो निमन्त्रणा फरक इमेल खातामा पठाइएको थियो।',
+            revoked: 'यो निमन्त्रणा रद्द गरिएको छ।',
+            not_pending: 'यो निमन्त्रणा अब सक्रिय छैन।',
+            not_found: 'निमन्त्रणा भेटिएन।',
+            invitee_email_required: 'आमन्त्रित इमेल आवश्यक छ।',
+            token_missing: 'निमन्त्रणा टोकन आवश्यक छ।',
+            supabase_not_configured: 'Supabase कन्फिगर गरिएको छैन।',
+        },
+
         delete_diagram_alert: {
             title: 'डायाग्राम हटाउनुहोस्',
             description:

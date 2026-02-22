@@ -84,9 +84,18 @@ export const DependencyEdge: React.FC<EdgeProps<DependencyEdgeType>> = ({
             distances.bottomToBottom
         );
 
-        const minDistanceKey = Object.keys(distances).find(
-            (key) => distances[key as keyof typeof distances] === minDistance
-        ) as keyof typeof distances;
+        const minDistanceKeys = (
+            Object.keys(distances) as Array<keyof typeof distances>
+        ).filter((key) => distances[key] === minDistance);
+
+        const preferBottomToTop = sourceY < targetY;
+        const tieBreakOrder: Array<keyof typeof distances> = preferBottomToTop
+            ? ['bottomToTop', 'topToBottom', 'bottomToBottom', 'topToTop']
+            : ['topToBottom', 'bottomToTop', 'topToTop', 'bottomToBottom'];
+
+        const minDistanceKey =
+            tieBreakOrder.find((key) => minDistanceKeys.includes(key)) ??
+            minDistanceKeys[0];
 
         switch (minDistanceKey) {
             case 'topToBottom':
@@ -98,7 +107,14 @@ export const DependencyEdge: React.FC<EdgeProps<DependencyEdgeType>> = ({
             default:
                 return { sourceSide: 'top', targetSide: 'top' };
         }
-    }, [sourceTopY, sourceBottomY, targetTopY, targetBottomY]);
+    }, [
+        sourceTopY,
+        sourceBottomY,
+        targetTopY,
+        targetBottomY,
+        sourceY,
+        targetY,
+    ]);
 
     const [edgePath] = useMemo(
         () =>

@@ -56,6 +56,246 @@ export const hr: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Profil',
+            description: 'Pregledajte i ažurirajte svoje postavke računa.',
+            fields: {
+                email: 'E-pošta',
+                nickname: 'Nadimak',
+                joined: 'Pridružio se',
+                profile_image: 'Profilna slika',
+                current_password: 'Trenutna lozinka',
+                new_password: 'Nova lozinka',
+                confirm_new_password: 'Potvrdite novu lozinku',
+            },
+            hints: {
+                profile_image: 'Samo slikovne datoteke, do 5 MB.',
+            },
+            actions: {
+                logout: 'Odjava',
+                logging_out: 'Odjava...',
+                cancel: 'Odustani',
+                save_changes: 'Spremi promjene',
+                saving: 'Spremanje...',
+            },
+            errors: {
+                image_type: 'Dopuštene su samo slikovne datoteke.',
+                image_size: 'Slika profila mora biti 5 MB ili manja.',
+                nickname_required: 'Potreban je nadimak.',
+                current_password_required: 'Potrebna je trenutna lozinka.',
+                new_password_required: 'Potrebna je nova lozinka.',
+                new_password_length:
+                    'Nova lozinka mora imati najmanje 6 znakova.',
+                password_confirmation_mismatch:
+                    'Nova potvrda lozinke ne odgovara.',
+                update_failed: 'Nije uspjelo ažuriranje profila.',
+                signout_failed: 'Nije uspjela odjava.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Ažuriranje zaporke nije uspjelo',
+                    description_with_error:
+                        'Promjene profila su spremljene. {{error}}',
+                    description_without_error:
+                        'Promjene profila su spremljene, ali ažuriranje zaporke nije uspjelo.',
+                },
+                avatar_upload_failed: {
+                    title: 'Prijenos avatara nije uspio',
+                    description_fallback:
+                        'Promjene nadimka i lozinke i dalje su primijenjene.',
+                },
+                profile_updated: {
+                    title: 'Profil ažuriran',
+                    description: 'Vaše promjene profila su spremljene.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Dijagram dijeljenja',
+        },
+
+        share_dialog: {
+            title: 'Dijagram dijeljenja',
+            description: 'Pozovite suradnike kao urednike ili gledatelje.',
+            access: {
+                title: 'Vaš pristup',
+                readonly_hint:
+                    'Samo vlasnik može upravljati članovima i pozivnicama.',
+            },
+            roles: {
+                owner: 'Vlasnik',
+                editor: 'Urednik',
+                viewer: 'Gledatelj',
+            },
+            status: {
+                pending: 'Na čekanju',
+                accepted: 'Prihvaćeno',
+                revoked: 'Opozvan',
+                expired: 'Isteklo',
+            },
+            invite: {
+                section_title: 'Pozovi e-poštom',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'Članovi',
+                empty: 'Još nema pozvanih članova.',
+            },
+            invitations: {
+                section_title: 'Pozivnice na čekanju',
+                empty: 'Nema pozivnica na čekanju.',
+            },
+            history: {
+                section_title: 'Povijest poziva',
+                empty: 'Još nema pozivnica.',
+            },
+            actions: {
+                invite: 'Pozovi',
+                remove: 'Ukloni',
+                revoke: 'Opozovi',
+                copy_link: 'Kopiraj vezu',
+                refresh: 'Osvježi',
+                close: 'Zatvori',
+            },
+            labels: {
+                your_access: 'Vaš pristup:',
+                expires: 'Istječe',
+                updated: 'Ažurirano',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Pozivnica je stvorena',
+                    description: '{{email}} pozvan je kao {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Poziv nije uspio',
+                },
+                role_update_failed: {
+                    title: 'Ažuriranje uloge nije uspjelo',
+                },
+                remove_failed: {
+                    title: 'Uklanjanje člana nije uspjelo',
+                },
+                revoke_failed: {
+                    title: 'Opoziv pozivnice nije uspio',
+                },
+                copy_success: {
+                    title: 'Veza za poziv je kopirana',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Kopiranje nije uspjelo',
+                    description: 'Nije moguće kopirati vezu pozivnice.',
+                },
+            },
+            errors: {
+                email_required: 'E-pošta je obavezna.',
+                unknown_error: 'Nepoznata pogreška.',
+                no_diagram_selected: 'Nije odabran nijedan dijagram.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Prijavite se na ERDS',
+            subtitle: 'Vaši dijagrami pohranjeni su na vašem Supabase računu.',
+            tabs: {
+                sign_in: 'Prijavite se',
+                sign_up: 'Prijavite se',
+            },
+            placeholders: {
+                nickname: 'Nadimak',
+                email: 'you@example.com',
+                password: 'Lozinka',
+                confirm_password: 'Potvrdi lozinku',
+            },
+            actions: {
+                sign_in: 'Prijavite se',
+                signing_in: 'Prijavljivanje...',
+                create_account: 'Napravi račun',
+                creating_account: 'Stvaranje računa...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase nije konfiguriran',
+                supabase_not_configured_description:
+                    'Dodajte SUPABASE_URL i SUPABASE_PUBLISHABLE_DEFAULT_KEY varijable okoline za nastavak.',
+                success_title: 'Uspjeh',
+                authentication_failed_title: 'Autentifikacija nije uspjela',
+            },
+            validation: {
+                email_and_password_required: 'Potrebni su email i lozinka.',
+                nickname_required: 'Potreban je nadimak.',
+                email_required: 'E-pošta je obavezna.',
+                password_required: 'Potrebna je lozinka.',
+                password_min_length: 'Lozinka mora imati najmanje 6 znakova.',
+                password_confirmation_mismatch: 'Potvrda lozinke ne odgovara.',
+                sign_in_failed: 'Prijava nije uspjela.',
+                create_account_failed: 'Nije uspjelo kreiranje računa.',
+            },
+            success: {
+                account_created:
+                    'Račun kreiran. Ako je potvrda putem e-pošte omogućena, prije prijave provjerite svoju pristiglu poštu.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Prihvaćam pozivnicu...',
+            error_title: 'Pozivnica nije mogla biti prihvaćena',
+            actions: {
+                retry: 'Pokušaj ponovo',
+                go_to_app: 'Idi na aplikaciju',
+            },
+            errors: {
+                expired: 'Ovaj pozivni link je istekao.',
+                mismatch: 'Ova je pozivnica poslana na drugi račun e-pošte.',
+                revoked: 'Ova pozivnica je opozvana.',
+                not_pending: 'Ova pozivnica više nije aktivna.',
+                not_found: 'Pozivnica nije pronađena.',
+                token_missing: 'Nedostaje token pozivnice.',
+                supabase_not_configured: 'Supabase nije konfiguriran.',
+                accept_failed: 'Nije uspjelo prihvaćanje pozivnice.',
+                unknown_error: 'Nepoznata pogreška.',
+                no_diagram_returned:
+                    'Poziv je prihvaćen, ali nijedan dijagram nije vraćen.',
+                invitee_email_required: 'Potrebna je e-pošta pozvanog.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} online',
+            role: {
+                owner: 'Vlasnik',
+                editor: 'Urednik',
+                viewer: 'Gledatelj',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Sinkronizacija u oblaku vraćena',
+            restored_description:
+                'Promjene se ponovno sinkroniziraju s Supabase.',
+            paused_title: 'Sinkronizacija u oblaku pauzirana',
+            paused_description:
+                'Vaše lokalne promjene su sigurne i pokušat će se automatski ponoviti.',
+            read_only_title: 'Pristup samo za čitanje',
+            read_only_description:
+                'Možete vidjeti ovaj zajednički dijagram, ali ne možete spremiti promjene.',
+            access_removed_title: 'Pristup uklonjen',
+            access_removed_description:
+                'Vaš pristup ovom dijeljenom dijagramu je uklonjen.',
+        },
+
+        collaboration_errors: {
+            expired: 'Ovaj pozivni link je istekao.',
+            mismatch: 'Ova je pozivnica poslana na drugi račun e-pošte.',
+            revoked: 'Ova pozivnica je opozvana.',
+            not_pending: 'Ova pozivnica više nije aktivna.',
+            not_found: 'Pozivnica nije pronađena.',
+            invitee_email_required: 'Potrebna je e-pošta pozvanog.',
+            token_missing: 'Potreban je pozivni token.',
+            supabase_not_configured: 'Supabase nije konfiguriran.',
+        },
+
         delete_diagram_alert: {
             title: 'Izbriši dijagram',
             description:

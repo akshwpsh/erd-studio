@@ -56,6 +56,247 @@ export const en = {
             },
         },
 
+        profile_dialog: {
+            title: 'Profile',
+            description: 'View and update your account settings.',
+            fields: {
+                email: 'Email',
+                nickname: 'Nickname',
+                joined: 'Joined',
+                profile_image: 'Profile image',
+                current_password: 'Current password',
+                new_password: 'New password',
+                confirm_new_password: 'Confirm new password',
+            },
+            hints: {
+                profile_image: 'Image files only, up to 5MB.',
+            },
+            actions: {
+                logout: 'Log out',
+                logging_out: 'Signing out...',
+                cancel: 'Cancel',
+                save_changes: 'Save changes',
+                saving: 'Saving...',
+            },
+            errors: {
+                image_type: 'Only image files are allowed.',
+                image_size: 'Profile image must be 5MB or smaller.',
+                nickname_required: 'Nickname is required.',
+                current_password_required: 'Current password is required.',
+                new_password_required: 'New password is required.',
+                new_password_length:
+                    'New password must be at least 6 characters.',
+                password_confirmation_mismatch:
+                    'New password confirmation does not match.',
+                update_failed: 'Failed to update profile.',
+                signout_failed: 'Failed to sign out.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Password update failed',
+                    description_with_error:
+                        'Profile changes were saved. {{error}}',
+                    description_without_error:
+                        'Profile changes were saved, but password update failed.',
+                },
+                avatar_upload_failed: {
+                    title: 'Avatar upload failed',
+                    description_fallback:
+                        'Nickname and password changes were still applied.',
+                },
+                profile_updated: {
+                    title: 'Profile updated',
+                    description: 'Your profile changes have been saved.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Share diagram',
+        },
+
+        share_dialog: {
+            title: 'Share diagram',
+            description: 'Invite collaborators as editors or viewers.',
+            access: {
+                title: 'Your access',
+                readonly_hint:
+                    'Only the owner can manage members and invitations.',
+            },
+            roles: {
+                owner: 'Owner',
+                editor: 'Editor',
+                viewer: 'Viewer',
+            },
+            status: {
+                pending: 'Pending',
+                accepted: 'Accepted',
+                revoked: 'Revoked',
+                expired: 'Expired',
+            },
+            invite: {
+                section_title: 'Invite by email',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'Members',
+                empty: 'No invited members yet.',
+            },
+            invitations: {
+                section_title: 'Pending invitations',
+                empty: 'No pending invitations.',
+            },
+            history: {
+                section_title: 'Invitation history',
+                empty: 'No invitations yet.',
+            },
+            actions: {
+                invite: 'Invite',
+                remove: 'Remove',
+                revoke: 'Revoke',
+                copy_link: 'Copy link',
+                refresh: 'Refresh',
+                close: 'Close',
+            },
+            labels: {
+                your_access: 'Your access:',
+                expires: 'Expires',
+                updated: 'Updated',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Invitation created',
+                    description: '{{email}} was invited as {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Invite failed',
+                },
+                role_update_failed: {
+                    title: 'Role update failed',
+                },
+                remove_failed: {
+                    title: 'Remove member failed',
+                },
+                revoke_failed: {
+                    title: 'Revoke invitation failed',
+                },
+                copy_success: {
+                    title: 'Invite link copied',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Copy failed',
+                    description: 'Could not copy invite link.',
+                },
+            },
+            errors: {
+                email_required: 'Email is required.',
+                unknown_error: 'Unknown error.',
+                no_diagram_selected: 'No diagram is selected.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Sign in to ERDS',
+            subtitle: 'Your diagrams are stored in your Supabase account.',
+            tabs: {
+                sign_in: 'Sign in',
+                sign_up: 'Sign up',
+            },
+            placeholders: {
+                nickname: 'Nickname',
+                email: 'you@example.com',
+                password: 'Password',
+                confirm_password: 'Confirm password',
+            },
+            actions: {
+                sign_in: 'Sign in',
+                signing_in: 'Signing in...',
+                create_account: 'Create account',
+                creating_account: 'Creating account...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase is not configured',
+                supabase_not_configured_description:
+                    'Add SUPABASE_URL and SUPABASE_PUBLISHABLE_DEFAULT_KEY environment variables to continue.',
+                success_title: 'Success',
+                authentication_failed_title: 'Authentication failed',
+            },
+            validation: {
+                email_and_password_required: 'Email and password are required.',
+                nickname_required: 'Nickname is required.',
+                email_required: 'Email is required.',
+                password_required: 'Password is required.',
+                password_min_length: 'Password must be at least 6 characters.',
+                password_confirmation_mismatch:
+                    'Password confirmation does not match.',
+                sign_in_failed: 'Failed to sign in.',
+                create_account_failed: 'Failed to create account.',
+            },
+            success: {
+                account_created:
+                    'Account created. If email confirmation is enabled, check your inbox before signing in.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Accepting invitation...',
+            error_title: 'Invitation could not be accepted',
+            actions: {
+                retry: 'Retry',
+                go_to_app: 'Go to app',
+            },
+            errors: {
+                expired: 'This invitation link has expired.',
+                mismatch:
+                    'This invitation was sent to a different email account.',
+                revoked: 'This invitation has been revoked.',
+                not_pending: 'This invitation is no longer active.',
+                not_found: 'Invitation not found.',
+                token_missing: 'Invitation token is missing.',
+                supabase_not_configured: 'Supabase is not configured.',
+                accept_failed: 'Failed to accept invitation.',
+                unknown_error: 'Unknown error.',
+                no_diagram_returned:
+                    'Invitation accepted, but no diagram was returned.',
+                invitee_email_required: 'Invitee email is required.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} online',
+            role: {
+                owner: 'Owner',
+                editor: 'Editor',
+                viewer: 'Viewer',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Cloud sync restored',
+            restored_description: 'Changes are syncing to Supabase again.',
+            paused_title: 'Cloud sync paused',
+            paused_description:
+                'Your local changes are safe and will be retried automatically.',
+            read_only_title: 'Read-only access',
+            read_only_description:
+                'You can view this shared diagram but cannot save changes.',
+            access_removed_title: 'Access removed',
+            access_removed_description:
+                'Your access to this shared diagram was removed.',
+        },
+
+        collaboration_errors: {
+            expired: 'This invitation link has expired.',
+            mismatch: 'This invitation was sent to a different email account.',
+            revoked: 'This invitation has been revoked.',
+            not_pending: 'This invitation is no longer active.',
+            not_found: 'Invitation not found.',
+            invitee_email_required: 'Invitee email is required.',
+            token_missing: 'Invitation token is required.',
+            supabase_not_configured: 'Supabase is not configured.',
+        },
+
         delete_diagram_alert: {
             title: 'Delete Diagram',
             description:

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="ERDS cloud mark" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="rainbowCloud" x1="36" y1="128" x2="228" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff5f6d" />
+      <stop offset="16%" stop-color="#ff8a5b" />
+      <stop offset="32%" stop-color="#ffd166" />
+      <stop offset="50%" stop-color="#72dd7b" />
+      <stop offset="68%" stop-color="#4fc3f7" />
+      <stop offset="86%" stop-color="#7b8cff" />
+      <stop offset="100%" stop-color="#b794f4" />
+    </linearGradient>
+    <linearGradient id="cloudOutline" x1="56" y1="86" x2="214" y2="208" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.33" />
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0.2" />
+    </linearGradient>
+    <linearGradient id="cloudShine" x1="128" y1="70" x2="128" y2="174" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34" />
+      <stop offset="65%" stop-color="#ffffff" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M36 155C36 129 55 108 80 104C88 76 113 56 143 56C173 56 199 75 208 103C232 107 250 128 250 154C250 183 226 206 196 206H87C59 206 36 183 36 155Z"
+    fill="url(#rainbowCloud)"
+    stroke="url(#cloudOutline)"
+    stroke-width="1"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M56 149C56 126 73 108 96 106C104 86 123 72 146 72C170 72 190 86 198 106C182 90 162 82 141 82C121 82 102 91 90 108C72 110 58 125 58 144C58 147 58 149 59 151C57 150 56 149 56 149Z"
+    fill="url(#cloudShine)"
+  />
+</svg>

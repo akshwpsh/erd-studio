@@ -13,9 +13,13 @@ import { dbCustomTypeSchema } from './db-custom-type';
 import type { Note } from './note';
 import { noteSchema } from './note';
 
+export type DiagramAccessRole = 'owner' | 'editor' | 'viewer';
+
 export interface Diagram {
     id: string;
     name: string;
+    ownerUserId?: string;
+    accessRole?: DiagramAccessRole;
     databaseType: DatabaseType;
     databaseEdition?: DatabaseEdition;
     tables?: DBTable[];
@@ -31,6 +35,8 @@ export interface Diagram {
 export const diagramSchema: z.ZodType<Diagram> = z.object({
     id: z.string(),
     name: z.string(),
+    ownerUserId: z.string().optional(),
+    accessRole: z.enum(['owner', 'editor', 'viewer']).optional(),
     databaseType: z.nativeEnum(DatabaseType),
     databaseEdition: z.nativeEnum(DatabaseEdition).optional(),
     tables: z.array(dbTableSchema).optional(),

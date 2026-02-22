@@ -10,7 +10,14 @@ import type { DBCustomType } from '@/lib/domain/db-custom-type';
 import type { DiagramFilter } from '@/lib/domain/diagram-filter/diagram-filter';
 import type { Note } from '@/lib/domain/note';
 
+export type StorageInitStatus = 'idle' | 'initializing' | 'ready' | 'error';
+
 export interface StorageContext {
+    // Storage initialization status
+    storageInitStatus: StorageInitStatus;
+    storageInitError: string | null;
+    retryStorageInitialization: () => Promise<void>;
+
     // Config operations
     getConfig: () => Promise<ChartDBConfig | undefined>;
     updateConfig: (config: Partial<ChartDBConfig>) => Promise<void>;
@@ -155,6 +162,10 @@ export interface StorageContext {
 }
 
 export const storageInitialValue: StorageContext = {
+    storageInitStatus: 'idle',
+    storageInitError: null,
+    retryStorageInitialization: async () => undefined,
+
     getConfig: emptyFn,
     updateConfig: emptyFn,
 

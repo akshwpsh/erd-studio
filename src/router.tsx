@@ -18,6 +18,17 @@ const routes: RouteObject[] = [
         },
     })),
     {
+        path: 'invites/:inviteToken',
+        async lazy() {
+            const { InviteAcceptPage } =
+                await import('./pages/invite-accept-page/invite-accept-page');
+
+            return {
+                element: <InviteAcceptPage />,
+            };
+        },
+    },
+    {
         path: 'examples',
         async lazy() {
             const { ExamplesPage } =

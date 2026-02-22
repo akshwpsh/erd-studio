@@ -11,22 +11,20 @@ import {
     SidebarMenuItem,
 } from '@/components/sidebar/sidebar';
 import {
-    BookOpen,
     Group,
     FileType,
     Plus,
     FolderOpen,
     CodeXml,
+    UserRound,
 } from 'lucide-react';
 import { Table, Workflow } from 'lucide-react';
 import { useLayout } from '@/hooks/use-layout';
 import { useTranslation } from 'react-i18next';
-import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 import { useBreakpoint } from '@/hooks/use-breakpoint';
-import ChartDBLogo from '@/assets/logo-light.png';
-import ChartDBDarkLogo from '@/assets/logo-dark.png';
 import { useTheme } from '@/hooks/use-theme';
 import { useChartDB } from '@/hooks/use-chartdb';
+import { BrandLogo } from '@/components/brand/brand-logo';
 import { supportsCustomTypes } from '@/lib/domain/database-capabilities';
 import { useDialog } from '@/hooks/use-dialog';
 import { Separator } from '@/components/separator/separator';
@@ -52,7 +50,11 @@ export const EditorSidebar: React.FC<EditorSidebarProps> = () => {
     const { isMd: isDesktop } = useBreakpoint('md');
     const { effectiveTheme } = useTheme();
     const { databaseType } = useChartDB();
-    const { openCreateDiagramDialog, openOpenDiagramDialog } = useDialog();
+    const {
+        openCreateDiagramDialog,
+        openOpenDiagramDialog,
+        openProfileDialog,
+    } = useDialog();
 
     const diagramItems: SidebarItem[] = useMemo(
         () => [
@@ -142,30 +144,13 @@ export const EditorSidebar: React.FC<EditorSidebarProps> = () => {
     const footerItems: SidebarItem[] = useMemo(
         () => [
             {
-                title: 'Discord',
-                icon: DiscordLogoIcon,
-                onClick: () =>
-                    window.open('https://discord.gg/QeFwyWSKwC', '_blank'),
-                active: false,
-            },
-            {
-                title: 'Twitter',
-                icon: TwitterLogoIcon,
-                onClick: () =>
-                    window.open(
-                        'https://x.com/intent/follow?screen_name=jonathanfishner',
-                        '_blank'
-                    ),
-                active: false,
-            },
-            {
-                title: 'Docs',
-                icon: BookOpen,
-                onClick: () => window.open('https://docs.chartdb.io', '_blank'),
+                title: t('profile_dialog.title'),
+                icon: UserRound,
+                onClick: openProfileDialog,
                 active: false,
             },
         ],
-        []
+        [openProfileDialog, t]
     );
 
     return (
@@ -177,21 +162,9 @@ export const EditorSidebar: React.FC<EditorSidebarProps> = () => {
         >
             {!isDesktop ? (
                 <SidebarHeader>
-                    <a
-                        href="https://chartdb.io"
-                        className="cursor-pointer"
-                        rel="noreferrer"
-                    >
-                        <img
-                            src={
-                                effectiveTheme === 'light'
-                                    ? ChartDBLogo
-                                    : ChartDBDarkLogo
-                            }
-                            alt="chartDB"
-                            className="h-4 max-w-fit"
-                        />
-                    </a>
+                    <div className="inline-flex">
+                        <BrandLogo variant="sidebar" theme={effectiveTheme} />
+                    </div>
                 </SidebarHeader>
             ) : null}
             <SidebarContent>

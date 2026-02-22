@@ -22,12 +22,13 @@ import { useConfig } from '@/hooks/use-config';
 import { useDialog } from '@/hooks/use-dialog';
 import { useStorage } from '@/hooks/use-storage';
 import type { Diagram } from '@/lib/domain/diagram';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import type { BaseDialogProps } from '../common/base-dialog-props';
 import { useDebounce } from '@/hooks/use-debounce';
 import { DiagramRowActionsMenu } from './diagram-row-actions-menu/diagram-row-actions-menu';
+import { Badge } from '@/components/badge/badge';
 
 export interface OpenDiagramDialogProps extends BaseDialogProps {
     canClose?: boolean;
@@ -43,35 +44,77 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
     const navigate = useNavigate();
     const { listDiagrams } = useStorage();
     const [diagrams, setDiagrams] = useState<Diagram[]>([]);
+    const [isFetching, setIsFetching] = useState(false);
+    const [hasFetchedDiagrams, setHasFetchedDiagrams] = useState(false);
     const [selectedDiagramId, setSelectedDiagramId] = useState<
         string | undefined
     >();
+    const hasAutoRedirectedRef = useRef(false);
 
     const fetchDiagrams = useCallback(async () => {
-        const diagrams = await listDiagrams({ includeTables: true });
-        setDiagrams(
-            diagrams.sort(
-                (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()
-            )
-        );
+        setIsFetching(true);
+        try {
+            const diagrams = await listDiagrams({ includeTables: true });
+            setDiagrams(
+                diagrams.sort(
+                    (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()
+                )
+            );
+        } finally {
+            setIsFetching(false);
+            setHasFetchedDiagrams(true);
+        }
     }, [listDiagrams]);
 
     useEffect(() => {
         if (!dialog.open) {
             return;
         }
+        hasAutoRedirectedRef.current = false;
+        setHasFetchedDiagrams(false);
         setSelectedDiagramId(undefined);
-        fetchDiagrams();
+        void fetchDiagrams();
     }, [dialog.open, fetchDiagrams]);
+
+    useEffect(() => {
+        if (
+            !dialog.open ||
+            canClose ||
+            isFetching ||
+            !hasFetchedDiagrams ||
+            diagrams.length > 0
+        ) {
+            return;
+        }
+
+        if (hasAutoRedirectedRef.current) {
+            return;
+        }
+
+        hasAutoRedirectedRef.current = true;
+        closeOpenDiagramDialog();
+        openCreateDiagramDialog();
+    }, [
+        canClose,
+        closeOpenDiagramDialog,
+        dialog.open,
+        diagrams.length,
+        hasFetchedDiagrams,
+        isFetching,
+        openCreateDiagramDialog,
+    ]);
 
     const openDiagram = useCallback(
         (diagramId: string) => {
-            if (diagramId) {
-                updateConfig({ config: { defaultDiagramId: diagramId } });
-                navigate(`/diagrams/${diagramId}`);
+            if (!diagramId) {
+                return;
             }
+
+            void updateConfig({ config: { defaultDiagramId: diagramId } });
+            navigate(`/diagrams/${diagramId}`);
+            closeOpenDiagramDialog();
         },
-        [updateConfig, navigate]
+        [updateConfig, navigate, closeOpenDiagramDialog]
     );
 
     const handleRowKeyDown = useCallback(
@@ -91,7 +134,6 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                 case ' ':
                     e.preventDefault();
                     openDiagram(diagramId);
-                    closeOpenDiagramDialog();
                     break;
                 case 'ArrowDown': {
                     e.preventDefault();
@@ -115,13 +157,25 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                 }
             }
         },
-        [openDiagram, closeOpenDiagramDialog]
+        [openDiagram]
     );
 
     const onFocusHandler = useDebounce(
         (diagramId: string) => setSelectedDiagramId(diagramId),
         50
     );
+
+    const getAccessBadge = (diagram: Diagram) => {
+        if (diagram.accessRole === 'editor') {
+            return 'Editor';
+        }
+
+        if (diagram.accessRole === 'viewer') {
+            return 'Viewer';
+        }
+
+        return 'Mine';
+    };
 
     return (
         <Dialog
@@ -163,6 +217,7 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                                             'open_diagram_dialog.table_columns.last_modified'
                                         )}
                                     </TableHead>
+                                    <TableHead>Access</TableHead>
                                     <TableHead className="text-center">
                                         {t(
                                             'open_diagram_dialog.table_columns.tables_count'
@@ -192,7 +247,6 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                                                     break;
                                                 case 2:
                                                     openDiagram(diagram.id);
-                                                    closeOpenDiagramDialog();
                                                     break;
                                                 default:
                                                     setSelectedDiagramId(
@@ -221,16 +275,20 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                                         <TableCell>
                                             {diagram.updatedAt.toLocaleString()}
                                         </TableCell>
+                                        <TableCell>
+                                            <Badge variant="secondary">
+                                                {getAccessBadge(diagram)}
+                                            </Badge>
+                                        </TableCell>
                                         <TableCell className="text-center">
                                             {diagram.tables?.length}
                                         </TableCell>
                                         <TableCell className="items-center p-0 pr-1 text-right">
                                             <DiagramRowActionsMenu
                                                 diagram={diagram}
-                                                onOpen={() => {
-                                                    openDiagram(diagram.id);
-                                                    closeOpenDiagramDialog();
-                                                }}
+                                                onOpen={() =>
+                                                    openDiagram(diagram.id)
+                                                }
                                                 numberOfDiagrams={
                                                     diagrams.length
                                                 }
@@ -265,17 +323,13 @@ export const OpenDiagramDialog: React.FC<OpenDiagramDialogProps> = ({
                         >
                             {t('open_diagram_dialog.new_database')}
                         </Button>
-                        <DialogClose asChild>
-                            <Button
-                                type="submit"
-                                disabled={!selectedDiagramId}
-                                onClick={() =>
-                                    openDiagram(selectedDiagramId ?? '')
-                                }
-                            >
-                                {t('open_diagram_dialog.open')}
-                            </Button>
-                        </DialogClose>
+                        <Button
+                            type="button"
+                            disabled={!selectedDiagramId}
+                            onClick={() => openDiagram(selectedDiagramId ?? '')}
+                        >
+                            {t('open_diagram_dialog.open')}
+                        </Button>
                     </div>
                 </DialogFooter>
             </DialogContent>

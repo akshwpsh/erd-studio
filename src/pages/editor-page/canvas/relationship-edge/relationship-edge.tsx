@@ -258,10 +258,30 @@ export const RelationshipEdge: React.FC<EdgeProps<RelationshipEdgeType>> =
                     distances.rightToRight
                 );
 
-                const minDistanceKey = Object.keys(distances).find(
-                    (key) =>
-                        distances[key as keyof typeof distances] === minDistance
-                ) as keyof typeof distances;
+                const minDistanceKeys = (
+                    Object.keys(distances) as Array<keyof typeof distances>
+                ).filter((key) => distances[key] === minDistance);
+
+                const preferRightToLeft = sourceX < targetX;
+                const tieBreakOrder: Array<keyof typeof distances> =
+                    preferRightToLeft
+                        ? [
+                              'rightToLeft',
+                              'leftToRight',
+                              'rightToRight',
+                              'leftToLeft',
+                          ]
+                        : [
+                              'leftToRight',
+                              'rightToLeft',
+                              'leftToLeft',
+                              'rightToRight',
+                          ];
+
+                const minDistanceKey =
+                    tieBreakOrder.find((key) =>
+                        minDistanceKeys.includes(key)
+                    ) ?? minDistanceKeys[0];
 
                 switch (minDistanceKey) {
                     case 'leftToRight':
@@ -273,7 +293,14 @@ export const RelationshipEdge: React.FC<EdgeProps<RelationshipEdgeType>> =
                     default:
                         return { sourceSide: 'left', targetSide: 'left' };
                 }
-            }, [sourceLeftX, sourceRightX, targetLeftX, targetRightX]);
+            }, [
+                sourceLeftX,
+                sourceRightX,
+                targetLeftX,
+                targetRightX,
+                sourceX,
+                targetX,
+            ]);
 
             const edgePath = useMemo(() => {
                 // Round values to prevent tiny changes from triggering recalculation

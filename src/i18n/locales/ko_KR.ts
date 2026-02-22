@@ -57,6 +57,249 @@ export const ko_KR: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: '프로필',
+            description: '계정 정보를 확인하고 수정하세요.',
+            fields: {
+                email: '이메일',
+                nickname: '닉네임',
+                joined: '가입일',
+                profile_image: '프로필 이미지',
+                current_password: '현재 비밀번호',
+                new_password: '새 비밀번호',
+                confirm_new_password: '새 비밀번호 확인',
+            },
+            hints: {
+                profile_image:
+                    '이미지 파일만 가능하며 최대 5MB까지 업로드할 수 있습니다.',
+            },
+            actions: {
+                logout: '로그아웃',
+                logging_out: '로그아웃 중...',
+                cancel: '취소',
+                save_changes: '변경사항 저장',
+                saving: '저장 중...',
+            },
+            errors: {
+                image_type: '이미지 파일만 업로드할 수 있습니다.',
+                image_size: '프로필 이미지는 5MB 이하만 업로드할 수 있습니다.',
+                nickname_required: '닉네임을 입력해주세요.',
+                current_password_required: '현재 비밀번호를 입력해주세요.',
+                new_password_required: '새 비밀번호를 입력해주세요.',
+                new_password_length:
+                    '새 비밀번호는 최소 6자 이상이어야 합니다.',
+                password_confirmation_mismatch:
+                    '새 비밀번호 확인이 일치하지 않습니다.',
+                update_failed: '프로필 업데이트에 실패했습니다.',
+                signout_failed: '로그아웃에 실패했습니다.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: '비밀번호 변경 실패',
+                    description_with_error:
+                        '프로필 변경사항은 저장되었습니다. {{error}}',
+                    description_without_error:
+                        '프로필 변경사항은 저장되었지만 비밀번호 변경에 실패했습니다.',
+                },
+                avatar_upload_failed: {
+                    title: '프로필 이미지 업로드 실패',
+                    description_fallback:
+                        '닉네임/비밀번호 변경은 정상적으로 적용되었습니다.',
+                },
+                profile_updated: {
+                    title: '프로필 업데이트 완료',
+                    description: '프로필 변경사항이 저장되었습니다.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: '다이어그램 공유',
+        },
+
+        share_dialog: {
+            title: '다이어그램 공유',
+            description: '편집자 또는 뷰어로 협업자를 초대하세요.',
+            access: {
+                title: '내 권한',
+                readonly_hint: '소유자만 멤버와 초대를 관리할 수 있습니다.',
+            },
+            roles: {
+                owner: '소유자',
+                editor: '편집자',
+                viewer: '뷰어',
+            },
+            status: {
+                pending: '대기 중',
+                accepted: '수락됨',
+                revoked: '철회됨',
+                expired: '만료됨',
+            },
+            invite: {
+                section_title: '이메일로 초대',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: '멤버',
+                empty: '초대된 멤버가 없습니다.',
+            },
+            invitations: {
+                section_title: '대기 중인 초대',
+                empty: '대기 중인 초대가 없습니다.',
+            },
+            history: {
+                section_title: '초대 이력',
+                empty: '초대 이력이 없습니다.',
+            },
+            actions: {
+                invite: '초대',
+                remove: '제거',
+                revoke: '초대 철회',
+                copy_link: '링크 복사',
+                refresh: '새로고침',
+                close: '닫기',
+            },
+            labels: {
+                your_access: '내 권한:',
+                expires: '만료',
+                updated: '업데이트',
+            },
+            toasts: {
+                invite_created: {
+                    title: '초대를 생성했습니다',
+                    description:
+                        '{{email}} 사용자를 {{role}} 권한으로 초대했습니다.',
+                },
+                invite_failed: {
+                    title: '초대에 실패했습니다',
+                },
+                role_update_failed: {
+                    title: '권한 변경에 실패했습니다',
+                },
+                remove_failed: {
+                    title: '멤버 제거에 실패했습니다',
+                },
+                revoke_failed: {
+                    title: '초대 철회에 실패했습니다',
+                },
+                copy_success: {
+                    title: '초대 링크를 복사했습니다',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: '복사에 실패했습니다',
+                    description: '초대 링크를 복사할 수 없습니다.',
+                },
+            },
+            errors: {
+                email_required: '이메일을 입력해주세요.',
+                unknown_error: '알 수 없는 오류가 발생했습니다.',
+                no_diagram_selected: '선택된 다이어그램이 없습니다.',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS 로그인',
+            subtitle: '다이어그램은 Supabase 계정에 저장됩니다.',
+            tabs: {
+                sign_in: '로그인',
+                sign_up: '회원가입',
+            },
+            placeholders: {
+                nickname: '닉네임',
+                email: 'you@example.com',
+                password: '비밀번호',
+                confirm_password: '비밀번호 확인',
+            },
+            actions: {
+                sign_in: '로그인',
+                signing_in: '로그인 중...',
+                create_account: '계정 생성',
+                creating_account: '계정 생성 중...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase 설정이 필요합니다',
+                supabase_not_configured_description:
+                    '계속하려면 SUPABASE_URL 및 SUPABASE_PUBLISHABLE_DEFAULT_KEY 환경 변수를 설정하세요.',
+                success_title: '성공',
+                authentication_failed_title: '인증 실패',
+            },
+            validation: {
+                email_and_password_required:
+                    '이메일과 비밀번호를 입력해주세요.',
+                nickname_required: '닉네임을 입력해주세요.',
+                email_required: '이메일을 입력해주세요.',
+                password_required: '비밀번호를 입력해주세요.',
+                password_min_length: '비밀번호는 최소 6자 이상이어야 합니다.',
+                password_confirmation_mismatch:
+                    '비밀번호 확인이 일치하지 않습니다.',
+                sign_in_failed: '로그인에 실패했습니다.',
+                create_account_failed: '계정 생성에 실패했습니다.',
+            },
+            success: {
+                account_created:
+                    '계정이 생성되었습니다. 이메일 확인이 활성화된 경우 로그인 전에 메일함을 확인해주세요.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: '초대를 수락하는 중...',
+            error_title: '초대를 수락할 수 없습니다',
+            actions: {
+                retry: '다시 시도',
+                go_to_app: '앱으로 이동',
+            },
+            errors: {
+                expired: '이 초대 링크는 만료되었습니다.',
+                mismatch: '이 초대는 다른 이메일 계정으로 발송되었습니다.',
+                revoked: '이 초대는 철회되었습니다.',
+                not_pending: '이 초대는 더 이상 활성 상태가 아닙니다.',
+                not_found: '초대를 찾을 수 없습니다.',
+                token_missing: '초대 토큰이 없습니다.',
+                supabase_not_configured: 'Supabase 설정이 필요합니다.',
+                accept_failed: '초대 수락에 실패했습니다.',
+                unknown_error: '알 수 없는 오류가 발생했습니다.',
+                no_diagram_returned:
+                    '초대는 수락되었지만 다이어그램 정보를 받지 못했습니다.',
+                invitee_email_required: '초대 대상 이메일이 필요합니다.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}}명 접속 중',
+            role: {
+                owner: '소유자',
+                editor: '편집자',
+                viewer: '뷰어',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: '클라우드 동기화 복구',
+            restored_description:
+                '변경 사항이 다시 Supabase로 동기화되고 있습니다.',
+            paused_title: '클라우드 동기화 일시 중지',
+            paused_description:
+                '로컬 변경사항은 안전하며 자동으로 재시도됩니다.',
+            read_only_title: '읽기 전용 권한',
+            read_only_description:
+                '이 공유 다이어그램은 열람만 가능하며 저장할 수 없습니다.',
+            access_removed_title: '접근 권한이 제거되었습니다',
+            access_removed_description:
+                '이 공유 다이어그램에 대한 접근 권한이 제거되었습니다.',
+        },
+
+        collaboration_errors: {
+            expired: '이 초대 링크는 만료되었습니다.',
+            mismatch: '이 초대는 다른 이메일 계정으로 발송되었습니다.',
+            revoked: '이 초대는 철회되었습니다.',
+            not_pending: '이 초대는 더 이상 활성 상태가 아닙니다.',
+            not_found: '초대를 찾을 수 없습니다.',
+            invitee_email_required: '초대 대상 이메일이 필요합니다.',
+            token_missing: '초대 토큰이 필요합니다.',
+            supabase_not_configured: 'Supabase 설정이 필요합니다.',
+        },
+
         delete_diagram_alert: {
             title: '다이어그램 삭제',
             description:

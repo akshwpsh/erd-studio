@@ -56,6 +56,254 @@ export const uk: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Профіль',
+            description:
+                'Перегляньте й оновіть налаштування облікового запису.',
+            fields: {
+                email: 'Електронна пошта',
+                nickname: 'Псевдонім',
+                joined: 'Приєднався',
+                profile_image: 'Зображення профілю',
+                current_password: 'Поточний пароль',
+                new_password: 'Новий пароль',
+                confirm_new_password: 'Підтвердьте новий пароль',
+            },
+            hints: {
+                profile_image: 'Лише файли зображень, розміром до 5 МБ.',
+            },
+            actions: {
+                logout: 'Вийти',
+                logging_out: 'Вихід...',
+                cancel: 'Скасувати',
+                save_changes: 'Зберегти зміни',
+                saving: 'Зберігання...',
+            },
+            errors: {
+                image_type: 'Дозволяються лише файли зображень.',
+                image_size: 'Зображення профілю має бути 5 Мб або менше.',
+                nickname_required: 'Введіть псевдонім.',
+                current_password_required: 'Потрібен поточний пароль.',
+                new_password_required: 'Потрібен новий пароль.',
+                new_password_length:
+                    'Новий пароль має бути не менше 6 символів.',
+                password_confirmation_mismatch:
+                    'Підтвердження нового пароля не збігається.',
+                update_failed: 'Не вдалося оновити профіль.',
+                signout_failed: 'Не вдалося вийти.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Помилка оновлення пароля',
+                    description_with_error:
+                        'Зміни профілю збережено. {{error}}',
+                    description_without_error:
+                        'Зміни профілю збережено, але не вдалося оновити пароль.',
+                },
+                avatar_upload_failed: {
+                    title: 'Не вдалося завантажити аватар',
+                    description_fallback:
+                        'Зміни псевдоніма та пароля все ще застосовано.',
+                },
+                profile_updated: {
+                    title: 'Профіль оновлено',
+                    description: 'Зміни вашого профілю збережено.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Діаграма спільного доступу',
+        },
+
+        share_dialog: {
+            title: 'Діаграма спільного доступу',
+            description:
+                'Запросіть співавторів як редакторів або переглядачів.',
+            access: {
+                title: 'Ваш доступ',
+                readonly_hint:
+                    'Лише власник може керувати учасниками та запрошеннями.',
+            },
+            roles: {
+                owner: 'Власник',
+                editor: 'Редактор',
+                viewer: 'Переглядач',
+            },
+            status: {
+                pending: 'Очікує',
+                accepted: 'Приймається',
+                revoked: 'Відкликано',
+                expired: 'Термін дії минув',
+            },
+            invite: {
+                section_title: 'Запросити електронною поштою',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'Члени',
+                empty: 'Ще немає запрошених учасників.',
+            },
+            invitations: {
+                section_title: 'Очікують запрошення',
+                empty: 'Немає незавершених запрошень.',
+            },
+            history: {
+                section_title: 'Історія запрошень',
+                empty: 'Ще немає запрошень.',
+            },
+            actions: {
+                invite: 'Запросити',
+                remove: 'Видалити',
+                revoke: 'Відкликати',
+                copy_link: 'Копіювати посилання',
+                refresh: 'Оновити',
+                close: 'Закрити',
+            },
+            labels: {
+                your_access: 'Ваш доступ:',
+                expires: 'Закінчується',
+                updated: 'Оновлено',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Запрошення створено',
+                    description: '{{email}} був запрошений як {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Помилка запрошення',
+                },
+                role_update_failed: {
+                    title: 'Помилка оновлення ролі',
+                },
+                remove_failed: {
+                    title: 'Не вдалося видалити учасника',
+                },
+                revoke_failed: {
+                    title: 'Не вдалося відкликати запрошення',
+                },
+                copy_success: {
+                    title: 'Посилання на запрошення скопійовано',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Помилка копіювання',
+                    description:
+                        'Не вдалося скопіювати посилання для запрошення.',
+                },
+            },
+            errors: {
+                email_required: 'Потрібна електронна адреса.',
+                unknown_error: 'Невідома помилка.',
+                no_diagram_selected: 'Не вибрано жодної діаграми.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Увійдіть до ERDS',
+            subtitle:
+                'Ваші діаграми зберігаються у вашому обліковому записі Supabase.',
+            tabs: {
+                sign_in: 'Увійдіть',
+                sign_up: 'Зареєструватися',
+            },
+            placeholders: {
+                nickname: 'Псевдонім',
+                email: 'you@example.com',
+                password: 'Пароль',
+                confirm_password: 'Підтвердьте пароль',
+            },
+            actions: {
+                sign_in: 'Увійдіть',
+                signing_in: 'Вхід...',
+                create_account: 'Створити обліковий запис',
+                creating_account: 'Створення облікового запису...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase не налаштовано',
+                supabase_not_configured_description:
+                    'Щоб продовжити, додайте змінні середовища SUPABASE_URL та SUPABASE_PUBLISHABLE_DEFAULT_KEY.',
+                success_title: 'Успіху',
+                authentication_failed_title: 'Помилка автентифікації',
+            },
+            validation: {
+                email_and_password_required:
+                    'Потрібна електронна адреса та пароль.',
+                nickname_required: 'Введіть псевдонім.',
+                email_required: 'Потрібна електронна адреса.',
+                password_required: 'Необхідно ввести пароль.',
+                password_min_length: 'Пароль має бути не менше 6 символів.',
+                password_confirmation_mismatch:
+                    'Підтвердження пароля не збігається.',
+                sign_in_failed: 'Не вдалося ввійти.',
+                create_account_failed: 'Не вдалося створити обліковий запис.',
+            },
+            success: {
+                account_created:
+                    'Обліковий запис створено. Якщо підтвердження електронною поштою ввімкнено, перевірте папку "Вхідні" перед входом.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Приймаю запрошення...',
+            error_title: 'Не вдалося прийняти запрошення',
+            actions: {
+                retry: 'Повторіть спробу',
+                go_to_app: 'Перейти до програми',
+            },
+            errors: {
+                expired: 'Термін дії цього посилання для запрошення минув.',
+                mismatch:
+                    'Це запрошення надіслано на інший обліковий запис електронної пошти.',
+                revoked: 'Це запрошення було відкликано.',
+                not_pending: 'Це запрошення більше не активне.',
+                not_found: 'Запрошення не знайдено.',
+                token_missing: 'Немає маркера запрошення.',
+                supabase_not_configured: 'Supabase is not configured.',
+                accept_failed: 'Не вдалося прийняти запрошення.',
+                unknown_error: 'Невідома помилка.',
+                no_diagram_returned:
+                    'Запрошення прийнято, але жодної діаграми не повернуто.',
+                invitee_email_required:
+                    'Потрібна електронна адреса запрошеного.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} онлайн',
+            role: {
+                owner: 'Власник',
+                editor: 'Редактор',
+                viewer: 'Переглядач',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Хмарну синхронізацію відновлено',
+            restored_description: 'Зміни знову синхронізуються з Supabase.',
+            paused_title: 'Хмарну синхронізацію призупинено',
+            paused_description:
+                'Ваші локальні зміни в безпеці, і повторна спроба буде виконана автоматично.',
+            read_only_title: 'Доступ лише для читання',
+            read_only_description:
+                'Ви можете переглядати цю спільну діаграму, але не можете зберегти зміни.',
+            access_removed_title: 'Доступ видалено',
+            access_removed_description:
+                'Ваш доступ до цієї спільної діаграми скасовано.',
+        },
+
+        collaboration_errors: {
+            expired: 'Термін дії цього посилання для запрошення минув.',
+            mismatch:
+                'Це запрошення надіслано на інший обліковий запис електронної пошти.',
+            revoked: 'Це запрошення було відкликано.',
+            not_pending: 'Це запрошення більше не активне.',
+            not_found: 'Запрошення не знайдено.',
+            invitee_email_required: 'Потрібна електронна адреса запрошеного.',
+            token_missing: 'Потрібен маркер запрошення.',
+            supabase_not_configured: 'Supabase is not configured.',
+        },
+
         delete_diagram_alert: {
             title: 'Видалити діаграму',
             description:

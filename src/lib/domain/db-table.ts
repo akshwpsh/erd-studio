@@ -1,6 +1,7 @@
 import { dbIndexSchema, type DBIndex } from './db-index';
 import { dbFieldSchema, type DBField } from './db-field';
 import type { DBRelationship } from './db-relationship';
+import type { DBDependency } from './db-dependency';
 import {
     dbCheckConstraintSchema,
     type DBCheckConstraint,
@@ -9,6 +10,11 @@ import { deepCopy, findContainingArea } from '../utils';
 import { schemaNameToDomainSchemaName } from './db-schema';
 import { z } from 'zod';
 import type { Area } from './area';
+import {
+    createCrossingAwareLayout,
+    type CrossingAwareLayoutEdge,
+    type CrossingAwareLayoutNode,
+} from '@/lib/layout/crossing-aware-layout';
 
 export const MAX_TABLE_SIZE = 450;
 export const MID_TABLE_SIZE = 337;
@@ -65,23 +71,43 @@ export const generateTableKey = ({
 
 export const adjustTablePositions = ({
     relationships: inputRelationships,
+    dependencies: inputDependencies = [],
     tables: inputTables,
     areas: inputAreas = [],
     mode = 'all',
 }: {
     tables: DBTable[];
     relationships: DBRelationship[];
+    dependencies?: DBDependency[];
     areas?: Area[];
     mode?: 'all' | 'perSchema';
 }): DBTable[] => {
     // Deep copy inputs for manipulation
     const tables = deepCopy(inputTables);
     const relationships = deepCopy(inputRelationships);
+    const dependencies = deepCopy(inputDependencies);
     const areas = deepCopy(inputAreas);
 
-    // If there are no areas, fall back to the original algorithm
+    // If there are no areas, run crossing-aware layout and fallback to legacy.
     if (areas.length === 0) {
-        return adjustTablePositionsWithoutAreas(tables, relationships, mode);
+        try {
+            return crossingAwareAdjustTablePositionsWithoutAreas({
+                tables,
+                relationships,
+                dependencies,
+                mode,
+            });
+        } catch (error) {
+            console.warn(
+                '[layout] crossing-aware layout failed; falling back to legacy layout.',
+                error
+            );
+            return legacyAdjustTablePositionsWithoutAreas(
+                tables,
+                relationships,
+                mode
+            );
+        }
     }
 
     // Update parentAreaId based on geometric containment before grouping
@@ -113,83 +139,284 @@ export const adjustTablePositions = ({
         }
     });
 
-    // Check and adjust tables within each area
+    // Re-layout tables within each area while keeping boundaries.
     areas.forEach((area) => {
         const tablesInArea = tablesByArea.get(area.id) || [];
         if (tablesInArea.length === 0) return;
 
-        // Only reposition tables that are outside their area bounds
-        const tablesToReposition = tablesInArea.filter((table) => {
-            return !isTableInsideArea(table, area);
+        const areaTableIds = new Set(tablesInArea.map((table) => table.id));
+        const areaRelationships = relationships.filter((rel) => {
+            return (
+                areaTableIds.has(rel.sourceTableId) &&
+                areaTableIds.has(rel.targetTableId)
+            );
+        });
+        const areaDependencies = dependencies.filter((dep) => {
+            return (
+                areaTableIds.has(dep.tableId) &&
+                areaTableIds.has(dep.dependentTableId)
+            );
         });
 
-        if (tablesToReposition.length > 0) {
-            // Create a sub-graph of relationships for tables that need repositioning
-            const areaRelationships = relationships.filter((rel) => {
-                const sourceNeedsReposition = tablesToReposition.some(
-                    (t) => t.id === rel.sourceTableId
-                );
-                const targetNeedsReposition = tablesToReposition.some(
-                    (t) => t.id === rel.targetTableId
-                );
-                return sourceNeedsReposition && targetNeedsReposition;
+        try {
+            crossingAwarePositionTablesWithinArea({
+                tables: tablesInArea,
+                relationships: areaRelationships,
+                dependencies: areaDependencies,
+                area,
             });
-
-            // Position only tables that are outside the area bounds
-            positionTablesWithinArea(
-                tablesToReposition,
-                areaRelationships,
-                area
+        } catch (error) {
+            console.warn(
+                '[layout] area crossing-aware layout failed; falling back to legacy grid layout.',
+                error
             );
+            legacyPositionTablesWithinArea(tablesInArea, area);
         }
-        // Tables already inside the area keep their positions
     });
 
     // Position free tables (those not in any area)
     const freeTables = tablesByArea.get(null) || [];
     if (freeTables.length > 0) {
-        // Create a sub-graph of relationships for free tables
+        const freeTableIds = new Set(freeTables.map((table) => table.id));
         const freeRelationships = relationships.filter((rel) => {
-            const sourceIsFree = freeTables.some(
-                (t) => t.id === rel.sourceTableId
+            return (
+                freeTableIds.has(rel.sourceTableId) &&
+                freeTableIds.has(rel.targetTableId)
             );
-            const targetIsFree = freeTables.some(
-                (t) => t.id === rel.targetTableId
+        });
+        const freeDependencies = dependencies.filter((dep) => {
+            return (
+                freeTableIds.has(dep.tableId) &&
+                freeTableIds.has(dep.dependentTableId)
             );
-            return sourceIsFree && targetIsFree;
         });
 
-        // Use the original algorithm for free tables with area avoidance
-        adjustTablePositionsWithoutAreas(
-            freeTables,
-            freeRelationships,
-            mode,
-            areas
-        );
+        try {
+            crossingAwareAdjustTablePositionsWithoutAreas({
+                tables: freeTables,
+                relationships: freeRelationships,
+                dependencies: freeDependencies,
+                mode,
+                areas,
+            });
+        } catch (error) {
+            console.warn(
+                '[layout] free table crossing-aware layout failed; falling back to legacy layout.',
+                error
+            );
+            legacyAdjustTablePositionsWithoutAreas(
+                freeTables,
+                freeRelationships,
+                mode,
+                areas
+            );
+        }
     }
 
     return tables;
 };
 
-// Helper function to check if a table is inside an area
-function isTableInsideArea(table: DBTable, area: Area): boolean {
-    const tableDimensions = getTableDimensions(table);
-    const padding = 20; // Same padding as used in positioning
+const normalizeLayoutEdges = ({
+    relationships,
+    dependencies,
+    validTableIds,
+}: {
+    relationships: DBRelationship[];
+    dependencies: DBDependency[];
+    validTableIds: Set<string>;
+}): CrossingAwareLayoutEdge[] => {
+    const edgeMap = new Map<string, CrossingAwareLayoutEdge>();
 
-    return (
-        table.x >= area.x + padding &&
-        table.x + tableDimensions.width <= area.x + area.width - padding &&
-        table.y >= area.y + padding &&
-        table.y + tableDimensions.height <= area.y + area.height - padding
-    );
-}
+    const addEdge = ({
+        sourceId,
+        targetId,
+        kind,
+        id,
+    }: {
+        sourceId: string;
+        targetId: string;
+        kind: 'relationship' | 'dependency';
+        id: string;
+    }) => {
+        if (
+            sourceId === targetId ||
+            !validTableIds.has(sourceId) ||
+            !validTableIds.has(targetId)
+        ) {
+            return;
+        }
 
-// Helper function to position tables within an area
-function positionTablesWithinArea(
-    tables: DBTable[],
-    _relationships: DBRelationship[],
-    area: Area
-) {
+        const [left, right] =
+            sourceId < targetId ? [sourceId, targetId] : [targetId, sourceId];
+        const key = `${left}::${right}`;
+
+        const existing = edgeMap.get(key);
+        if (existing) {
+            edgeMap.set(key, {
+                ...existing,
+                weight: (existing.weight ?? 1) + 1,
+            });
+            return;
+        }
+
+        edgeMap.set(key, {
+            id,
+            sourceId: left,
+            targetId: right,
+            weight: 1,
+            kind,
+        });
+    };
+
+    relationships.forEach((relationship) => {
+        addEdge({
+            sourceId: relationship.sourceTableId,
+            targetId: relationship.targetTableId,
+            kind: 'relationship',
+            id: relationship.id,
+        });
+    });
+
+    dependencies.forEach((dependency) => {
+        addEdge({
+            sourceId: dependency.tableId,
+            targetId: dependency.dependentTableId,
+            kind: 'dependency',
+            id: dependency.id,
+        });
+    });
+
+    return [...edgeMap.values()];
+};
+
+const applyLayoutPositionsToTables = ({
+    tables,
+    positions,
+}: {
+    tables: DBTable[];
+    positions: Map<string, { x: number; y: number }>;
+}) => {
+    tables.forEach((table) => {
+        const nextPosition = positions.get(table.id);
+        if (!nextPosition) {
+            return;
+        }
+
+        table.x = nextPosition.x;
+        table.y = nextPosition.y;
+    });
+};
+
+const crossingAwareAdjustTablePositionsWithoutAreas = ({
+    tables,
+    relationships,
+    dependencies,
+    mode,
+    areas = [],
+}: {
+    tables: DBTable[];
+    relationships: DBRelationship[];
+    dependencies: DBDependency[];
+    mode: 'all' | 'perSchema';
+    areas?: Area[];
+}): DBTable[] => {
+    if (tables.length === 0) {
+        return tables;
+    }
+
+    const tableIds = new Set(tables.map((table) => table.id));
+    const edges = normalizeLayoutEdges({
+        relationships,
+        dependencies,
+        validTableIds: tableIds,
+    });
+    const layoutTables: CrossingAwareLayoutNode[] = tables.map((table) => {
+        const dimensions = getTableDimensions(table);
+        return {
+            id: table.id,
+            x: table.x,
+            y: table.y,
+            width: dimensions.width,
+            height: dimensions.height,
+            schema: table.schema,
+        };
+    });
+
+    const positions = createCrossingAwareLayout({
+        tables: layoutTables,
+        edges,
+        mode,
+        areas,
+        liteMode: tables.length >= 100,
+    });
+
+    applyLayoutPositionsToTables({ tables, positions });
+
+    return tables;
+};
+
+const crossingAwarePositionTablesWithinArea = ({
+    tables,
+    relationships,
+    dependencies,
+    area,
+}: {
+    tables: DBTable[];
+    relationships: DBRelationship[];
+    dependencies: DBDependency[];
+    area: Area;
+}) => {
+    if (tables.length === 0) return;
+
+    const padding = 20;
+    const areaBounds = {
+        x: area.x + padding,
+        y: area.y + padding,
+        width: Math.max(1, area.width - 2 * padding),
+        height: Math.max(1, area.height - 2 * padding),
+    };
+
+    const tableIds = new Set(tables.map((table) => table.id));
+    const edges = normalizeLayoutEdges({
+        relationships,
+        dependencies,
+        validTableIds: tableIds,
+    });
+    const layoutTables: CrossingAwareLayoutNode[] = tables.map((table) => {
+        const dimensions = getTableDimensions(table);
+        return {
+            id: table.id,
+            x: table.x,
+            y: table.y,
+            width: dimensions.width,
+            height: dimensions.height,
+            schema: table.schema,
+        };
+    });
+
+    const positions = createCrossingAwareLayout({
+        tables: layoutTables,
+        edges,
+        mode: 'all',
+        bounds: areaBounds,
+        liteMode: tables.length >= 100,
+    });
+
+    applyLayoutPositionsToTables({ tables, positions });
+
+    // Extra clamp guard to guarantee area bounds.
+    tables.forEach((table) => {
+        const dimensions = getTableDimensions(table);
+        const maxX = areaBounds.x + areaBounds.width - dimensions.width;
+        const maxY = areaBounds.y + areaBounds.height - dimensions.height;
+
+        table.x = Math.max(areaBounds.x, Math.min(table.x, maxX));
+        table.y = Math.max(areaBounds.y, Math.min(table.y, maxY));
+    });
+};
+
+// Legacy helper: grid layout within an area.
+function legacyPositionTablesWithinArea(tables: DBTable[], area: Area) {
     if (tables.length === 0) return;
 
     const padding = 20; // Padding from area edges
@@ -228,7 +455,7 @@ function positionTablesWithinArea(
 }
 
 // Original algorithm with area avoidance
-function adjustTablePositionsWithoutAreas(
+function legacyAdjustTablePositionsWithoutAreas(
     tables: DBTable[],
     relationships: DBRelationship[],
     mode: 'all' | 'perSchema',

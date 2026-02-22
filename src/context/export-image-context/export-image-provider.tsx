@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import type { ExportImageContext, ImageType } from './export-image-context';
 import { exportImageContext } from './export-image-context';
 import { toJpeg, toPng, toSvg } from 'html-to-image';
@@ -6,8 +6,6 @@ import { useReactFlow } from '@xyflow/react';
 import { useChartDB } from '@/hooks/use-chartdb';
 import { useFullScreenLoader } from '@/hooks/use-full-screen-spinner';
 import { useTheme } from '@/hooks/use-theme';
-import logoDark from '@/assets/logo-dark.png';
-import logoLight from '@/assets/logo-light.png';
 import type { EffectiveTheme } from '../theme-context/theme-context';
 
 export const ExportImageProvider: React.FC<React.PropsWithChildren> = ({
@@ -17,24 +15,6 @@ export const ExportImageProvider: React.FC<React.PropsWithChildren> = ({
     const { setNodes, getViewport } = useReactFlow();
     const { effectiveTheme } = useTheme();
     const { diagramName } = useChartDB();
-    const [logoBase64, setLogoBase64] = useState<string>('');
-
-    useEffect(() => {
-        // Convert logo to base64 on component mount
-        const img = new Image();
-        img.src = effectiveTheme === 'light' ? logoLight : logoDark;
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                ctx.drawImage(img, 0, 0);
-                const base64 = canvas.toDataURL('image/png');
-                setLogoBase64(base64);
-            }
-        };
-    }, [effectiveTheme]);
 
     const downloadImage = useCallback(
         (dataUrl: string, type: ImageType) => {
@@ -266,92 +246,23 @@ export const ExportImageProvider: React.FC<React.PropsWithChildren> = ({
                         return;
                     }
 
-                    // For PNG and JPEG, continue with the watermark process
-                    const initialDataUrl = await imageCreateFn(
-                        viewportElement,
-                        {
-                            backgroundColor: getBackgroundColor(
-                                effectiveTheme,
-                                transparent
-                            ),
-                            width: reactFlowBounds.width,
-                            height: reactFlowBounds.height,
-                            style: {
-                                width: `${reactFlowBounds.width}px`,
-                                height: `${reactFlowBounds.height}px`,
-                                transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
-                            },
-                            quality: 1,
-                            pixelRatio: scale,
-                            skipFonts: true,
-                        }
-                    );
-
-                    // Create a canvas to combine the diagram and watermark
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-
-                    if (!ctx) {
-                        downloadImage(initialDataUrl, type);
-                        return;
-                    }
-
-                    // Set canvas size to match the export size
-                    canvas.width = reactFlowBounds.width * scale;
-                    canvas.height = reactFlowBounds.height * scale;
-
-                    // Load the exported diagram
-                    const diagramImage = new Image();
-                    diagramImage.src = initialDataUrl;
-
-                    await new Promise((resolve) => {
-                        diagramImage.onload = async () => {
-                            // Draw the diagram
-                            ctx.drawImage(diagramImage, 0, 0);
-
-                            // Calculate logo size
-                            const logoHeight = Math.max(
-                                24,
-                                Math.floor(canvas.width * 0.024)
-                            );
-                            const padding = Math.max(
-                                12,
-                                Math.floor(logoHeight * 0.5)
-                            );
-
-                            // Load and draw the logo
-                            const logoImage = new Image();
-                            logoImage.src = logoBase64;
-
-                            await new Promise((resolve) => {
-                                logoImage.onload = () => {
-                                    // Calculate logo width while maintaining aspect ratio
-                                    const logoWidth =
-                                        (logoImage.width / logoImage.height) *
-                                        logoHeight;
-
-                                    // Draw logo in bottom-left corner
-                                    ctx.globalAlpha = 0.9;
-                                    ctx.drawImage(
-                                        logoImage,
-                                        padding,
-                                        canvas.height - logoHeight - padding,
-                                        logoWidth,
-                                        logoHeight
-                                    );
-                                    ctx.globalAlpha = 1;
-                                    resolve(null);
-                                };
-                            });
-
-                            // Convert canvas to data URL
-                            const finalDataUrl = canvas.toDataURL(
-                                type === 'png' ? 'image/png' : 'image/jpeg'
-                            );
-                            downloadImage(finalDataUrl, type);
-                            resolve(null);
-                        };
+                    const dataUrl = await imageCreateFn(viewportElement, {
+                        backgroundColor: getBackgroundColor(
+                            effectiveTheme,
+                            transparent
+                        ),
+                        width: reactFlowBounds.width,
+                        height: reactFlowBounds.height,
+                        style: {
+                            width: `${reactFlowBounds.width}px`,
+                            height: `${reactFlowBounds.height}px`,
+                            transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+                        },
+                        quality: 1,
+                        pixelRatio: scale,
+                        skipFonts: true,
                     });
+                    downloadImage(dataUrl, type);
                 } finally {
                     // Restore original styles
                     originalStyles.forEach(
@@ -374,7 +285,6 @@ export const ExportImageProvider: React.FC<React.PropsWithChildren> = ({
             setNodes,
             showLoader,
             effectiveTheme,
-            logoBase64,
         ]
     );
 

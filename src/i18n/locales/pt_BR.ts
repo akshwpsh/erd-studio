@@ -58,6 +58,251 @@ export const pt_BR: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Perfil',
+            description: 'Visualize e atualize as configurações da sua conta.',
+            fields: {
+                email: 'E-mail',
+                nickname: 'Apelido',
+                joined: 'Cadastrou-se',
+                profile_image: 'Imagem do perfil',
+                current_password: 'Senha atual',
+                new_password: 'Nova senha',
+                confirm_new_password: 'Confirme a nova senha',
+            },
+            hints: {
+                profile_image: 'Somente arquivos de imagem, até 5 MB.',
+            },
+            actions: {
+                logout: 'Sair',
+                logging_out: 'Saindo...',
+                cancel: 'Cancelar',
+                save_changes: 'Salvar alterações',
+                saving: 'Salvando...',
+            },
+            errors: {
+                image_type: 'Somente arquivos de imagem são permitidos.',
+                image_size: 'A imagem do perfil deve ter 5 MB ou menos.',
+                nickname_required: 'O apelido é obrigatório.',
+                current_password_required: 'A senha atual é necessária.',
+                new_password_required: 'É necessária uma nova senha.',
+                new_password_length:
+                    'A nova senha deve ter pelo menos 6 caracteres.',
+                password_confirmation_mismatch:
+                    'A nova confirmação de senha não corresponde.',
+                update_failed: 'Falha ao atualizar o perfil.',
+                signout_failed: 'Falha ao sair.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Falha na atualização da senha',
+                    description_with_error:
+                        'As alterações do perfil foram salvas. {{error}}',
+                    description_without_error:
+                        'As alterações do perfil foram salvas, mas a atualização da senha falhou.',
+                },
+                avatar_upload_failed: {
+                    title: 'Falha no upload do avatar',
+                    description_fallback:
+                        'As alterações de apelido e senha ainda foram aplicadas.',
+                },
+                profile_updated: {
+                    title: 'Perfil atualizado',
+                    description: 'Suas alterações de perfil foram salvas.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Diagrama de compartilhamento',
+        },
+
+        share_dialog: {
+            title: 'Diagrama de compartilhamento',
+            description:
+                'Convide colaboradores como editores ou visualizadores.',
+            access: {
+                title: 'Seu acesso',
+                readonly_hint:
+                    'Somente o proprietário pode gerenciar membros e convites.',
+            },
+            roles: {
+                owner: 'Proprietário',
+                editor: 'Editor',
+                viewer: 'Visualizador',
+            },
+            status: {
+                pending: 'Pendente',
+                accepted: 'Aceito',
+                revoked: 'Revogado',
+                expired: 'Expirado',
+            },
+            invite: {
+                section_title: 'Convidar por e-mail',
+                email_placeholder: 'companheiro de equipe@exemplo.com',
+            },
+            members: {
+                section_title: 'Membros',
+                empty: 'Nenhum membro convidado ainda.',
+            },
+            invitations: {
+                section_title: 'Convites pendentes',
+                empty: 'Nenhum convite pendente.',
+            },
+            history: {
+                section_title: 'Histórico de convites',
+                empty: 'Nenhum convite ainda.',
+            },
+            actions: {
+                invite: 'Convidar',
+                remove: 'Remover',
+                revoke: 'Revogar',
+                copy_link: 'Copiar link',
+                refresh: 'Atualizar',
+                close: 'Fechar',
+            },
+            labels: {
+                your_access: 'Seu acesso:',
+                expires: 'Expira',
+                updated: 'Atualizado',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Convite criado',
+                    description: '{{email}} foi convidado como {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Falha no convite',
+                },
+                role_update_failed: {
+                    title: 'Falha na atualização da função',
+                },
+                remove_failed: {
+                    title: 'Falha ao remover membro',
+                },
+                revoke_failed: {
+                    title: 'Falha ao revogar convite',
+                },
+                copy_success: {
+                    title: 'Link do convite copiado',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Falha na cópia',
+                    description: 'Não foi possível copiar o link do convite.',
+                },
+            },
+            errors: {
+                email_required: 'E-mail é obrigatório.',
+                unknown_error: 'Erro desconhecido.',
+                no_diagram_selected: 'Nenhum diagrama está selecionado.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Faça login em ERDS',
+            subtitle: 'Seus diagramas são armazenados em sua conta Supabase.',
+            tabs: {
+                sign_in: 'Entrar',
+                sign_up: 'Inscreva-se',
+            },
+            placeholders: {
+                nickname: 'Apelido',
+                email: 'you@example.com',
+                password: 'Senha',
+                confirm_password: 'Confirmar senha',
+            },
+            actions: {
+                sign_in: 'Entrar',
+                signing_in: 'Fazendo login...',
+                create_account: 'Criar conta',
+                creating_account: 'Criando conta...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase não está configurado',
+                supabase_not_configured_description:
+                    'Adicione variáveis ​​de ambiente SUPABASE_URL e SUPABASE_PUBLISHABLE_DEFAULT_KEY para continuar.',
+                success_title: 'Sucesso',
+                authentication_failed_title: 'Falha na autenticação',
+            },
+            validation: {
+                email_and_password_required: 'E-mail e senha são obrigatórios.',
+                nickname_required: 'O apelido é obrigatório.',
+                email_required: 'E-mail é obrigatório.',
+                password_required: 'A senha é obrigatória.',
+                password_min_length:
+                    'A senha deve ter pelo menos 6 caracteres.',
+                password_confirmation_mismatch:
+                    'A confirmação da senha não corresponde.',
+                sign_in_failed: 'Falha ao fazer login.',
+                create_account_failed: 'Falha ao criar conta.',
+            },
+            success: {
+                account_created:
+                    'Conta criada. Se a confirmação por e-mail estiver ativada, verifique sua caixa de entrada antes de fazer login.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Aceitando convite...',
+            error_title: 'O convite não pôde ser aceito',
+            actions: {
+                retry: 'Tentar novamente',
+                go_to_app: 'Vá para o aplicativo',
+            },
+            errors: {
+                expired: 'Este link de convite expirou.',
+                mismatch:
+                    'Este convite foi enviado para uma conta de e-mail diferente.',
+                revoked: 'Este convite foi revogado.',
+                not_pending: 'Este convite não está mais ativo.',
+                not_found: 'Convite não encontrado.',
+                token_missing: 'O token de convite está faltando.',
+                supabase_not_configured: 'Supabase não está configurado.',
+                accept_failed: 'Falha ao aceitar o convite.',
+                unknown_error: 'Erro desconhecido.',
+                no_diagram_returned:
+                    'Convite aceito, mas nenhum diagrama foi retornado.',
+                invitee_email_required: 'O e-mail do convidado é obrigatório.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} on-line',
+            role: {
+                owner: 'Proprietário',
+                editor: 'Editor',
+                viewer: 'Visualizador',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Sincronização na nuvem restaurada',
+            restored_description:
+                'As alterações estão sendo sincronizadas com Supabase novamente.',
+            paused_title: 'Sincronização na nuvem pausada',
+            paused_description:
+                'Suas alterações locais estão seguras e serão repetidas automaticamente.',
+            read_only_title: 'Acesso somente leitura',
+            read_only_description:
+                'Você pode visualizar este diagrama compartilhado, mas não pode salvar as alterações.',
+            access_removed_title: 'Acesso removido',
+            access_removed_description:
+                'Seu acesso a este diagrama compartilhado foi removido.',
+        },
+
+        collaboration_errors: {
+            expired: 'Este link de convite expirou.',
+            mismatch:
+                'Este convite foi enviado para uma conta de e-mail diferente.',
+            revoked: 'Este convite foi revogado.',
+            not_pending: 'Este convite não está mais ativo.',
+            not_found: 'Convite não encontrado.',
+            invitee_email_required: 'O e-mail do convidado é obrigatório.',
+            token_missing: 'O token de convite é obrigatório.',
+            supabase_not_configured: 'Supabase não está configurado.',
+        },
+
         delete_diagram_alert: {
             title: 'Excluir Diagrama',
             description:

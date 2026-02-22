@@ -27,6 +27,7 @@ import {
     useReactFlow,
     useKeyPress,
     SelectionMode,
+    useOnViewportChange,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import equal from 'fast-deep-equal';
@@ -121,6 +122,8 @@ import { filterTable } from '@/lib/domain/diagram-filter/filter';
 import { defaultSchemas } from '@/lib/data/default-schemas';
 import { useDiff } from '@/context/diff-context/use-diff';
 import { useClickAway } from 'react-use';
+import { useCollaboration } from '@/hooks/use-collaboration';
+import { useAuth } from '@/hooks/use-auth';
 
 const HIGHLIGHTED_EDGE_Z_INDEX = 1;
 const DEFAULT_EDGE_Z_INDEX = 0;
@@ -270,7 +273,13 @@ export interface CanvasProps {
 }
 
 export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
-    const { getEdge, getInternalNode, getNode } = useReactFlow();
+    const {
+        getEdge,
+        getInternalNode,
+        getNode,
+        screenToFlowPosition,
+        getViewport,
+    } = useReactFlow();
     const [selectedTableIds, setSelectedTableIds] = useState<string[]>([]);
     const [selectedRelationshipIds, setSelectedRelationshipIds] = useState<
         string[]
@@ -299,6 +308,7 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
         updateNote,
         highlightedCustomType,
         highlightCustomTypeId,
+        currentDiagram,
     } = useChartDB();
     const { showSidePanel } = useLayout();
     const { effectiveTheme } = useTheme();
@@ -327,6 +337,8 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
         resetFilter,
     } = useDiagramFilter();
     const { checkIfNewTable } = useDiff();
+    const { updateCursor, listPresence } = useCollaboration();
+    const { user } = useAuth();
 
     const shouldForceShowTable = useCallback(
         (tableId: string) => {
@@ -358,6 +370,10 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
         x: number;
         y: number;
     } | null>(null);
+    const [remoteParticipants, setRemoteParticipants] = useState<
+        ReturnType<typeof listPresence>
+    >([]);
+    const [viewport, setViewport] = useState({ x: 0, y: 0, zoom: 1 });
 
     useEffect(() => {
         setIsInitialLoadingNodes(true);
@@ -1471,11 +1487,83 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
         []
     );
 
+    useEffect(() => {
+        setViewport(getViewport());
+    }, [getViewport]);
+
+    useOnViewportChange({
+        onChange: (nextViewport) => {
+            setViewport(nextViewport);
+        },
+    });
+
+    useEffect(() => {
+        if (!currentDiagram.id) {
+            setRemoteParticipants([]);
+            return;
+        }
+
+        const syncPresence = () => {
+            const participants = listPresence(currentDiagram.id).filter(
+                (participant) =>
+                    participant.userId !== user?.id &&
+                    participant.cursor !== null
+            );
+            setRemoteParticipants(participants);
+        };
+
+        syncPresence();
+        const interval = window.setInterval(syncPresence, 200);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [currentDiagram.id, listPresence, user?.id]);
+
     // Handle mouse move to update cursor position for floating edge
-    const { screenToFlowPosition } = useReactFlow();
     const rafIdRef = useRef<number>();
+    const lastPresenceSentAtRef = useRef(0);
+    const presenceTimerRef = useRef<number>();
+    const latestPresencePointRef = useRef<{ x: number; y: number } | null>(
+        null
+    );
     const handleMouseMove = useCallback(
         (event: React.MouseEvent) => {
+            if (currentDiagram.id) {
+                const point = { x: event.clientX, y: event.clientY };
+                latestPresencePointRef.current = point;
+
+                const sendPresenceCursor = () => {
+                    const latestPoint = latestPresencePointRef.current;
+                    if (!latestPoint || !currentDiagram.id) {
+                        return;
+                    }
+
+                    const flowPosition = screenToFlowPosition(latestPoint);
+                    lastPresenceSentAtRef.current = Date.now();
+                    void updateCursor(
+                        currentDiagram.id,
+                        flowPosition.x,
+                        flowPosition.y
+                    ).catch(() => undefined);
+                };
+
+                const now = Date.now();
+                const elapsed = now - lastPresenceSentAtRef.current;
+                if (elapsed >= 80) {
+                    if (presenceTimerRef.current) {
+                        clearTimeout(presenceTimerRef.current);
+                        presenceTimerRef.current = undefined;
+                    }
+                    sendPresenceCursor();
+                } else if (!presenceTimerRef.current) {
+                    presenceTimerRef.current = window.setTimeout(() => {
+                        presenceTimerRef.current = undefined;
+                        sendPresenceCursor();
+                    }, 80 - elapsed);
+                }
+            }
+
             if (tempFloatingEdge) {
                 // Throttle using requestAnimationFrame
                 if (rafIdRef.current) {
@@ -1492,7 +1580,12 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
                 });
             }
         },
-        [tempFloatingEdge, screenToFlowPosition]
+        [
+            currentDiagram.id,
+            screenToFlowPosition,
+            tempFloatingEdge,
+            updateCursor,
+        ]
     );
 
     // Cleanup RAF on unmount
@@ -1500,6 +1593,9 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
         return () => {
             if (rafIdRef.current) {
                 cancelAnimationFrame(rafIdRef.current);
+            }
+            if (presenceTimerRef.current) {
+                clearTimeout(presenceTimerRef.current);
             }
         };
     }, []);
@@ -1851,6 +1947,43 @@ export const Canvas: React.FC<CanvasProps> = ({ initialTables }) => {
                         <CanvasFilter onClose={() => setShowFilter(false)} />
                     ) : null}
                 </ReactFlow>
+                <div className="pointer-events-none absolute inset-0 z-[100]">
+                    {remoteParticipants.map((participant) => {
+                        if (!participant.cursor) {
+                            return null;
+                        }
+
+                        const x =
+                            participant.cursor.x * viewport.zoom + viewport.x;
+                        const y =
+                            participant.cursor.y * viewport.zoom + viewport.y;
+                        const fallbackColor =
+                            participant.role === 'editor'
+                                ? 'bg-pink-500'
+                                : participant.role === 'viewer'
+                                  ? 'bg-sky-500'
+                                  : 'bg-emerald-500';
+
+                        return (
+                            <div
+                                key={`${participant.userId}-${participant.updatedAt}`}
+                                className="absolute"
+                                style={{
+                                    left: `${x}px`,
+                                    top: `${y}px`,
+                                    transform: 'translate(-50%, -50%)',
+                                }}
+                            >
+                                <div
+                                    className={`size-3 rounded-full border border-white ${fallbackColor}`}
+                                />
+                                <div className="mt-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-white">
+                                    {participant.nickname}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
                 <MarkerDefinitions />
             </div>
         </CanvasContextMenu>

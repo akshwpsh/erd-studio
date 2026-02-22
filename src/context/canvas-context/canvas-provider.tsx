@@ -31,6 +31,7 @@ export const CanvasProvider = ({ children }: CanvasProviderProps) => {
     const {
         tables,
         relationships,
+        dependencies,
         updateTablesState,
         databaseType,
         areas,
@@ -91,6 +92,7 @@ export const CanvasProvider = ({ children }: CanvasProviderProps) => {
         ) => {
             const newTables = adjustTablePositions({
                 relationships,
+                dependencies,
                 tables: tables.filter(
                     (table) =>
                         filterTable({
@@ -143,6 +145,7 @@ export const CanvasProvider = ({ children }: CanvasProviderProps) => {
         [
             filter,
             relationships,
+            dependencies,
             tables,
             updateTablesState,
             fitView,

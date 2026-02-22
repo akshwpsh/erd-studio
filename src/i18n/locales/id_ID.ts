@@ -57,6 +57,247 @@ export const id_ID: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Profil',
+            description: 'Lihat dan perbarui pengaturan akun Anda.',
+            fields: {
+                email: 'Surel',
+                nickname: 'Nama panggilan',
+                joined: 'Bergabung',
+                profile_image: 'Gambar profil',
+                current_password: 'Kata sandi saat ini',
+                new_password: 'Kata sandi baru',
+                confirm_new_password: 'Konfirmasi kata sandi baru',
+            },
+            hints: {
+                profile_image: 'File gambar saja, maksimal 5MB.',
+            },
+            actions: {
+                logout: 'Logout',
+                logging_out: 'Keluar...',
+                cancel: 'Batal',
+                save_changes: 'Simpan perubahan',
+                saving: 'Menyimpan...',
+            },
+            errors: {
+                image_type: 'Hanya file gambar yang diperbolehkan.',
+                image_size:
+                    'Gambar profil harus berukuran 5 MB atau lebih kecil.',
+                nickname_required: 'Nama panggilan wajib diisi.',
+                current_password_required: 'Kata sandi saat ini diperlukan.',
+                new_password_required: 'Kata sandi baru diperlukan.',
+                new_password_length:
+                    'Kata sandi baru minimal harus 6 karakter.',
+                password_confirmation_mismatch:
+                    'Konfirmasi kata sandi baru tidak cocok.',
+                update_failed: 'Gagal memperbarui profil.',
+                signout_failed: 'Gagal keluar.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Pembaruan kata sandi gagal',
+                    description_with_error:
+                        'Perubahan profil telah disimpan. {{error}}',
+                    description_without_error:
+                        'Perubahan profil telah disimpan, namun pembaruan kata sandi gagal.',
+                },
+                avatar_upload_failed: {
+                    title: 'Upload avatar gagal',
+                    description_fallback:
+                        'Perubahan nama panggilan dan kata sandi tetap diterapkan.',
+                },
+                profile_updated: {
+                    title: 'Profil diperbarui',
+                    description: 'Perubahan profil Anda telah disimpan.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Bagikan diagram',
+        },
+
+        share_dialog: {
+            title: 'Bagikan diagram',
+            description: 'Undang kolaborator sebagai editor atau pemirsa.',
+            access: {
+                title: 'Akses Anda',
+                readonly_hint:
+                    'Hanya pemilik yang dapat mengelola anggota dan undangan.',
+            },
+            roles: {
+                owner: 'Pemilik',
+                editor: 'Penyunting',
+                viewer: 'Penonton',
+            },
+            status: {
+                pending: 'Tertunda',
+                accepted: 'Diterima',
+                revoked: 'Dicabut',
+                expired: 'Kedaluwarsa',
+            },
+            invite: {
+                section_title: 'Undang melalui email',
+                email_placeholder: 'rekan tim@example.com',
+            },
+            members: {
+                section_title: 'Anggota',
+                empty: 'Belum ada anggota yang diundang.',
+            },
+            invitations: {
+                section_title: 'Undangan menunggu keputusan',
+                empty: 'Tidak ada undangan yang tertunda.',
+            },
+            history: {
+                section_title: 'Riwayat undangan',
+                empty: 'Belum ada undangan.',
+            },
+            actions: {
+                invite: 'Undang',
+                remove: 'Hapus',
+                revoke: 'Cabut',
+                copy_link: 'Salin tautan',
+                refresh: 'Segarkan',
+                close: 'Tutup',
+            },
+            labels: {
+                your_access: 'Akses Anda:',
+                expires: 'Kedaluwarsa',
+                updated: 'Diperbarui',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Undangan dibuat',
+                    description: '{{email}} diundang sebagai {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Undangan gagal',
+                },
+                role_update_failed: {
+                    title: 'Pembaruan peran gagal',
+                },
+                remove_failed: {
+                    title: 'Hapus anggota gagal',
+                },
+                revoke_failed: {
+                    title: 'Pencabutan undangan gagal',
+                },
+                copy_success: {
+                    title: 'Tautan undangan disalin',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Penyalinan gagal',
+                    description: 'Tidak dapat menyalin tautan undangan.',
+                },
+            },
+            errors: {
+                email_required: 'Email wajib diisi.',
+                unknown_error: 'Kesalahan tidak diketahui.',
+                no_diagram_selected: 'Tidak ada diagram yang dipilih.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Masuk ke ERDS',
+            subtitle: 'Diagram Anda disimpan di akun Supabase Anda.',
+            tabs: {
+                sign_in: 'Masuk',
+                sign_up: 'Daftar',
+            },
+            placeholders: {
+                nickname: 'Nama panggilan',
+                email: 'you@example.com',
+                password: 'Kata Sandi',
+                confirm_password: 'Konfirmasi kata sandi',
+            },
+            actions: {
+                sign_in: 'Masuk',
+                signing_in: 'Masuk...',
+                create_account: 'Buat akun',
+                creating_account: 'Membuat akun...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase tidak dikonfigurasi',
+                supabase_not_configured_description:
+                    'Tambahkan variabel lingkungan SUPABASE_URL dan SUPABASE_PUBLISHABLE_DEFAULT_KEY untuk melanjutkan.',
+                success_title: 'Sukses',
+                authentication_failed_title: 'Otentikasi gagal',
+            },
+            validation: {
+                email_and_password_required: 'Email dan kata sandi diperlukan.',
+                nickname_required: 'Nama panggilan wajib diisi.',
+                email_required: 'Email wajib diisi.',
+                password_required: 'Kata sandi diperlukan.',
+                password_min_length: 'Kata sandi minimal harus 6 karakter.',
+                password_confirmation_mismatch:
+                    'Konfirmasi kata sandi tidak cocok.',
+                sign_in_failed: 'Gagal masuk.',
+                create_account_failed: 'Gagal membuat akun.',
+            },
+            success: {
+                account_created:
+                    'Akun dibuat. Jika konfirmasi email diaktifkan, periksa kotak masuk Anda sebelum masuk.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Menerima undangan...',
+            error_title: 'Undangan tidak dapat diterima',
+            actions: {
+                retry: 'Coba lagi',
+                go_to_app: 'Buka aplikasi',
+            },
+            errors: {
+                expired: 'Tautan undangan ini telah kedaluwarsa.',
+                mismatch: 'Undangan ini dikirim ke akun email lain.',
+                revoked: 'Undangan ini telah dicabut.',
+                not_pending: 'Undangan ini sudah tidak aktif.',
+                not_found: 'Undangan tidak ditemukan.',
+                token_missing: 'Token undangan tidak ada.',
+                supabase_not_configured: 'Supabase tidak dikonfigurasi.',
+                accept_failed: 'Gagal menerima undangan.',
+                unknown_error: 'Kesalahan tidak diketahui.',
+                no_diagram_returned:
+                    'Undangan diterima, namun tidak ada diagram yang dikembalikan.',
+                invitee_email_required: 'Email undangan diperlukan.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} daring',
+            role: {
+                owner: 'Pemilik',
+                editor: 'Penyunting',
+                viewer: 'Penonton',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Sinkronisasi cloud dipulihkan',
+            restored_description: 'Perubahan disinkronkan lagi ke Supabase.',
+            paused_title: 'Sinkronisasi cloud dijeda',
+            paused_description:
+                'Perubahan lokal Anda aman dan akan dicoba ulang secara otomatis.',
+            read_only_title: 'Akses hanya baca',
+            read_only_description:
+                'Anda dapat melihat diagram bersama ini tetapi tidak dapat menyimpan perubahan.',
+            access_removed_title: 'Akses dihapus',
+            access_removed_description:
+                'Akses Anda ke diagram bersama ini telah dihapus.',
+        },
+
+        collaboration_errors: {
+            expired: 'Tautan undangan ini telah kedaluwarsa.',
+            mismatch: 'Undangan ini dikirim ke akun email lain.',
+            revoked: 'Undangan ini telah dicabut.',
+            not_pending: 'Undangan ini sudah tidak aktif.',
+            not_found: 'Undangan tidak ditemukan.',
+            invitee_email_required: 'Email undangan diperlukan.',
+            token_missing: 'Token undangan diperlukan.',
+            supabase_not_configured: 'Supabase tidak dikonfigurasi.',
+        },
+
         delete_diagram_alert: {
             title: 'Hapus Diagram',
             description:

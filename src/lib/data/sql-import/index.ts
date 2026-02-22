@@ -235,6 +235,7 @@ export async function sqlImportToDiagram({
     const adjustedTables = adjustTablePositions({
         tables: diagram.tables ?? [],
         relationships: diagram.relationships ?? [],
+        dependencies: diagram.dependencies ?? [],
         mode: 'perSchema',
     });
 

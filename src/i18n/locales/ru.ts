@@ -56,6 +56,257 @@ export const ru: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'Профиль',
+            description:
+                'Просмотрите и обновите настройки своей учетной записи.',
+            fields: {
+                email: 'Электронная почта',
+                nickname: 'Никнейм',
+                joined: 'Присоединился',
+                profile_image: 'Изображение профиля',
+                current_password: 'Текущий пароль',
+                new_password: 'Новый пароль',
+                confirm_new_password: 'Подтвердите новый пароль',
+            },
+            hints: {
+                profile_image: 'Только файлы изображений размером до 5 МБ.',
+            },
+            actions: {
+                logout: 'Выйти',
+                logging_out: 'Выхожу...',
+                cancel: 'Отмена',
+                save_changes: 'Сохранить изменения',
+                saving: 'Сохраняю...',
+            },
+            errors: {
+                image_type: 'Разрешены только файлы изображений.',
+                image_size:
+                    'Изображение профиля должно иметь размер 5 МБ или меньше.',
+                nickname_required: 'Никнейм обязателен.',
+                current_password_required: 'Требуется текущий пароль.',
+                new_password_required: 'Требуется новый пароль.',
+                new_password_length:
+                    'Новый пароль должен содержать не менее 6 символов.',
+                password_confirmation_mismatch:
+                    'Подтверждение нового пароля не соответствует.',
+                update_failed: 'Не удалось обновить профиль.',
+                signout_failed: 'Не удалось выйти.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'Не удалось обновить пароль.',
+                    description_with_error:
+                        'Изменения профиля сохранены. {{error}}',
+                    description_without_error:
+                        'Изменения профиля сохранены, но обновить пароль не удалось.',
+                },
+                avatar_upload_failed: {
+                    title: 'Не удалось загрузить аватар',
+                    description_fallback:
+                        'Изменения псевдонима и пароля по-прежнему были применены.',
+                },
+                profile_updated: {
+                    title: 'Профиль обновлен',
+                    description: 'Изменения вашего профиля сохранены.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'Поделиться диаграммой',
+        },
+
+        share_dialog: {
+            title: 'Поделиться диаграммой',
+            description:
+                'Пригласите соавторов в качестве редакторов или зрителей.',
+            access: {
+                title: 'Ваш доступ',
+                readonly_hint:
+                    'Только владелец может управлять участниками и приглашениями.',
+            },
+            roles: {
+                owner: 'Владелец',
+                editor: 'Редактор',
+                viewer: 'Зритель',
+            },
+            status: {
+                pending: 'Ожидается',
+                accepted: 'Принято',
+                revoked: 'Отозвано',
+                expired: 'Срок действия истек',
+            },
+            invite: {
+                section_title: 'Пригласить по электронной почте',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'Участники',
+                empty: 'Пока приглашенных участников нет.',
+            },
+            invitations: {
+                section_title: 'Ожидаемые приглашения',
+                empty: 'Ожидаемых приглашений нет.',
+            },
+            history: {
+                section_title: 'История приглашений',
+                empty: 'Приглашений пока нет.',
+            },
+            actions: {
+                invite: 'Пригласить',
+                remove: 'Удалить',
+                revoke: 'Отозвать',
+                copy_link: 'Скопировать ссылку',
+                refresh: 'Обновить',
+                close: 'Закрыть',
+            },
+            labels: {
+                your_access: 'Ваш доступ:',
+                expires: 'Срок действия истекает',
+                updated: 'Обновлено',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'Приглашение создано.',
+                    description: '{{email}} был приглашен как {{role}}.',
+                },
+                invite_failed: {
+                    title: 'Приглашение не выполнено.',
+                },
+                role_update_failed: {
+                    title: 'Обновление роли не выполнено.',
+                },
+                remove_failed: {
+                    title: 'Не удалось удалить участника',
+                },
+                revoke_failed: {
+                    title: 'Отозвать приглашение не удалось.',
+                },
+                copy_success: {
+                    title: 'Ссылка для приглашения скопирована.',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'Копировать не удалось',
+                    description:
+                        'Не удалось скопировать ссылку для приглашения.',
+                },
+            },
+            errors: {
+                email_required: 'Требуется электронная почта.',
+                unknown_error: 'Неизвестная ошибка.',
+                no_diagram_selected: 'Диаграмма не выбрана.',
+            },
+        },
+
+        auth_gate: {
+            title: 'Войдите в ERDS',
+            subtitle:
+                'Ваши диаграммы хранятся в вашей учетной записи Supabase.',
+            tabs: {
+                sign_in: 'Войти',
+                sign_up: 'Зарегистрируйтесь',
+            },
+            placeholders: {
+                nickname: 'Никнейм',
+                email: 'you@example.com',
+                password: 'Пароль',
+                confirm_password: 'Подтвердите пароль',
+            },
+            actions: {
+                sign_in: 'Войти',
+                signing_in: 'Вход...',
+                create_account: 'Создать аккаунт',
+                creating_account: 'Создание аккаунта...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase не настроен',
+                supabase_not_configured_description:
+                    'Добавьте переменные среды SUPABASE_URL и SUPABASE_PUBLISHABLE_DEFAULT_KEY, чтобы продолжить.',
+                success_title: 'Успех',
+                authentication_failed_title: 'Аутентификация не удалась',
+            },
+            validation: {
+                email_and_password_required:
+                    'Требуется адрес электронной почты и пароль.',
+                nickname_required: 'Никнейм обязателен.',
+                email_required: 'Требуется электронная почта.',
+                password_required: 'Требуется пароль.',
+                password_min_length: 'Пароль должен быть не менее 6 символов.',
+                password_confirmation_mismatch:
+                    'Подтверждение пароля не совпадает.',
+                sign_in_failed: 'Не удалось войти в систему.',
+                create_account_failed: 'Не удалось создать учетную запись.',
+            },
+            success: {
+                account_created:
+                    'Аккаунт создан. Если подтверждение по электронной почте включено, проверьте свой почтовый ящик перед входом в систему.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'Принимаю приглашение...',
+            error_title: 'Приглашение не удалось принять.',
+            actions: {
+                retry: 'Повторить попытку',
+                go_to_app: 'Перейти в приложение',
+            },
+            errors: {
+                expired: 'Срок действия этой ссылки-приглашения истек.',
+                mismatch:
+                    'Это приглашение было отправлено на другой адрес электронной почты.',
+                revoked: 'Это приглашение было отозвано.',
+                not_pending: 'Это приглашение больше не активно.',
+                not_found: 'Приглашение не найдено.',
+                token_missing: 'Токен приглашения отсутствует.',
+                supabase_not_configured: 'Supabase не настрое��.',
+                accept_failed: 'Не удалось принять приглашение.',
+                unknown_error: 'Неизвестная ошибка.',
+                no_diagram_returned:
+                    'Приглашение принято, но диаграмма не возвращена.',
+                invitee_email_required:
+                    'Требуется адрес электронной почты приглашенного.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} онлайн',
+            role: {
+                owner: 'Владелец',
+                editor: 'Редактор',
+                viewer: 'Зритель',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'Синхронизация с облаком восстановлена',
+            restored_description:
+                'Изменения снова синхронизируются с Supabase.',
+            paused_title: 'Синхронизация с обл��ком приостановлена',
+            paused_description:
+                'Ваши локальные изменения безопасны и будут автоматически повторены.',
+            read_only_title: 'Доступ только для чтения',
+            read_only_description:
+                'Вы можете просматривать эту общую диаграмму, но не можете сохранять изменения.',
+            access_removed_title: 'Доступ закрыт',
+            access_removed_description:
+                'Ваш доступ к этой общей диаграмме был закрыт.',
+        },
+
+        collaboration_errors: {
+            expired: 'Срок действия этой ссылки-приглашения истек.',
+            mismatch:
+                'Это приглашение было отправлено на другой адрес электронной почты.',
+            revoked: 'Это приглашение было отозвано.',
+            not_pending: 'Это приглашение больше не активно.',
+            not_found: 'Приглашение не найдено.',
+            invitee_email_required:
+                'Требуется адрес электронной почты приглашенного.',
+            token_missing: 'Требуется жетон приглашения.',
+            supabase_not_configured: 'Supabase не настрое��.',
+        },
+
         delete_diagram_alert: {
             title: 'Удалить диаграмму',
             description:

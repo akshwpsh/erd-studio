@@ -51,6 +51,12 @@ export const ChartDBProvider: React.FC<
 
     const [diagramId, setDiagramId] = useState('');
     const [diagramName, setDiagramName] = useState('');
+    const [diagramOwnerUserId, setDiagramOwnerUserId] = useState<
+        string | undefined
+    >(diagram?.ownerUserId);
+    const [diagramAccessRole, setDiagramAccessRole] = useState<
+        Diagram['accessRole']
+    >(diagram?.accessRole);
     const [diagramCreatedAt, setDiagramCreatedAt] = useState<Date>(new Date());
     const [diagramUpdatedAt, setDiagramUpdatedAt] = useState<Date>(new Date());
     const [databaseType, setDatabaseType] = useState<DatabaseType>(
@@ -103,8 +109,11 @@ export const ChartDBProvider: React.FC<
     );
 
     const readonly = useMemo(
-        () => readonlyProp ?? hasDiff ?? false,
-        [readonlyProp, hasDiff]
+        () =>
+            readonlyProp ??
+            hasDiff ??
+            (diagramAccessRole === 'viewer' ? true : false),
+        [readonlyProp, hasDiff, diagramAccessRole]
     );
 
     const schemas = useMemo(
@@ -144,6 +153,8 @@ export const ChartDBProvider: React.FC<
         () => ({
             id: diagramId,
             name: diagramName,
+            ownerUserId: diagramOwnerUserId,
+            accessRole: diagramAccessRole,
             createdAt: diagramCreatedAt,
             updatedAt: diagramUpdatedAt,
             databaseType,
@@ -158,6 +169,8 @@ export const ChartDBProvider: React.FC<
         [
             diagramId,
             diagramName,
+            diagramOwnerUserId,
+            diagramAccessRole,
             databaseType,
             databaseEdition,
             tables,
@@ -200,6 +213,8 @@ export const ChartDBProvider: React.FC<
         useCallback(async () => {
             setDiagramId('');
             setDiagramName('');
+            setDiagramOwnerUserId(undefined);
+            setDiagramAccessRole(undefined);
             setDatabaseType(DatabaseType.GENERIC);
             setDatabaseEdition(undefined);
             setTables([]);
@@ -1884,6 +1899,8 @@ export const ChartDBProvider: React.FC<
             (diagram) => {
                 setDiagramId(diagram.id);
                 setDiagramName(diagram.name);
+                setDiagramOwnerUserId(diagram.ownerUserId);
+                setDiagramAccessRole(diagram.accessRole);
                 setDatabaseType(diagram.databaseType);
                 setDatabaseEdition(diagram.databaseEdition);
                 setTables(diagram.tables ?? []);
@@ -1904,6 +1921,8 @@ export const ChartDBProvider: React.FC<
             [
                 setDiagramId,
                 setDiagramName,
+                setDiagramOwnerUserId,
+                setDiagramAccessRole,
                 setDatabaseType,
                 setDatabaseEdition,
                 setTables,

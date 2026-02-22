@@ -1,6 +1,4 @@
 import React, { useCallback } from 'react';
-import ChartDBLogo from '@/assets/logo-light.png';
-import ChartDBDarkLogo from '@/assets/logo-dark.png';
 import type { Example } from './examples-data/examples-data';
 import { examples } from './examples-data/examples-data';
 import { ExampleCard } from './example-card';
@@ -12,6 +10,11 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useStorage } from '@/hooks/use-storage';
 import type { Diagram } from '@/lib/domain/diagram';
+import { AuthProvider } from '@/context/auth-context/auth-provider';
+import { AuthGate } from '@/components/auth/auth-gate';
+import { StorageInitGate } from '@/components/storage/storage-init-gate';
+import { BRAND_SHORT } from '@/lib/brand';
+import { BrandLogo } from '@/components/brand/brand-logo';
 
 const ExamplesPageComponent: React.FC = () => {
     const { effectiveTheme } = useTheme();
@@ -51,27 +54,18 @@ const ExamplesPageComponent: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>ChartDB - Example Database Diagrams & Schemas</title>
+                <title>{`${BRAND_SHORT} - Example Database Diagrams & Schemas`}</title>
             </Helmet>
             <section className="flex w-screen flex-col bg-background">
                 <nav className="flex h-12 flex-row items-center justify-between border-b px-4">
                     <div className="flex flex-1 justify-start gap-x-3">
                         <div className="flex items-center font-primary">
-                            <a
-                                href="https://chartdb.io"
-                                className="cursor-pointer"
-                                rel="noreferrer"
-                            >
-                                <img
-                                    src={
-                                        effectiveTheme === 'light'
-                                            ? ChartDBLogo
-                                            : ChartDBDarkLogo
-                                    }
-                                    alt="chartDB"
-                                    className="h-4 max-w-fit"
+                            <div className="inline-flex">
+                                <BrandLogo
+                                    variant="page-nav"
+                                    theme={effectiveTheme}
                                 />
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <div className="group flex flex-1 flex-row items-center justify-center"></div>
@@ -82,8 +76,7 @@ const ExamplesPageComponent: React.FC = () => {
                         Examples
                     </h1>
                     <h2 className="mt-1 font-primary text-base text-muted-foreground">
-                        A collection of examples to help you get started with
-                        ChartDB.
+                        {`A collection of examples to help you get started with ${BRAND_SHORT}.`}
                     </h2>
                     <h2 className="mt-1 text-base font-semibold">
                         Click on one 😀
@@ -108,10 +101,16 @@ const ExamplesPageComponent: React.FC = () => {
 
 export const ExamplesPage: React.FC = () => (
     <LocalConfigProvider>
-        <StorageProvider>
-            <ThemeProvider>
-                <ExamplesPageComponent />
-            </ThemeProvider>
-        </StorageProvider>
+        <AuthProvider>
+            <AuthGate>
+                <StorageProvider>
+                    <StorageInitGate>
+                        <ThemeProvider>
+                            <ExamplesPageComponent />
+                        </ThemeProvider>
+                    </StorageInitGate>
+                </StorageProvider>
+            </AuthGate>
+        </AuthProvider>
     </LocalConfigProvider>
 );

@@ -8,6 +8,9 @@ import { useStorage } from '@/hooks/use-storage';
 import { LocalConfigProvider } from '@/context/local-config-context/local-config-provider';
 import { StorageProvider } from '@/context/storage-context/storage-provider';
 import { ThemeProvider } from '@/context/theme-context/theme-provider';
+import { AuthProvider } from '@/context/auth-context/auth-provider';
+import { AuthGate } from '@/components/auth/auth-gate';
+import { StorageInitGate } from '@/components/storage/storage-init-gate';
 
 export const CloneTemplateComponent: React.FC = () => {
     const navigate = useNavigate();
@@ -59,10 +62,16 @@ export const CloneTemplateComponent: React.FC = () => {
 
 export const CloneTemplatePage: React.FC = () => (
     <LocalConfigProvider>
-        <StorageProvider>
-            <ThemeProvider>
-                <CloneTemplateComponent />
-            </ThemeProvider>
-        </StorageProvider>
+        <AuthProvider>
+            <AuthGate>
+                <StorageProvider>
+                    <StorageInitGate>
+                        <ThemeProvider>
+                            <CloneTemplateComponent />
+                        </ThemeProvider>
+                    </StorageInitGate>
+                </StorageProvider>
+            </AuthGate>
+        </AuthProvider>
     </LocalConfigProvider>
 );

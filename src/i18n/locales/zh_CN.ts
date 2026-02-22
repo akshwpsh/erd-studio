@@ -57,6 +57,236 @@ export const zh_CN: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: '个人资料',
+            description: '查看和更新您的帐户设置。',
+            fields: {
+                email: '电子邮件',
+                nickname: '昵称',
+                joined: '已加入',
+                profile_image: '个人资料图片',
+                current_password: '当前密码',
+                new_password: '新密码',
+                confirm_new_password: '确认新密码',
+            },
+            hints: {
+                profile_image: '仅图像文件，最多 5MB。',
+            },
+            actions: {
+                logout: '退出',
+                logging_out: '正在退出...',
+                cancel: '取消',
+                save_changes: '保存更改',
+                saving: '正在保存...',
+            },
+            errors: {
+                image_type: '只允许使用图像文件。',
+                image_size: '个人资料图片必须为 5MB 或更小。',
+                nickname_required: '需要昵称。',
+                current_password_required: '需要当前密码。',
+                new_password_required: '需要新密码。',
+                new_password_length: '新密码必须至少有 6 个字符。',
+                password_confirmation_mismatch: '新密码确认不匹配。',
+                update_failed: '更新个人资料失败。',
+                signout_failed: '退出失败。',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: '密码更新失败',
+                    description_with_error: '配置文件更改已保存。 {{error}}',
+                    description_without_error:
+                        '配置文件更改已保存，但密码更新失败。',
+                },
+                avatar_upload_failed: {
+                    title: '头像上传失败',
+                    description_fallback: '昵称和密码更改仍然适用。',
+                },
+                profile_updated: {
+                    title: '个人资料已更新',
+                    description: '您的个人资料更改已保存。',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: '分享图',
+        },
+
+        share_dialog: {
+            title: '分享图',
+            description: '邀请合作者作为编辑或查看者。',
+            access: {
+                title: '您的访问权限',
+                readonly_hint: '只有所有者可以管理成员和邀请。',
+            },
+            roles: {
+                owner: '楼主',
+                editor: '编辑',
+                viewer: '观众',
+            },
+            status: {
+                pending: '待处理',
+                accepted: '已接受',
+                revoked: '已撤销',
+                expired: '已过期',
+            },
+            invite: {
+                section_title: '通过电子邮件邀请',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: '会员',
+                empty: '还没有受邀请的成员。',
+            },
+            invitations: {
+                section_title: '待处理的邀请',
+                empty: '没有待处理的��请。',
+            },
+            history: {
+                section_title: '邀请历史',
+                empty: '还没有邀请。',
+            },
+            actions: {
+                invite: '邀请',
+                remove: '删除',
+                revoke: '撤销',
+                copy_link: '复制链接',
+                refresh: '刷新',
+                close: '关闭',
+            },
+            labels: {
+                your_access: '您的访问权限：',
+                expires: '过期',
+                updated: '已更新',
+            },
+            toasts: {
+                invite_created: {
+                    title: '已创建邀请',
+                    description: '{{email}} 被邀请作为 {{role}}。',
+                },
+                invite_failed: {
+                    title: '邀请失败',
+                },
+                role_update_failed: {
+                    title: '角色更新失败',
+                },
+                remove_failed: {
+                    title: '删除成员失败',
+                },
+                revoke_failed: {
+                    title: '撤销邀请失败',
+                },
+                copy_success: {
+                    title: '已复制邀请链接',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: '复制失败',
+                    description: '无法复制邀请链接。',
+                },
+            },
+            errors: {
+                email_required: '电子邮件为必填项。',
+                unknown_error: '未知错误。',
+                no_diagram_selected: '未选择图表。',
+            },
+        },
+
+        auth_gate: {
+            title: '登录 ERDS',
+            subtitle: '您的图表存储在您的 Supabase 帐户中。',
+            tabs: {
+                sign_in: '登录',
+                sign_up: '注册',
+            },
+            placeholders: {
+                nickname: '昵称',
+                email: 'you@example.com',
+                password: '密码',
+                confirm_password: '确认密码',
+            },
+            actions: {
+                sign_in: '登录',
+                signing_in: '正在登录...',
+                create_account: '创建帐户',
+                creating_account: '正在创建帐户...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase 未配置',
+                supabase_not_configured_description:
+                    '添加 SUPABASE_URL 和 SUPABASE_PUBLISHABLE_DEFAULT_KEY 环境变量以继续。',
+                success_title: '成功',
+                authentication_failed_title: '验证失败',
+            },
+            validation: {
+                email_and_password_required: '需要电子邮件和密码。',
+                nickname_required: '需要昵称。',
+                email_required: '电子邮件为必填项。',
+                password_required: '需要密码。',
+                password_min_length: '密码必须至少为 6 个字符。',
+                password_confirmation_mismatch: '密码确认不匹配。',
+                sign_in_failed: '登录失败。',
+                create_account_failed: '创建帐户失败。',
+            },
+            success: {
+                account_created:
+                    '帐户已创建。如果启用了电子邮件确认，请在登录前检查您的收件箱。',
+            },
+        },
+
+        invite_accept_page: {
+            loading: '接受邀请...',
+            error_title: '邀请无法被接受',
+            actions: {
+                retry: '重试',
+                go_to_app: '前往应用程序',
+            },
+            errors: {
+                expired: '此邀请链接已过期。',
+                mismatch: '此邀请已发送到其他电子邮件帐户。',
+                revoked: '该邀请已被撤销���',
+                not_pending: '此邀请不再有效。',
+                not_found: '未找到邀请。',
+                token_missing: '邀请令牌丢失。',
+                supabase_not_configured: 'Supabase 未配置。',
+                accept_failed: '无法接受邀请。',
+                unknown_error: '未知错误。',
+                no_diagram_returned: '已接受邀请，但没有返回图表。',
+                invitee_email_required: '受邀者电子邮件为必填项。',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} 在线',
+            role: {
+                owner: '楼主',
+                editor: '编辑',
+                viewer: '观众',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: '云同步已恢复',
+            restored_description: '更改再次同步到 Supabase。',
+            paused_title: '云同步已暂停',
+            paused_description: '您的本地更改是安全的，并且会自动重试。',
+            read_only_title: '只读访问',
+            read_only_description: '您可以查看此共享图表，但无法保存更改。',
+            access_removed_title: '访问权限已删除',
+            access_removed_description: '您对此共享图表的访问权限已被删除。',
+        },
+
+        collaboration_errors: {
+            expired: '此邀请链接已过期。',
+            mismatch: '此邀请已发送到其他电子邮件帐户。',
+            revoked: '该邀请已被撤销���',
+            not_pending: '此邀请不再有效。',
+            not_found: '未找到邀请。',
+            invitee_email_required: '受邀者电子邮件为必填项。',
+            token_missing: '需要邀请令牌。',
+            supabase_not_configured: 'Supabase 未配置。',
+        },
+
         delete_diagram_alert: {
             title: '删除关系图',
             description: '此操作无法撤销。这将永久删除关系图。',

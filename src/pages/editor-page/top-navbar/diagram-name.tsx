@@ -18,7 +18,8 @@ import { useDialog } from '@/hooks/use-dialog';
 export interface DiagramNameProps {}
 
 export const DiagramName: React.FC<DiagramNameProps> = () => {
-    const { diagramName, updateDiagramName, currentDiagram } = useChartDB();
+    const { diagramName, updateDiagramName, currentDiagram, readonly } =
+        useChartDB();
 
     const { t } = useTranslation();
     const [editMode, setEditMode] = useState(false);
@@ -122,6 +123,9 @@ export const DiagramName: React.FC<DiagramNameProps> = () => {
                                             'group-hover:underline max-w-[300px] truncate'
                                         )}
                                         onDoubleClick={(e) => {
+                                            if (readonly) {
+                                                return;
+                                            }
                                             enterEditMode(e);
                                         }}
                                     >
@@ -136,6 +140,7 @@ export const DiagramName: React.FC<DiagramNameProps> = () => {
                                 variant="ghost"
                                 className="ml-1 hidden size-5 p-0 hover:bg-background/50 group-hover:flex"
                                 onClick={enterEditMode}
+                                disabled={readonly}
                             >
                                 <Pencil
                                     strokeWidth="1.5"

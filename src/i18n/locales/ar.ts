@@ -57,6 +57,247 @@ export const ar: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'الملف الشخصي',
+            description: 'عرض وتحديث إعدادات حسابك.',
+            fields: {
+                email: 'البريد الإلكتروني',
+                nickname: 'اللقب',
+                joined: 'تم الانضمام',
+                profile_image: 'صورة الملف الشخصي',
+                current_password: 'كلمة المرور الحالية',
+                new_password: 'كلمة المرور الجديدة',
+                confirm_new_password: 'تأكيد كلمة المرور الجديدة',
+            },
+            hints: {
+                profile_image: 'ملفات الصور فقط، يصل حجمها إلى 5 ميجابايت.',
+            },
+            actions: {
+                logout: 'تسجيل الخروج',
+                logging_out: 'تسجيل الخروج...',
+                cancel: 'إلغاء',
+                save_changes: 'احفظ التغييرات',
+                saving: 'جاري الحفظ...',
+            },
+            errors: {
+                image_type: 'مسموح فقط بملفات الصور.',
+                image_size:
+                    'يجب أن يكون حجم صورة الملف الشخصي 5 ميجابايت أو أصغر.',
+                nickname_required: 'الاسم المستعار مطلوب.',
+                current_password_required: 'مطلوب كلمة المرور الحالية.',
+                new_password_required: 'مطلوب كلمة مرور جديدة.',
+                new_password_length:
+                    'يجب أن تتكون كلمة المرور الجديدة من 6 أحرف على الأقل.',
+                password_confirmation_mismatch:
+                    'تأكيد كلمة المرور الجديدة غير متطابق.',
+                update_failed: 'فشل تحديث الملف الشخصي.',
+                signout_failed: 'فشل تسجيل الخروج.',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'فشل تحديث كلمة المرور',
+                    description_with_error:
+                        'تم حفظ تغييرات الملف الشخصي. {{error}}',
+                    description_without_error:
+                        'تم حفظ تغييرات ملف التعريف، ولكن فشل تحديث كلمة المرور.',
+                },
+                avatar_upload_failed: {
+                    title: 'فشل تحميل الصورة الرمزية',
+                    description_fallback:
+                        'لا تزال تغييرات الاسم المستعار وكلمة المرور مطبقة.',
+                },
+                profile_updated: {
+                    title: 'تم تحديث الملف الشخصي',
+                    description: 'تم حفظ التغييرات في ملفك الشخصي.',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'شارك الرسم التخطيطي',
+        },
+
+        share_dialog: {
+            title: 'شارك الرسم التخطيطي',
+            description: 'قم بدعوة المتعاونين كمحررين أو مشاهدين.',
+            access: {
+                title: 'وصولك',
+                readonly_hint: 'يمكن للمالك فقط إدارة الأعضاء والدعوات.',
+            },
+            roles: {
+                owner: 'المالك',
+                editor: 'المحرر',
+                viewer: 'عارض',
+            },
+            status: {
+                pending: 'معلق',
+                accepted: 'مقبول',
+                revoked: 'تم الإلغاء',
+                expired: 'انتهت صلاحيتها',
+            },
+            invite: {
+                section_title: 'قم بالدعوة عبر البريد الإلكتروني',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'الأعضاء',
+                empty: 'لا يوجد أعضاء مدعوين بعد.',
+            },
+            invitations: {
+                section_title: 'الدعوات المعلقة',
+                empty: 'لا توجد دعوات معلقة.',
+            },
+            history: {
+                section_title: 'سجل الدعوة',
+                empty: 'لا توجد دعوات بعد.',
+            },
+            actions: {
+                invite: 'دعوة',
+                remove: 'إزالة',
+                revoke: 'إبطال',
+                copy_link: 'انسخ الرابط',
+                refresh: 'تحديث',
+                close: 'إغلاق',
+            },
+            labels: {
+                your_access: 'وصولك:',
+                expires: 'تنتهي صلاحيته',
+                updated: 'تم التحديث',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'تم إنشاء الدعوة',
+                    description: '{{email}} was invited as {{role}}.',
+                },
+                invite_failed: {
+                    title: 'فشلت الدعوة',
+                },
+                role_update_failed: {
+                    title: 'فشل تحديث الدور',
+                },
+                remove_failed: {
+                    title: 'فشلت إزالة العضو',
+                },
+                revoke_failed: {
+                    title: 'فشل إلغاء الدعوة',
+                },
+                copy_success: {
+                    title: 'تم نسخ رابط الدعوة',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'فشل النسخ',
+                    description: 'تعذر نسخ رابط الدعوة.',
+                },
+            },
+            errors: {
+                email_required: 'البريد الإلكتروني مطلوب.',
+                unknown_error: 'خطأ غير معروف.',
+                no_diagram_selected: 'لم يتم تحديد أي رسم تخطيطي.',
+            },
+        },
+
+        auth_gate: {
+            title: 'قم بتسجيل الدخول إلى ERDS',
+            subtitle: 'يتم تخزين المخططات الخاصة بك في حساب Supabase الخاص بك.',
+            tabs: {
+                sign_in: 'تسجيل الدخول',
+                sign_up: 'قم بالتسجيل',
+            },
+            placeholders: {
+                nickname: 'اللقب',
+                email: 'you@example.com',
+                password: 'كلمة المرور',
+                confirm_password: 'تأكيد كلمة المرور',
+            },
+            actions: {
+                sign_in: 'تسجيل الدخول',
+                signing_in: 'تسجيل الدخول...',
+                create_account: 'إنشاء حساب',
+                creating_account: 'جارٍ إنشاء الحساب...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'لم يتم تكوين Supabase',
+                supabase_not_configured_description:
+                    'أضف متغيرات البيئة SUPABASE_URL وSUPABASE_PUBLISHABLE_DEFAULT_KEY للمتابعة.',
+                success_title: 'النجاح',
+                authentication_failed_title: 'فشلت المصادقة',
+            },
+            validation: {
+                email_and_password_required:
+                    'مطلوب البريد الإلكتروني وكلمة المرور.',
+                nickname_required: 'الاسم المستعار مطلوب.',
+                email_required: 'البريد الإلكتروني مطلوب.',
+                password_required: 'كلمة المرور مطلوبة.',
+                password_min_length:
+                    'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.',
+                password_confirmation_mismatch: 'تأكيد كلمة المرور غير متطابق.',
+                sign_in_failed: 'فشل تسجيل الدخول.',
+                create_account_failed: 'فشل إنشاء الحساب.',
+            },
+            success: {
+                account_created:
+                    'تم إنشاء الحساب. إذا تم تمكين تأكيد البريد الإلكتروني، فتحقق من صندوق الوارد الخاص بك قبل تسجيل الدخول.',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'قبول الدعوة...',
+            error_title: 'لا يمكن قبول الدعوة',
+            actions: {
+                retry: 'أعد المحاولة',
+                go_to_app: 'اذهب إلى التطبيق',
+            },
+            errors: {
+                expired: 'انتهت صلاحية رابط الدعوة هذا.',
+                mismatch: 'تم إرسال هذه الدعوة إلى حساب بريد إلكتروني مختلف.',
+                revoked: 'تم إلغاء هذه الدعوة.',
+                not_pending: 'هذه الدعوة لم تعد نشطة.',
+                not_found: 'لم يتم العثور على الدعوة.',
+                token_missing: 'رمز الدعوة مفقود.',
+                supabase_not_configured: 'لم يتم تكوين Supabase.',
+                accept_failed: 'فشل قبول الدعوة.',
+                unknown_error: 'خطأ غير معروف.',
+                no_diagram_returned:
+                    '��م قبول الدعوة، ولكن لم يتم إرجاع أي رسم تخطيطي.',
+                invitee_email_required: 'مطلوب البريد الإلكتروني للمدعو.',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} عبر الإنترنت',
+            role: {
+                owner: 'المالك',
+                editor: 'المحرر',
+                viewer: 'عارض',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'تمت استعادة المزامنة السحابية',
+            restored_description: 'تتم مزامنة التغييرات مع Supabase مرة أخرى.',
+            paused_title: 'تم إيقاف المزامنة السحابية مؤقتًا',
+            paused_description:
+                'تغييراتك المحلية آمنة وستتم إعادة محاولتها تلقائيًا.',
+            read_only_title: 'حق الوصول للقراءة فقط',
+            read_only_description:
+                'يمكنك عرض هذا الرسم التخطيطي المشترك ولكن لا يمكنك حفظ التغييرات.',
+            access_removed_title: 'تمت إزالة الوصول',
+            access_removed_description:
+                'تمت إزالة إمكانية وصولك إلى هذا الرسم التخطيطي المشترك.',
+        },
+
+        collaboration_errors: {
+            expired: 'انتهت صلاحية رابط الدعوة هذا.',
+            mismatch: 'تم إرسال هذه الدعوة إلى حساب بريد إلكتروني مختلف.',
+            revoked: 'تم إلغاء هذه الدعوة.',
+            not_pending: 'هذه الدعوة لم تعد نشطة.',
+            not_found: 'لم يتم العثور على الدعوة.',
+            invitee_email_required: 'مطلوب البريد الإلكتروني للمدعو.',
+            token_missing: 'مطلوب رمز الدعوة.',
+            supabase_not_configured: 'لم يتم تكوين Supabase.',
+        },
+
         delete_diagram_alert: {
             title: 'حذف المخطط',
             description:

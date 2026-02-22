@@ -57,6 +57,236 @@ export const zh_TW: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: '個人資料',
+            description: '查看並更新您的帳戶設定。',
+            fields: {
+                email: '電子郵件',
+                nickname: '昵称',
+                joined: '已加入',
+                profile_image: '個人資料圖片',
+                current_password: '目前密碼',
+                new_password: '新密碼',
+                confirm_new_password: '確認新密碼',
+            },
+            hints: {
+                profile_image: '僅圖像文件，最多 5MB。',
+            },
+            actions: {
+                logout: '退出',
+                logging_out: '在退出...',
+                cancel: '取消',
+                save_changes: '儲存更改',
+                saving: '在儲存...',
+            },
+            errors: {
+                image_type: '只允許使用圖像檔案。',
+                image_size: '個人資料圖片必須為 5MB 或更小。',
+                nickname_required: '需要暱稱。',
+                current_password_required: '需要目前密碼。',
+                new_password_required: '需要新密碼。',
+                new_password_length: '新密碼必須至少有 6 個字元。',
+                password_confirmation_mismatch: '新密碼確認不符。',
+                update_failed: '更新個人資料失敗。',
+                signout_failed: '退出失敗。',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: '密碼更新失敗',
+                    description_with_error: '配置文件更改已保存。 {{error}}',
+                    description_without_error:
+                        '設定檔變更已儲存，但密碼更新失敗。',
+                },
+                avatar_upload_failed: {
+                    title: '頭像上傳失敗',
+                    description_fallback: '暱稱和密碼更改仍然適用。',
+                },
+                profile_updated: {
+                    title: '個人檔案已更新',
+                    description: '您的個人資料變更已儲存。',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: '分享圖',
+        },
+
+        share_dialog: {
+            title: '分享圖',
+            description: '邀請合作者作為編輯或查看者。',
+            access: {
+                title: '您的存取權限',
+                readonly_hint: '只有所有者可以管理成員和邀請。',
+            },
+            roles: {
+                owner: '樓主',
+                editor: '編輯',
+                viewer: '觀眾',
+            },
+            status: {
+                pending: '待處理',
+                accepted: '已接受',
+                revoked: '已撤銷',
+                expired: '已過期',
+            },
+            invite: {
+                section_title: '透過電子郵件邀請',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: '會員',
+                empty: '還沒有受邀請的成員。',
+            },
+            invitations: {
+                section_title: '待處理的邀請',
+                empty: '沒有待處理的邀請。',
+            },
+            history: {
+                section_title: '邀請歷史',
+                empty: '還沒有邀請。',
+            },
+            actions: {
+                invite: '邀請',
+                remove: '刪除',
+                revoke: '撤銷',
+                copy_link: '複製鏈接',
+                refresh: '刷新',
+                close: '關閉',
+            },
+            labels: {
+                your_access: '您的存取權限：',
+                expires: '過期',
+                updated: '已更新',
+            },
+            toasts: {
+                invite_created: {
+                    title: '已建立邀請',
+                    description: '{{email}} 被邀請作為 {{role}}。',
+                },
+                invite_failed: {
+                    title: '邀請失敗',
+                },
+                role_update_failed: {
+                    title: '角色更新失敗',
+                },
+                remove_failed: {
+                    title: '刪除成員失敗',
+                },
+                revoke_failed: {
+                    title: '撤銷邀請失敗',
+                },
+                copy_success: {
+                    title: '已複製邀請鏈接',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: '複製失敗',
+                    description: '無法複製邀請連結。',
+                },
+            },
+            errors: {
+                email_required: '電子郵件為必填。',
+                unknown_error: '未知錯誤。',
+                no_diagram_selected: '未選擇圖表。',
+            },
+        },
+
+        auth_gate: {
+            title: '登入 ERDS',
+            subtitle: '您的圖表儲存在您的 Supabase 帳戶中。',
+            tabs: {
+                sign_in: '登入',
+                sign_up: '註冊',
+            },
+            placeholders: {
+                nickname: '昵称',
+                email: 'you@example.com',
+                password: '密碼',
+                confirm_password: '確認密碼',
+            },
+            actions: {
+                sign_in: '登入',
+                signing_in: '正在登入...',
+                create_account: '建立帳戶',
+                creating_account: '正在建立帳戶...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase 未配置',
+                supabase_not_configured_description:
+                    '新增 SUPABASE_URL 和 SUPABASE_PUBLISHABLE_DEFAULT_KEY 環境變數以繼續。',
+                success_title: '成功',
+                authentication_failed_title: '驗證失敗',
+            },
+            validation: {
+                email_and_password_required: '需要電子郵件和密碼。',
+                nickname_required: '需要暱稱。',
+                email_required: '電子郵件為必填。',
+                password_required: '需要密碼。',
+                password_min_length: '密碼必須至少 6 個字元。',
+                password_confirmation_mismatch: '密碼確認不符。',
+                sign_in_failed: '登入失敗。',
+                create_account_failed: '建立帳戶失敗。',
+            },
+            success: {
+                account_created:
+                    '帳戶已建立。如果啟用了電子郵件確認，請在登入前檢查您的收件匣。',
+            },
+        },
+
+        invite_accept_page: {
+            loading: '接受邀請...',
+            error_title: '邀請無法被接受',
+            actions: {
+                retry: '重試',
+                go_to_app: '前往應用程式',
+            },
+            errors: {
+                expired: '此邀請連結已過期。',
+                mismatch: '此邀請函已發送至其他電子郵件帳號。',
+                revoked: '該邀請已撤銷。',
+                not_pending: '此邀請不再有效。',
+                not_found: '未找到邀請。',
+                token_missing: '邀請令牌遺失。',
+                supabase_not_configured: 'Supabase 未配置。',
+                accept_failed: '無法接受邀請。',
+                unknown_error: '未知錯誤。',
+                no_diagram_returned: '已接受邀請，但沒有返回圖表。',
+                invitee_email_required: '受邀者電子郵件為必填。',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} 在線',
+            role: {
+                owner: '樓主',
+                editor: '編輯',
+                viewer: '觀眾',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: '雲端同步已恢復',
+            restored_description: '再次同步到 Supabase。',
+            paused_title: '雲端同步已暫停',
+            paused_description: '您的本機變更是安全的，並且會自動重試。',
+            read_only_title: '只讀訪問',
+            read_only_description: '您可以查看此共享圖表，但無法儲存變更。',
+            access_removed_title: '存取權限已刪除',
+            access_removed_description: '您對此共用圖表的存取權限已被刪除。',
+        },
+
+        collaboration_errors: {
+            expired: '此邀請連結已過期。',
+            mismatch: '此邀請函已發送至其他電子郵件帳號。',
+            revoked: '該邀請已撤銷。',
+            not_pending: '此邀請不再有效。',
+            not_found: '未找到邀請。',
+            invitee_email_required: '受邀者電子郵件為必填。',
+            token_missing: '需要邀請令牌。',
+            supabase_not_configured: 'Supabase 未配置。',
+        },
+
         delete_diagram_alert: {
             title: '刪除圖表',
             description: '此操作無法復原，圖表將被永久刪除。',

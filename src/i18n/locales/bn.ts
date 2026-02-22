@@ -58,6 +58,251 @@ export const bn: LanguageTranslation = {
             },
         },
 
+        profile_dialog: {
+            title: 'প্রোফাইল',
+            description: 'আপনার অ্যাকাউন্ট সেটিংস দেখুন এবং আপডেট করুন৷',
+            fields: {
+                email: 'ইমেইল',
+                nickname: 'ডাকনাম',
+                joined: 'যোগ দিয়েছেন',
+                profile_image: 'প্রোফাইল ছবি',
+                current_password: 'বর্তমান পাসওয়ার্ড',
+                new_password: 'নতুন পাসওয়ার্ড',
+                confirm_new_password: 'নতুন পাসওয়ার্ড নিশ্চিত করুন',
+            },
+            hints: {
+                profile_image: 'শুধুমাত্র ইমেজ ফাইল, 5MB পর্যন্ত।',
+            },
+            actions: {
+                logout: 'লগ আউট করুন',
+                logging_out: 'সাইন আউট হচ্ছে...',
+                cancel: 'বাতিল করুন',
+                save_changes: 'পরিবর্তনগুলি সংরক্ষণ করুন৷',
+                saving: 'সংরক্ষণ করা হচ্ছে...',
+            },
+            errors: {
+                image_type: 'শুধুমাত্র ছবি ফাইল অনুমোদিত.',
+                image_size: 'প্রোফাইল ইমেজ 5MB বা ছোট হতে হবে।',
+                nickname_required: 'ডাকনাম প্রয়োজন।',
+                current_password_required: 'বর্তমান পাসওয়ার্ড প্রয়োজন।',
+                new_password_required: 'নতুন পাসওয়ার্ড প্রয়োজন।',
+                new_password_length:
+                    'নতুন পাসওয়ার্ড কমপক্ষে 6 অক্ষরের হতে হবে।',
+                password_confirmation_mismatch:
+                    'নতুন পাসওয়ার্ড নিশ্চিতকরণ মেলে না।',
+                update_failed: 'প্রোফাইল আপডেট করতে ব্যর্থ হয়েছে।',
+                signout_failed: 'সাইন আউট করতে ব্যর্থ হয়েছে৷',
+            },
+            toasts: {
+                password_update_failed: {
+                    title: 'পাসওয়ার্ড আপডেট ব্যর্থ হয়েছে',
+                    description_with_error:
+                        'প্রোফাইল পরিবর্তন সংরক্ষিত হয়েছে। {{error}}',
+                    description_without_error:
+                        'প্রোফাইল পরিবর্তন সংরক্ষিত হয়েছে, কিন্তু পাসওয়ার্ড আপডেট ব্যর্থ হয়েছে.',
+                },
+                avatar_upload_failed: {
+                    title: 'অবতার আপলোড ব্যর্থ হয়েছে৷',
+                    description_fallback:
+                        'ডাকনাম এবং পাসওয়ার্ড পরিবর্তন এখনও প্রয়োগ করা হয়েছে।',
+                },
+                profile_updated: {
+                    title: 'প্রোফাইল আপডেট করা হয়েছে',
+                    description:
+                        'আপনার প্রোফাইল পরিবর্তনগুলি সংরক্ষণ করা ��য়েছে৷',
+                },
+            },
+        },
+
+        top_nav: {
+            share_tooltip: 'চিত্র ভাগ করুন',
+        },
+
+        share_dialog: {
+            title: 'চিত্র ভাগ করুন',
+            description: 'সম্পাদক বা দর্শক হিসেবে সহযোগীদের আমন্ত্রণ জানান।',
+            access: {
+                title: 'আপনার অ্যাক্সেস',
+                readonly_hint:
+                    'শুধুমাত্র মালিক সদস্য এবং আমন্ত্রণগুলি পরিচালনা করতে পারেন৷',
+            },
+            roles: {
+                owner: 'মালিক',
+                editor: 'সম্পাদক',
+                viewer: 'দর্শক',
+            },
+            status: {
+                pending: 'মুলতুবি',
+                accepted: 'গৃহীত',
+                revoked: 'প্রত্যাহার করা হয়েছে',
+                expired: 'মেয়াদ শেষ',
+            },
+            invite: {
+                section_title: 'ইমেলের মাধ্যমে আমন্ত্রণ জানান',
+                email_placeholder: 'teammate@example.com',
+            },
+            members: {
+                section_title: 'সদস্যরা',
+                empty: 'এখনো কোনো আমন্ত্রিত সদস্য নেই।',
+            },
+            invitations: {
+                section_title: 'মুলতুবি আমন্ত্রণ',
+                empty: 'কোনো মুলতুবি আমন্ত্রণ নেই।',
+            },
+            history: {
+                section_title: 'আমন্ত্রণের ইতিহাস',
+                empty: 'এখনো কোনো আমন্ত্রণ নেই।',
+            },
+            actions: {
+                invite: 'আমন্ত্রণ',
+                remove: 'সরান',
+                revoke: 'প্রত্যাহার করুন',
+                copy_link: 'লিঙ্ক কপি করুন',
+                refresh: 'রিফ্রেশ',
+                close: 'বন্ধ',
+            },
+            labels: {
+                your_access: 'আপনার অ্যাক্সেস:',
+                expires: 'মেয়াদ শেষ',
+                updated: 'আপডেট করা হয়েছে',
+            },
+            toasts: {
+                invite_created: {
+                    title: 'আমন্ত্রণ তৈরি করা হয়েছে',
+                    description:
+                        '{{email}} কে {{role}} হিসাবে আমন্ত্রণ জানানো হয়েছিল।',
+                },
+                invite_failed: {
+                    title: 'আমন্ত্রণ ব্যর্থ হয়েছে৷',
+                },
+                role_update_failed: {
+                    title: 'ভূমিকা আপডেট ব্যর্থ হয়েছে৷',
+                },
+                remove_failed: {
+                    title: 'সদস্য অপসারণ ব্যর্থ হয়েছে',
+                },
+                revoke_failed: {
+                    title: 'আমন্ত্রণ প্রত্যাহার করা ব্যর্থ হয়েছে৷',
+                },
+                copy_success: {
+                    title: 'আমন্ত্রণ লিঙ্ক কপি করা হয়েছে',
+                    description: '{{url}}',
+                },
+                copy_failed: {
+                    title: 'কপি ব্যর্থ হয়েছে',
+                    description: 'আমন্ত্রণ লিঙ্ক কপি করা যায়নি.',
+                },
+            },
+            errors: {
+                email_required: 'ইমেল প্রয়োজন।',
+                unknown_error: 'অজানা ত্রুটি৷',
+                no_diagram_selected: 'কোন ডায়াগ্রাম নির্বাচিত নেই।',
+            },
+        },
+
+        auth_gate: {
+            title: 'ERDS এ সাইন ইন করুন',
+            subtitle:
+                'আপনার ডায়াগ্রাম আপনার Supabase অ্যাকাউন্টে সংরক্ষিত আছে।',
+            tabs: {
+                sign_in: 'সাইন ইন করুন',
+                sign_up: 'সাইন আপ করুন',
+            },
+            placeholders: {
+                nickname: 'ডাকনাম',
+                email: 'you@example.com',
+                password: 'পাসওয়ার্ড',
+                confirm_password: 'পাসওয়ার্ড নিশ্চিত করুন',
+            },
+            actions: {
+                sign_in: 'সাইন ইন করুন',
+                signing_in: 'সাইন ইন হচ্ছে...',
+                create_account: 'অ্যাকাউন্ট তৈরি করুন',
+                creating_account: 'অ্যাকাউন্ট তৈরি করা হচ্ছে...',
+            },
+            alerts: {
+                supabase_not_configured_title: 'Supabase কনফিগার করা নেই',
+                supabase_not_configured_description:
+                    'চালিয়ে যেতে SUPABASE_URL এবং SUPABASE_PUBLISHABLE_DEFAULT_KEY পরিবেশ ভেরিয়েবল যোগ করুন।',
+                success_title: 'সাফল্য',
+                authentication_failed_title: 'প্রমাণীকরণ ব্যর্থ হয়েছে৷',
+            },
+            validation: {
+                email_and_password_required: 'ইমেল এবং পাসওয়ার্ড প্রয়োজন.',
+                nickname_required: 'ডাকনাম প্রয়োজন।',
+                email_required: 'ইমেল প্রয়োজন।',
+                password_required: 'পাসওয়ার্ড প্রয়োজন।',
+                password_min_length: 'পাসওয়ার্ড কমপক্ষে 6 অক্ষরের হতে হবে।',
+                password_confirmation_mismatch:
+                    'পাসওয়ার্ড নিশ্চিতকরণ মেলে না।',
+                sign_in_failed: 'সাইন ইন করতে ব্যর্থ হয়েছে৷',
+                create_account_failed: 'অ্যাকাউন্ট তৈরি করতে ব্যর্থ হয়েছে৷',
+            },
+            success: {
+                account_created:
+                    'অ্যাকাউন্ট তৈরি করা হয়েছে। ইমেল নিশ্চিতকরণ সক্ষম হলে, সাইন ইন করার আগে আপনার ইনবক্স চেক করুন।',
+            },
+        },
+
+        invite_accept_page: {
+            loading: 'আমন্ত্রণ গ্রহণ করা হচ্ছ���...',
+            error_title: 'আমন্ত্রণ গ্রহণ করা যায়নি',
+            actions: {
+                retry: 'আবার চেষ্টা করুন',
+                go_to_app: 'অ্যাপে যান',
+            },
+            errors: {
+                expired: 'এই আমন্ত্রণ লিঙ্কের মেয়াদ শেষ হয়ে গেছে।',
+                mismatch:
+                    'এই আমন্ত্রণটি একটি ভিন্ন ইমেল অ্যাকাউন্টে পাঠানো হয়েছে৷',
+                revoked: 'এই আমন্ত্রণটি প্রত্যাহার করা হয়েছে৷',
+                not_pending: 'এই আমন্ত্রণটি আর সক্রিয় নেই৷',
+                not_found: 'আমন্ত্রণ পাওয়া যায়নি।',
+                token_missing: 'আমন্ত্রণ টোকেন অনুপস্থিত৷',
+                supabase_not_configured: 'Supabase কনফিগার করা নেই।',
+                accept_failed: 'আমন্ত্রণ গ্রহণ করতে ব্যর্থ হয়েছে৷',
+                unknown_error: 'অজানা ত্রুটি৷',
+                no_diagram_returned:
+                    'আমন্ত্রণ গৃহীত হয়েছে, কিন্তু কোনো চিত্র ফেরত দেওয়া হয়নি।',
+                invitee_email_required: 'আমন্ত্রিত ইমেল প্রয়োজন।',
+            },
+        },
+
+        collab_presence: {
+            online_count: '{{count}} অনলাইন',
+            role: {
+                owner: 'মালিক',
+                editor: 'সম্পাদক',
+                viewer: 'দর্শক',
+            },
+        },
+
+        cloud_sync_toasts: {
+            restored_title: 'ক্লাউড সিঙ্ক পুনরুদ্ধার করা হয়েছে',
+            restored_description: 'পরিবর্তনগুলি আবার Supabase এ সিঙ্ক হচ্ছে৷',
+            paused_title: 'ক্লাউড সিঙ্ক বিরাম দেওয়া হয়েছে৷',
+            paused_description:
+                'আপনার স্থানীয় পরিবর্তনগুলি নিরাপদ এবং স্বয়ংক্রিয়ভাবে পুনরায় চেষ্টা করা হবে৷',
+            read_only_title: 'শুধুমাত্র পঠনযোগ্য অ্যাক্সেস',
+            read_only_description:
+                'আপনি এই ভাগ করা চিত্রটি দেখতে পারেন কিন্তু পরিবর্তনগুলি সংরক্ষণ করতে পারবেন না৷',
+            access_removed_title: 'অ্যাক্সেস সরানো হয়েছে',
+            access_removed_description:
+                'এই ভাগ করা ডায়াগ্রামে আপনার অ্যাক্সেস সরানো হয়েছে।',
+        },
+
+        collaboration_errors: {
+            expired: 'এই আমন্ত্রণ লিঙ্কের মেয়াদ শেষ হয়ে গেছে।',
+            mismatch:
+                'এই আমন্ত্রণটি একটি ভিন্ন ইমেল অ্যাকাউন্টে পাঠানো হয়েছে৷',
+            revoked: 'এই আমন্ত্রণটি প্রত্যাহার করা হয়েছে৷',
+            not_pending: 'এই আমন্ত্রণটি আর সক্রিয় নেই৷',
+            not_found: 'আমন্ত্রণ পাওয়া যায়নি।',
+            invitee_email_required: 'আমন্ত্রিত ইমেল প্রয়োজন।',
+            token_missing: 'আমন্ত্রণ টোকেন প্রয়োজন।',
+            supabase_not_configured: 'Supabase কনফিগার করা নেই।',
+        },
+
         delete_diagram_alert: {
             title: 'ডায়াগ্রাম মুছুন',
             description:

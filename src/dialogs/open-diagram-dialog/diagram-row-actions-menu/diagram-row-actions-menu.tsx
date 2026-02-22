@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 interface DiagramRowActionsMenuProps {
     diagram: Diagram;
     onOpen: () => void;
-    refetch: () => void;
+    refetch: () => Promise<void>;
     numberOfDiagrams: number;
 }
 
@@ -31,9 +31,12 @@ export const DiagramRowActionsMenu: React.FC<DiagramRowActionsMenuProps> = ({
     const { deleteDiagram, addDiagram } = useStorage();
     const { t } = useTranslation();
 
+    const canManageDiagram = diagram.accessRole !== 'viewer';
+    const canDeleteDiagram = diagram.accessRole === 'owner';
+
     const onDelete = useCallback(async () => {
-        deleteDiagram(diagram.id);
-        refetch();
+        await deleteDiagram(diagram.id);
+        await refetch();
 
         if (diagram.id === diagramId || numberOfDiagrams <= 1) {
             window.location.href = '/';
@@ -51,8 +54,8 @@ export const DiagramRowActionsMenu: React.FC<DiagramRowActionsMenuProps> = ({
 
         diagramToAdd.name = `${diagram.name} (Copy)`;
 
-        addDiagram({ diagram: diagramToAdd });
-        refetch();
+        await addDiagram({ diagram: diagramToAdd });
+        await refetch();
     }, [addDiagram, refetch, diagram]);
 
     return (
@@ -79,19 +82,24 @@ export const DiagramRowActionsMenu: React.FC<DiagramRowActionsMenuProps> = ({
                 <DropdownMenuItem
                     onClick={onDuplicate}
                     className="flex justify-between gap-4"
+                    disabled={!canManageDiagram}
                 >
                     {t('open_diagram_dialog.diagram_actions.duplicate')}
                     <Layers2 className="size-3.5" />
                 </DropdownMenuItem>
 
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                    onClick={onDelete}
-                    className="flex justify-between gap-4 text-red-700"
-                >
-                    {t('open_diagram_dialog.diagram_actions.delete')}
-                    <Trash2 className="size-3.5 text-red-700" />
-                </DropdownMenuItem>
+                {canDeleteDiagram ? (
+                    <>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                            onClick={onDelete}
+                            className="flex justify-between gap-4 text-red-700"
+                        >
+                            {t('open_diagram_dialog.diagram_actions.delete')}
+                            <Trash2 className="size-3.5 text-red-700" />
+                        </DropdownMenuItem>
+                    </>
+                ) : null}
             </DropdownMenuContent>
         </DropdownMenu>
     );
