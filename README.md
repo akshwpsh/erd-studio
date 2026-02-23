@@ -91,6 +91,25 @@ npm install
 npm run build
 ```
 
+### Deploy to Vercel (Hobby)
+
+This project can be hosted as a static Vite app on Vercel Hobby.
+
+1. Import this repository in Vercel.
+2. Set these build settings:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. Add environment variables in Vercel Project Settings (Build & Runtime):
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
+   - Optional: `VITE_OPENAI_API_ENDPOINT`, `VITE_LLM_MODEL_NAME`, `VITE_HIDE_CHARTDB_CLOUD`, `VITE_DISABLE_ANALYTICS`
+4. Deploy.
+
+SPA routing is configured via `vercel.json`, so deep links like `/templates/...` and `/invites/...` resolve to `index.html`.
+
+> **Security note:** Do not place a private LLM key in `VITE_OPENAI_API_KEY` for production. `VITE_*` values are exposed to the browser.
+
 ### Supabase Cloud Storage Setup
 
 ERDS now supports cloud persistence via Supabase (Auth + Postgres + Realtime).
@@ -114,7 +133,7 @@ supabase/profile-storage.sql
 supabase/collaboration.sql
 ```
 
-5. In Supabase Auth settings, enable Email provider and configure your site URL and redirect URLs (used when email confirmation is enabled). Include your local URL (for example `http://localhost:8080`).
+5. In Supabase Auth settings, enable Email provider and configure your site URL and redirect URLs (used when email confirmation is enabled). Include your local URL (for example `http://localhost:8080`) and your deployed URL (for example `https://<your-project>.vercel.app`).
 6. Set frontend environment variables:
 
 ```bash
