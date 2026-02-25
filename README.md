@@ -149,6 +149,26 @@ Collaboration notes:
 - Roles: `owner` (implicit), `editor`, `viewer`.
 - `viewer` can open and receive realtime updates/presence, but cannot modify diagram data.
 
+### Troubleshooting invite 404 (Vercel + Supabase)
+
+If invite creation fails with a 404 on `/rest/v1/rpc/create_diagram_invitation`:
+
+1. In Supabase SQL Editor, run:
+
+```bash
+supabase/check-collaboration-rpc.sql
+```
+
+2. If the function/signature is missing, re-run:
+
+```bash
+supabase/collaboration.sql
+```
+
+3. Confirm Vercel env vars point to the same Supabase project:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
+
 Or like this if you want to have AI capabilities:
 
 ```bash

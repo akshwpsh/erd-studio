@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { getKnownCollaborationErrorKey } from '../collaboration-error-utils';
+import {
+    getCollaborationErrorMessage,
+    getKnownCollaborationErrorKey,
+} from '../collaboration-error-utils';
 
 describe('getKnownCollaborationErrorKey', () => {
     it('maps known collaboration errors', () => {
@@ -33,5 +36,42 @@ describe('getKnownCollaborationErrorKey', () => {
         expect(
             getKnownCollaborationErrorKey('Unexpected upstream timeout')
         ).toBeNull();
+    });
+});
+
+describe('getCollaborationErrorMessage', () => {
+    it('returns Error.message when provided an Error instance', () => {
+        expect(
+            getCollaborationErrorMessage(
+                new Error('Could not find function'),
+                'fallback'
+            )
+        ).toBe('Could not find function');
+    });
+
+    it('extracts message from PostgREST-like error objects', () => {
+        expect(
+            getCollaborationErrorMessage(
+                {
+                    message:
+                        'Could not find function public.create_diagram_invitation',
+                },
+                'fallback'
+            )
+        ).toBe('Could not find function public.create_diagram_invitation');
+    });
+
+    it('extracts nested message from error objects', () => {
+        expect(
+            getCollaborationErrorMessage(
+                { error: { message: 'Invitation not found' } },
+                'fallback'
+            )
+        ).toBe('Invitation not found');
+    });
+
+    it('returns fallback when no message is available', () => {
+        expect(getCollaborationErrorMessage({}, 'fallback')).toBe('fallback');
+        expect(getCollaborationErrorMessage(null, 'fallback')).toBe('fallback');
     });
 });

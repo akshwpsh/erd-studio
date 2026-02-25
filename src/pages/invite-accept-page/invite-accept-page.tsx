@@ -14,7 +14,10 @@ import { Button } from '@/components/button/button';
 import { getSupabaseClient } from '@/lib/supabase/client';
 import type { AcceptDiagramInvitationResult } from '@/lib/supabase/types';
 import { useTranslation } from 'react-i18next';
-import { getKnownCollaborationErrorKey } from '@/lib/supabase/collaboration-error-utils';
+import {
+    getCollaborationErrorMessage,
+    getKnownCollaborationErrorKey,
+} from '@/lib/supabase/collaboration-error-utils';
 
 type AcceptStatus = 'idle' | 'loading' | 'error';
 
@@ -70,10 +73,10 @@ const InviteAcceptPageContent: React.FC = () => {
             navigate(`/diagrams/${accepted.diagram_id}`, { replace: true });
         } catch (error) {
             setStatus('error');
-            const rawMessage =
-                error instanceof Error
-                    ? error.message
-                    : t('invite_accept_page.errors.accept_failed');
+            const rawMessage = getCollaborationErrorMessage(
+                error,
+                t('invite_accept_page.errors.accept_failed')
+            );
             const mappedKey = getKnownCollaborationErrorKey(rawMessage);
             setErrorMessage(
                 mappedKey

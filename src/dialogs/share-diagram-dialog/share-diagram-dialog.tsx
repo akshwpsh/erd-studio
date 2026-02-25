@@ -31,7 +31,10 @@ import type {
     CollaborationRole,
     DiagramInvitationStatus,
 } from '@/lib/supabase/types';
-import { getKnownCollaborationErrorKey } from '@/lib/supabase/collaboration-error-utils';
+import {
+    getCollaborationErrorMessage,
+    getKnownCollaborationErrorKey,
+} from '@/lib/supabase/collaboration-error-utils';
 import type { BaseDialogProps } from '../common/base-dialog-props';
 
 export interface ShareDiagramDialogProps extends BaseDialogProps {}
@@ -114,17 +117,16 @@ export const ShareDiagramDialog: React.FC<ShareDiagramDialogProps> = ({
 
     const resolveErrorMessage = useCallback(
         (error: unknown): string => {
-            if (error instanceof Error) {
-                const knownErrorKey = getKnownCollaborationErrorKey(
-                    error.message
-                );
-                if (knownErrorKey) {
-                    return t(`collaboration_errors.${knownErrorKey}`);
-                }
-                return error.message;
+            const message = getCollaborationErrorMessage(
+                error,
+                t('share_dialog.errors.unknown_error')
+            );
+            const knownErrorKey = getKnownCollaborationErrorKey(message);
+            if (knownErrorKey) {
+                return t(`collaboration_errors.${knownErrorKey}`);
             }
 
-            return t('share_dialog.errors.unknown_error');
+            return message;
         },
         [t]
     );
